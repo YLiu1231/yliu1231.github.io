@@ -15,11 +15,11 @@
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Neucha:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"E90O4G39GT","apiKey":"437253e7fd9ee35ea1ab99aacca8fe45","indexName":"yliu1231","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":{"position":"slideLeftIn","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false}}},"path":"search.xml"};
+    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"E90O4G39GT","apiKey":"437253e7fd9ee35ea1ab99aacca8fe45","indexName":"yliu1231","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="​ 今天第一次完整地给爸妈做了顿晚饭：简单的两个小菜和紫米地瓜粥。">
@@ -30,7 +30,6 @@
 <meta property="og:description" content="​ 今天第一次完整地给爸妈做了顿晚饭：简单的两个小菜和紫米地瓜粥。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-07T12:19:32.000Z">
-<meta property="article:modified_time" content="2021-10-07T13:33:32.346Z">
 <meta property="article:author" content="Yulin LIU">
 <meta property="article:tag" content="Experience">
 <meta property="article:tag" content="Emotion">
@@ -108,7 +107,7 @@
     </div>
   </div>
 
-  <div class="site-meta custom-logo">
+  <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
@@ -128,30 +127,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -229,16 +228,15 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-07 20:19:32 / 修改时间：21:33:32" itemprop="dateCreated datePublished" datetime="2021-10-07T20:19:32+08:00">2021-10-07</time>
+              <time title="创建时间：2021-10-07 20:19:32" itemprop="dateCreated datePublished" datetime="2021-10-07T20:19:32+08:00">2021-10-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -254,6 +252,13 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
             </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
   
 
@@ -268,13 +273,19 @@
       
         <p>​ 今天第一次完整地给爸妈做了顿晚饭：简单的两个小菜和紫米地瓜粥。</p>
 <span id="more"></span>
-<p>​ 在网络上看了太多的美食视频，作者们都在清新色调的整洁厨房中，游刃有余又不失精细地处理各种食材。看不到污秽与脏乱，感觉不到水渍与碎屑。一切都十分舒爽顺畅，一气呵成。不论是食材还是调料，都十分听话地保持了成色与品相。他们手艺精湛，有条不紊地一边讲解一边微笑，眼神中充满了温柔与鼓励。</p>
+<p>​
+在网络上看了太多的美食视频，作者们都在清新色调的整洁厨房中，游刃有余又不失精细地处理各种食材。看不到污秽与脏乱，感觉不到水渍与碎屑。一切都十分舒爽顺畅，一气呵成。不论是食材还是调料，都十分听话地保持了成色与品相。他们手艺精湛，有条不紊地一边讲解一边微笑，眼神中充满了温柔与鼓励。</p>
 <p>​ 而当我走到家中的厨房，却感受到了许多异样。</p>
-<p>​ 厨房自装修到现在已有十四个年头，母亲依旧合理地按照自己习惯的布局堆放着各类材料。大葱、小葱和姜种在了一个装着肥料的水桶里，随吃随用；地瓜、土豆、胡萝卜、紫薯、山药则分袋堆放在冰箱旁边的地上；台面上碟碗旁边，新鲜的香菜、芹菜、韭菜、包菜、白菜、粉丝、香菇和剩下的煎饼、馒头、烤牌争抢着半米的台面。冰箱里最能够发现问题所在，大大小小的盘子，套着塑料袋错落堆放，看不清里面到底盛的是何日的剩菜。长久地存放，混合着鸡蛋、咸菜、生蔬的味道，有些许酸味和霉味，但更多的是令人望而却步的寒气。冷冻柜里更是如此，鱼、虾、牛肉、羊肉、猪肉、排骨、肘子等，尽管水汽凝结的冰碎深埋了它们的光泽，但是他们用气味与体积争抢着空间。八角、桂皮、香叶、陈皮、小米、紫米、大豆等却在另一层达到了奇妙的平衡。</p>
-<p>​ 今天我想做红烧鱼和土豆丝。先来做鱼。将两段黄鱼从冰箱里拿出，家里的微波炉好像坏了很久，只能用水将鱼解冻。只是将套了袋子的海鱼从冰箱里拿出来放到水盆里，双手就沾满了腥味，洗过还有味道。姜成片、蒜大颗粒、葱小段、芹菜小段、香菇切粒，分批放到两个碗里，菜板和台面上已经到处都是迸溅的颗粒，只要是能藏的地方，就会有调皮的能找到。将黄鱼从袋中取出，软烂冰冷的鱼皮就粘了我一手腥油。因为是切断的海鱼，手臂两倍粗的圆筒状，直接下锅煎不易受热均匀，后来炖煮也不易入味，只能从背部找到鱼骨横向切入。由于存放了太久，解除冰冻后鱼肉的组织已经松散，连接鱼骨与鱼肉的筋膜无处借力更难切断。我笨拙地拆解下大块的鱼肉，残留了很多在鱼骨上，既是无奈放弃也是主动抛弃。一切就绪，我的双手已经粘滑不堪。参考王刚老师的红烧教学，我也算顺利完成了。刷锅、刷锅铲、洗砧板，每一步都是水花四溅。不久，我感觉腰就已经开始吃力。</p>
-<p>​ 土豆只剩一个了，单做一个菜三个人吃有点不够，我看到还有胡萝卜和韭菜，想着做一个色彩亮丽的炝炒土豆丝。土豆和胡萝卜用刨子迅速地就去皮洗净，然而我的刀工确实是辜负了它们的新鲜，像薯条粗细，根根饱满。看起来干净饱满的韭菜，其实头部和尾部大多需要处理。尾部还好处理，就将不新鲜的、泛黄的、老的揪掉就可以；而头部则需要将透明的薄膜保护层摘下，一根一根，一点一点，拇指与食指不断地用劲，很快腰部传来了疲惫的信号，食指也受挤压泛红。我要速速解决战斗。姜丝、蒜粒、葱丝还有剩余，干辣椒剪段增香，尖椒起底味，油热下锅，左手扶料，右手用刀盛起倒入。这次翻炒更加熟练自如，然而左手小指贴在砧板上，沾到了辣椒籽，我感觉到火辣辣的烫。</p>
-<p>​ 陪父亲喝了一点酒，母亲也一直夸赞我的厨艺起步水平不错，一瞬间疲惫、腥臭、疼痛全部被父母的笑脸带来的成就感冲走，浑身上下突然有使不完的力气，十分开心。</p>
-<p>​ 饭前的苦思，进入厨房的抵触，打开冰箱的反感，台面杂乱的烦心，身体的疲惫，误伤的疼痛，收拾碗筷的懒惰，家人的健康、满足、快乐，短暂的成就感。</p>
+<p>​
+厨房自装修到现在已有十四个年头，母亲依旧合理地按照自己习惯的布局堆放着各类材料。大葱、小葱和姜种在了一个装着肥料的水桶里，随吃随用；地瓜、土豆、胡萝卜、紫薯、山药则分袋堆放在冰箱旁边的地上；台面上碟碗旁边，新鲜的香菜、芹菜、韭菜、包菜、白菜、粉丝、香菇和剩下的煎饼、馒头、烤牌争抢着半米的台面。冰箱里最能够发现问题所在，大大小小的盘子，套着塑料袋错落堆放，看不清里面到底盛的是何日的剩菜。长久地存放，混合着鸡蛋、咸菜、生蔬的味道，有些许酸味和霉味，但更多的是令人望而却步的寒气。冷冻柜里更是如此，鱼、虾、牛肉、羊肉、猪肉、排骨、肘子等，尽管水汽凝结的冰碎深埋了它们的光泽，但是他们用气味与体积争抢着空间。八角、桂皮、香叶、陈皮、小米、紫米、大豆等却在另一层达到了奇妙的平衡。</p>
+<p>​
+今天我想做红烧鱼和土豆丝。先来做鱼。将两段黄鱼从冰箱里拿出，家里的微波炉好像坏了很久，只能用水将鱼解冻。只是将套了袋子的海鱼从冰箱里拿出来放到水盆里，双手就沾满了腥味，洗过还有味道。姜成片、蒜大颗粒、葱小段、芹菜小段、香菇切粒，分批放到两个碗里，菜板和台面上已经到处都是迸溅的颗粒，只要是能藏的地方，就会有调皮的能找到。将黄鱼从袋中取出，软烂冰冷的鱼皮就粘了我一手腥油。因为是切断的海鱼，手臂两倍粗的圆筒状，直接下锅煎不易受热均匀，后来炖煮也不易入味，只能从背部找到鱼骨横向切入。由于存放了太久，解除冰冻后鱼肉的组织已经松散，连接鱼骨与鱼肉的筋膜无处借力更难切断。我笨拙地拆解下大块的鱼肉，残留了很多在鱼骨上，既是无奈放弃也是主动抛弃。一切就绪，我的双手已经粘滑不堪。参考王刚老师的红烧教学，我也算顺利完成了。刷锅、刷锅铲、洗砧板，每一步都是水花四溅。不久，我感觉腰就已经开始吃力。</p>
+<p>​
+土豆只剩一个了，单做一个菜三个人吃有点不够，我看到还有胡萝卜和韭菜，想着做一个色彩亮丽的炝炒土豆丝。土豆和胡萝卜用刨子迅速地就去皮洗净，然而我的刀工确实是辜负了它们的新鲜，像薯条粗细，根根饱满。看起来干净饱满的韭菜，其实头部和尾部大多需要处理。尾部还好处理，就将不新鲜的、泛黄的、老的揪掉就可以；而头部则需要将透明的薄膜保护层摘下，一根一根，一点一点，拇指与食指不断地用劲，很快腰部传来了疲惫的信号，食指也受挤压泛红。我要速速解决战斗。姜丝、蒜粒、葱丝还有剩余，干辣椒剪段增香，尖椒起底味，油热下锅，左手扶料，右手用刀盛起倒入。这次翻炒更加熟练自如，然而左手小指贴在砧板上，沾到了辣椒籽，我感觉到火辣辣的烫。</p>
+<p>​
+陪父亲喝了一点酒，母亲也一直夸赞我的厨艺起步水平不错，一瞬间疲惫、腥臭、疼痛全部被父母的笑脸带来的成就感冲走，浑身上下突然有使不完的力气，十分开心。</p>
+<p>​
+饭前的苦思，进入厨房的抵触，打开冰箱的反感，台面杂乱的烦心，身体的疲惫，误伤的疼痛，收拾碗筷的懒惰，家人的健康、满足、快乐，短暂的成就感。</p>
 <p>​ 这些，父亲母亲每日都要经历几遍，已经三十二年了。</p>
 
     </div>
@@ -294,7 +305,7 @@
     <a href="https://profile.yulin.love/2021/10/07/%E7%BA%A2%E7%83%A7%E9%BB%84%E9%B1%BC%E4%B8%8E%E7%82%9D%E7%82%92%E5%9C%9F%E8%B1%86%E4%B8%9D/" title="红烧黄鱼与炝炒土豆丝">https://profile.yulin.love/2021/10/07/红烧黄鱼与炝炒土豆丝/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -390,20 +401,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
         
           <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            <a href="/categories/">
           
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags">
+            <a href="/tags/">
           
         <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
@@ -412,48 +423,32 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
 
-
-      </div>
-
-      <!-- 文件位置：~/blog/themes/next/layout/_custom/sidebar.swig -->
-
 <div id="days"></div>
 <script>
-function show_date_time(){
-    window.setTimeout("show_date_time()", 1000);
-    BirthDay=new Date("09/09/2021 23:48:23");
-    today=new Date();
-    timeold=(today.getTime()-BirthDay.getTime());
-    sectimeold=timeold/1000
-    secondsold=Math.floor(sectimeold);
-    msPerDay=24*60*60*1000
-    e_daysold=timeold/msPerDay
-    daysold=Math.floor(e_daysold);
-    e_hrsold=(e_daysold-daysold)*24;
-    hrsold=setzero(Math.floor(e_hrsold));
-    e_minsold=(e_hrsold-hrsold)*60;
-    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
-    seconds=setzero(Math.floor((e_minsold-minsold)*60));
-    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
-}
-function setzero(i) {
-    if (i<10) {
-        i="0" + i
-    };
-    return i;
+function show_date_time() {
+  window.setTimeout(show_date_time, 1000);
+  const birthDay = new Date('09/09/2021 23:48:23');
+  const elapsed = Date.now() - birthDay.getTime();
+  const days = Math.floor(elapsed / 86400000);
+  const hours = String(Math.floor(elapsed / 3600000) % 24).padStart(2, '0');
+  const minutes = String(Math.floor(elapsed / 60000) % 60).padStart(2, '0');
+  const seconds = String(Math.floor(elapsed / 1000) % 60).padStart(2, '0');
+  document.getElementById('days').textContent =
+    `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
 }
 show_date_time();
 </script>
 
-      
+      </div>
+
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>
@@ -471,7 +466,7 @@ show_date_time();
 <div class="copyright">
   
   &copy; 2021 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -545,26 +540,6 @@ show_date_time();
 
 
 
-<script>
-document.querySelectorAll('.pdfobject-container').forEach(element => {
-  let url = element.dataset.target;
-  let pdfOpenParams = {
-    navpanes : 0,
-    toolbar  : 0,
-    statusbar: 0,
-    pagemode : 'thumbs',
-    view     : 'FitH'
-  };
-  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
-  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
-
-  if (NexT.utils.supportsPDFs()) {
-    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
-  } else {
-    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
-  }
-});
-</script>
 
 
 
@@ -631,7 +606,7 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
     var guest = 'nick,mail';
     guest = guest.split(',').filter(item => {
@@ -648,7 +623,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       meta       : guest,
       pageSize   : '10' || 10,
       visitor    : true,
-      lang       : 'zh-CN' || 'zh-cn',
+      lang       : '' || 'zh-cn',
       path       : location.pathname,
       recordIP   : true,
       serverURLs : ''
@@ -656,9 +631,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   }, window.Valine);
 });
 </script>
+<script src="/js/clicklove.js"></script>
 
 </body>
 </html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/clicklove.js"></script>

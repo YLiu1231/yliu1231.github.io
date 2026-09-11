@@ -15,11 +15,11 @@
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Neucha:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"E90O4G39GT","apiKey":"437253e7fd9ee35ea1ab99aacca8fe45","indexName":"yliu1231","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":{"position":"slideLeftIn","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false}}},"path":"search.xml"};
+    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"E90O4G39GT","apiKey":"437253e7fd9ee35ea1ab99aacca8fe45","indexName":"yliu1231","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="上一篇检讨书是深夜写的，写到后面已经十分困倦，许多话都是一带而过，整篇结构显得头重脚轻，跑题严重。现在看来，不该急于写完，应该一点一点，仔细剖析自己的现状。">
@@ -30,7 +30,6 @@
 <meta property="og:description" content="上一篇检讨书是深夜写的，写到后面已经十分困倦，许多话都是一带而过，整篇结构显得头重脚轻，跑题严重。现在看来，不该急于写完，应该一点一点，仔细剖析自己的现状。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-12T08:52:33.000Z">
-<meta property="article:modified_time" content="2021-09-12T10:39:50.780Z">
 <meta property="article:author" content="Yulin LIU">
 <meta property="article:tag" content="Emotion">
 <meta name="twitter:card" content="summary">
@@ -107,7 +106,7 @@
     </div>
   </div>
 
-  <div class="site-meta custom-logo">
+  <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
@@ -127,30 +126,30 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -228,16 +227,15 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-12 16:52:33 / 修改时间：18:39:50" itemprop="dateCreated datePublished" datetime="2021-09-12T16:52:33+08:00">2021-09-12</time>
+              <time title="创建时间：2021-09-12 16:52:33" itemprop="dateCreated datePublished" datetime="2021-09-12T16:52:33+08:00">2021-09-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
+                <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -253,6 +251,13 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
             </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
   
 
@@ -267,12 +272,18 @@
       
         <p>上一篇检讨书是深夜写的，写到后面已经十分困倦，许多话都是一带而过，整篇结构显得头重脚轻，跑题严重。现在看来，不该急于写完，应该一点一点，仔细剖析自己的现状。</p>
 <span id="more"></span>
-<p>​ 一开始想说清楚的就是我“嘚瑟”的本质。一句话来说就是，我肆意地释放了自己的情绪。我并不是，也永远不会因为自己的学业、项目、奖学金之类的事情而向别人夸耀、显摆自己。但是一些过往的原因，让我心中仍然存留着劣质的、可笑的一点点优越感，我也一直小心翼翼地克制着。再有就是，我现在确实不太清楚社会就业、薪资的现状。读了博士，接触的人群变化了，我就觉得社会大众的定义向他们偏移。然而，各城市的人均薪资着实让我感到十分吃惊，这种吃惊源于我对基本劳动力价值的高估。大家只要努力奋斗，生活都会好起来的，但大家出发点的差异还是很残酷。</p>
-<p>​ 我会永远坚持我的梦想：我要做一个纯粹的、善良的人，不用恶意揣度他人，不用正义感去评判他人，不用任何价值去衡量他人。但是，作为一个动物性的人，我还是劣根的，如此的想法会让我不自觉的抬高自己，对自己感到失望与无奈。</p>
-<p>​ 最近看老师动辄百万购置服务器，总觉得自己未来也能手持重金，完成大型项目。这是我的目标不错，但是我现在仍然是个门外汉，一个一无所知的一年级新生。我的愚蠢与可笑就在于此，当别人问我专业的时候，我嘴上说着工业工程，没什么用的专业，但是我脑海中已经浮现出机场货仓、码头集装箱、交通路线规划等等至今仍是难解的问题，在我或者我参与的团队手中一一解决。</p>
-<p>​ <strong>用幻想的未来支撑当下的行动是我最嘚瑟的地方了吧。</strong></p>
-<p>​ 一个人不成熟的表现之一应该是，预设对方的思维逻辑与自己相同。总以为别人和自己想的一样，做的一样。我只顾着自己的行为模式，把别人也放在自己的假设里，定位成一个提供反馈的对象，而不是一个人。高一班主任说我做题的时候总是想当然，不能正确地、全面地、沉稳地面对题目。现在好像也是一样的，我不断从一个象牙塔走进另一个象牙塔，遇到的人大部分是学生，罕有冲突，不会触碰到他人的面子或者自尊。和大家讨论问题时，也是就事论事，直指问题本身，从不上升到个人，也从未深究对方的思维基石由何构建。于是我在家人眼里就是愣头青、性子刚、不知变通，在亲情关系、家长里短上十分不可理喻。我想我应该越来越解放自己的思想，接纳他人的不同，甚至是与自己观点的对立。</p>
-<p>​ <strong>我是芸芸众生中的一颗微粒，我经历了千万家灯火中的一盏，我看到了所有人都看到的日月星辰。我从来不特殊，也不会被命运优待，既不需要痛苦于为什么不是我的结果，也不应该沉溺于如果是我的假设。我和任何人都一样，随处可见但独一无二。</strong></p>
+<p>​
+一开始想说清楚的就是我“嘚瑟”的本质。一句话来说就是，我肆意地释放了自己的情绪。我并不是，也永远不会因为自己的学业、项目、奖学金之类的事情而向别人夸耀、显摆自己。但是一些过往的原因，让我心中仍然存留着劣质的、可笑的一点点优越感，我也一直小心翼翼地克制着。再有就是，我现在确实不太清楚社会就业、薪资的现状。读了博士，接触的人群变化了，我就觉得社会大众的定义向他们偏移。然而，各城市的人均薪资着实让我感到十分吃惊，这种吃惊源于我对基本劳动力价值的高估。大家只要努力奋斗，生活都会好起来的，但大家出发点的差异还是很残酷。</p>
+<p>​
+我会永远坚持我的梦想：我要做一个纯粹的、善良的人，不用恶意揣度他人，不用正义感去评判他人，不用任何价值去衡量他人。但是，作为一个动物性的人，我还是劣根的，如此的想法会让我不自觉的抬高自己，对自己感到失望与无奈。</p>
+<p>​
+最近看老师动辄百万购置服务器，总觉得自己未来也能手持重金，完成大型项目。这是我的目标不错，但是我现在仍然是个门外汉，一个一无所知的一年级新生。我的愚蠢与可笑就在于此，当别人问我专业的时候，我嘴上说着工业工程，没什么用的专业，但是我脑海中已经浮现出机场货仓、码头集装箱、交通路线规划等等至今仍是难解的问题，在我或者我参与的团队手中一一解决。</p>
+<p>​
+<strong>用幻想的未来支撑当下的行动是我最嘚瑟的地方了吧。</strong></p>
+<p>​
+一个人不成熟的表现之一应该是，预设对方的思维逻辑与自己相同。总以为别人和自己想的一样，做的一样。我只顾着自己的行为模式，把别人也放在自己的假设里，定位成一个提供反馈的对象，而不是一个人。高一班主任说我做题的时候总是想当然，不能正确地、全面地、沉稳地面对题目。现在好像也是一样的，我不断从一个象牙塔走进另一个象牙塔，遇到的人大部分是学生，罕有冲突，不会触碰到他人的面子或者自尊。和大家讨论问题时，也是就事论事，直指问题本身，从不上升到个人，也从未深究对方的思维基石由何构建。于是我在家人眼里就是愣头青、性子刚、不知变通，在亲情关系、家长里短上十分不可理喻。我想我应该越来越解放自己的思想，接纳他人的不同，甚至是与自己观点的对立。</p>
+<p>​
+<strong>我是芸芸众生中的一颗微粒，我经历了千万家灯火中的一盏，我看到了所有人都看到的日月星辰。我从来不特殊，也不会被命运优待，既不需要痛苦于为什么不是我的结果，也不应该沉溺于如果是我的假设。我和任何人都一样，随处可见但独一无二。</strong></p>
 
     </div>
 
@@ -291,7 +302,7 @@
     <a href="https://profile.yulin.love/2021/09/12/%E5%9B%9B%E5%B9%B4%E5%89%8D%E7%9A%84%E6%A3%80%E8%AE%A8%E4%B9%A6/" title="四年前的检讨书">https://profile.yulin.love/2021/09/12/四年前的检讨书/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -386,20 +397,20 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
         
           <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            <a href="/categories/">
           
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags">
+            <a href="/tags/">
           
         <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
@@ -408,48 +419,32 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
 
-
-      </div>
-
-      <!-- 文件位置：~/blog/themes/next/layout/_custom/sidebar.swig -->
-
 <div id="days"></div>
 <script>
-function show_date_time(){
-    window.setTimeout("show_date_time()", 1000);
-    BirthDay=new Date("09/09/2021 23:48:23");
-    today=new Date();
-    timeold=(today.getTime()-BirthDay.getTime());
-    sectimeold=timeold/1000
-    secondsold=Math.floor(sectimeold);
-    msPerDay=24*60*60*1000
-    e_daysold=timeold/msPerDay
-    daysold=Math.floor(e_daysold);
-    e_hrsold=(e_daysold-daysold)*24;
-    hrsold=setzero(Math.floor(e_hrsold));
-    e_minsold=(e_hrsold-hrsold)*60;
-    minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
-    seconds=setzero(Math.floor((e_minsold-minsold)*60));
-    document.getElementById('days').innerHTML="已运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
-}
-function setzero(i) {
-    if (i<10) {
-        i="0" + i
-    };
-    return i;
+function show_date_time() {
+  window.setTimeout(show_date_time, 1000);
+  const birthDay = new Date('09/09/2021 23:48:23');
+  const elapsed = Date.now() - birthDay.getTime();
+  const days = Math.floor(elapsed / 86400000);
+  const hours = String(Math.floor(elapsed / 3600000) % 24).padStart(2, '0');
+  const minutes = String(Math.floor(elapsed / 60000) % 60).padStart(2, '0');
+  const seconds = String(Math.floor(elapsed / 1000) % 60).padStart(2, '0');
+  document.getElementById('days').textContent =
+    `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
 }
 show_date_time();
 </script>
 
-      
+      </div>
+
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>
@@ -467,7 +462,7 @@ show_date_time();
 <div class="copyright">
   
   &copy; 2021 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -541,26 +536,6 @@ show_date_time();
 
 
 
-<script>
-document.querySelectorAll('.pdfobject-container').forEach(element => {
-  let url = element.dataset.target;
-  let pdfOpenParams = {
-    navpanes : 0,
-    toolbar  : 0,
-    statusbar: 0,
-    pagemode : 'thumbs',
-    view     : 'FitH'
-  };
-  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
-  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
-
-  if (NexT.utils.supportsPDFs()) {
-    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
-  } else {
-    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
-  }
-});
-</script>
 
 
 
@@ -627,7 +602,7 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
     var guest = 'nick,mail';
     guest = guest.split(',').filter(item => {
@@ -644,7 +619,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       meta       : guest,
       pageSize   : '10' || 10,
       visitor    : true,
-      lang       : 'zh-CN' || 'zh-cn',
+      lang       : '' || 'zh-cn',
       path       : location.pathname,
       recordIP   : true,
       serverURLs : ''
@@ -652,9 +627,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   }, window.Valine);
 });
 </script>
+<script src="/js/clicklove.js"></script>
 
 </body>
 </html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/clicklove.js"></script>
