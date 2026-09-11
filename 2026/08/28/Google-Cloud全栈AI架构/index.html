@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Neucha:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Google Cloud 的全栈 AI 不是产品清单，而是一条从基础设施、数据和模型通向可运营 Agent 与业务应用的生产链。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google Cloud 全栈 AI 架构：从算力、数据与模型到可运营 Agent">
+<meta property="og:url" content="https://profile.yulin.love/2026/08/28/Google-Cloud%E5%85%A8%E6%A0%88AI%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="I Know Nothing">
+<meta property="og:description" content="Google Cloud 的全栈 AI 不是产品清单，而是一条从基础设施、数据和模型通向可运营 Agent 与业务应用的生产链。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-28T14:24:55.000Z">
+<meta property="article:author" content="Yulin LIU">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Google Cloud">
+<meta property="article:tag" content="Cloud Architecture">
+<meta property="article:tag" content="Agent Platform">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://profile.yulin.love/2026/08/28/Google-Cloud%E5%85%A8%E6%A0%88AI%E6%9E%B6%E6%9E%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Google Cloud 全栈 AI 架构：从算力、数据与模型到可运营 Agent | I Know Nothing</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c3b4df96df3c3c8fe7428c55a34aba50";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="I Know Nothing" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">I Know Nothing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://profile.yulin.love/2026/08/28/Google-Cloud%E5%85%A8%E6%A0%88AI%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.JPG">
+      <meta itemprop="name" content="Yulin LIU">
+      <meta itemprop="description" content="Stay Happy and Healthy !">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I Know Nothing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Google Cloud 全栈 AI 架构：从算力、数据与模型到可运营 Agent
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-08-28 22:24:55" itemprop="dateCreated datePublished" datetime="2026-08-28T22:24:55+08:00">2026-08-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Google Cloud 的全栈 AI 不是产品清单，而是一条从基础设施、数据和模型通向可运营 Agent 与业务应用的生产链。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Google Cloud 所说的“全栈
+AI”，不能只理解为一组云产品的集合。更有价值的观察方式，是看它如何把算力、数据、模型、Agent
+工程平台和业务入口连成一条生产链，并用安全能力横向覆盖整个系统。</p>
+<span id="more"></span>
+<figure>
+<img
+src="/2026/08/28/Google-Cloud%E5%85%A8%E6%A0%88AI%E6%9E%B6%E6%9E%84/google_cloud_product_panorama_16x9_4k_light.png"
+alt="Google Cloud 全栈 AI 产品全景图" />
+<figcaption aria-hidden="true">Google Cloud 全栈 AI
+产品全景图</figcaption>
+</figure>
+<h2 id="一句话判断">一句话判断</h2>
+<p>Google Cloud 正在把竞争重心从“提供更强的模型
+API”，推向“提供一套能够构建、运行、治理和持续优化企业 Agent
+的完整控制面”。模型仍然重要，但只有和企业数据、运行时、身份权限、评测与安全闭环组合起来，才能真正进入业务流程。</p>
+<h2 id="从下到上理解这套架构">从下到上理解这套架构</h2>
+<h3 id="ai-hypercomputer训练推理与数据处理底座">1. AI
+Hypercomputer：训练、推理与数据处理底座</h3>
+<p>最底层解决的是算力如何被稳定地组织和调度。Cloud TPU、NVIDIA
+GPU、Jupiter 与 Titanium 网络、高性能存储，以及
+GKE、Slurm、PyTorch、JAX、TensorFlow 等软件栈共同构成计算底座。</p>
+<p>这一层的价值不只是提供芯片，而是把计算、网络、存储和集群调度组合成可扩展的训练与推理系统，同时承载上层的大规模数据处理任务。</p>
+<h3 id="agentic-data-cloud企业上下文与行动状态">2. Agentic Data
+Cloud：企业上下文与行动状态</h3>
+<p>Agent
+不能只依赖模型参数中的通用知识。它还需要理解企业数据、实时业务状态、权限边界，并在数据库和业务系统中执行可追踪的操作。</p>
+<p>因此，BigQuery、Looker、Managed Spark、Open Lakehouse、Knowledge
+Catalog，以及 AlloyDB、Spanner、Cloud SQL、Firestore
+等能力，不再只是传统的数据分析与存储产品。它们共同承担 Agent
+的可信上下文、事实来源和事务状态。</p>
+<h3 id="frontier-models通用推理生成媒体与开放模型">3. Frontier
+Models：通用推理、生成媒体与开放模型</h3>
+<p>模型层形成了三类能力组合：</p>
+<ul>
+<li>Gemini 承担通用推理、多模态理解、代码、工具调用与实时交互；</li>
+<li>Veo、Imagen、Lyria、Chirp
+等模型覆盖图像、视频、音乐和语音内容；</li>
+<li>Gemma 开放权重模型面向端侧、私有化和可定制部署。</li>
+</ul>
+<p>这意味着企业可以在同一平台上同时使用闭源前沿模型、生成媒体模型和开放权重模型，而不必把整个
+Agent 系统绑定在单一模型形态上。</p>
+<h3 id="agent-platform真正的生产控制面">4. Agent
+Platform：真正的生产控制面</h3>
+<p>Agent Platform
+是整张图的中心。它把模型、数据和工具编排成能够长期运行的
+Agent，并覆盖四个连续阶段：</p>
+<ol type="1">
+<li><strong>Build</strong>：用 Agent Studio、ADK、Agent Garden、Model
+Garden、API、Skills、MCP 与 A2A 完成能力构建和连接；</li>
+<li><strong>Scale</strong>：用 Runtime、Sessions、Memory Bank、Code
+Execution 和自动伸缩支撑稳定运行；</li>
+<li><strong>Govern</strong>：通过 Agent Registry、Agent
+Identity、Gateway、IAM、Model Armor
+与策略控制身份、权限和行为边界；</li>
+<li><strong>Optimize</strong>：通过 Trace、Logging、Monitoring、Topology
+和 GenAI Evaluation 持续观察、评测与优化 Agent。</li>
+</ol>
+<p>Google AI Studio 更偏向模型实验和快速原型，Google Antigravity
+更偏向持续的 Agent
+工程执行。它们是进入构建链的开发入口，但不能替代企业级运行时和治理控制面。</p>
+<h3 id="agents-applications业务入口与价值分发">5. Agents &amp;
+Applications：业务入口与价值分发</h3>
+<p>最上层才是员工、客户与具体业务流程真正接触到的应用，包括 Gemini
+Enterprise、Gemini、Google Workspace with Gemini、Google Flow，以及
+Google、合作伙伴和企业自行构建的 Agents。</p>
+<p>这一层决定了能力如何进入工作流并形成业务结果；下面四层则决定这些结果能否被稳定、合规、可持续地生产出来。</p>
+<h2 id="agentic-defense不是单独一层而是横切全栈">Agentic
+Defense：不是单独一层，而是横切全栈</h2>
+<p>安全不能等 Agent
+上线之后再补充。代码、云基础设施、数据、模型、身份、运行时和应用都需要持续的准备、扫描、修复与监控。</p>
+<p>因此，Wiz、CodeMender、Mandiant、Google Security Operations、Google
+Threat Intelligence、Security Command Center、Model Armor 和 Sensitive
+Data Protection
+被组织成一个横向保护域。它与平台中的身份治理相互配合，但覆盖范围更广。</p>
+<h2 id="三个值得关注的架构变化">三个值得关注的架构变化</h2>
+<h3
+id="模型正在从产品中心变成可替换的能力层">模型正在从“产品中心”变成“可替换的能力层”</h3>
+<p>企业最终采购的不只是某个模型，而是从数据接入、工具调用、运行时到治理评测的完整生产能力。模型越容易被替换，平台层对系统的控制力反而越强。</p>
+<h3
+id="数据正在从离线分析对象变成agent-的行动状态">数据正在从“离线分析对象”变成“Agent
+的行动状态”</h3>
+<p>传统数据平台主要回答“发生了什么”；Agent
+系统还需要知道“现在可以做什么、由谁执行、执行后如何提交和回滚”。这使数据库、知识目录和事务系统成为
+Agent 架构的核心组成部分。</p>
+<h3 id="agent-工程正在形成独立的软件生命周期">Agent
+工程正在形成独立的软件生命周期</h3>
+<p>Build、Scale、Govern、Optimize 表明 Agent 不再只是 Prompt
+加模型调用，而是一种需要运行时、身份、策略、可观测和持续评测的软件系统。企业能力差距也会从“能否做出
+Demo”，转向“能否让 Agent 在真实业务中长期可靠运行”。</p>
+<h2 id="证据与判断边界">证据与判断边界</h2>
+<p>这张图综合了 Google I/O 2026 上海站现场材料与 Google
+官方公开资料。图中的产品名称与六层角色属于材料和官方资料可以支持的内容；箭头、并行关系、平台控制点以及将
+Agentic Defense
+表达为横向保护域，则是为了说明生产机制而做的架构归纳，并非 Google
+某一张官方原图的逐线复刻。</p>
+<p>图中没有纳入未经证实的性能数字、领先性结论和市场份额，也不表示 Google
+Cloud
+在所有层面都优于其他云平台。产品版本与可用范围可能继续变化，应以官方文档为准。</p>
+<h2 id="主要参考资料">主要参考资料</h2>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://cloud.google.com/blog/topics/google-cloud-next/welcome-to-google-cloud-next26">Google
+Cloud Next 2026：全栈角色说明</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://docs.cloud.google.com/ai-hypercomputer/docs/overview">AI
+Hypercomputer 概览</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/data-cloud">Agentic Data
+Cloud</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform">Gemini
+Enterprise Agent Platform</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.google.com/security/ai-threat-defense">Google
+AI Threat Defense</a></li>
+<li><a target="_blank" rel="noopener" href="https://deepmind.google/models/model-cards/">Google
+DeepMind 模型与模型卡</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Yulin LIU
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://profile.yulin.love/2026/08/28/Google-Cloud%E5%85%A8%E6%A0%88AI%E6%9E%B6%E6%9E%84/" title="Google Cloud 全栈 AI 架构：从算力、数据与模型到可运营 Agent">https://profile.yulin.love/2026/08/28/Google-Cloud全栈AI架构/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/Google-Cloud/" rel="tag"># Google Cloud</a>
+              <a href="/tags/Cloud-Architecture/" rel="tag"># Cloud Architecture</a>
+              <a href="/tags/Agent-Platform/" rel="tag"># Agent Platform</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/08/01/%E9%A9%AC%E6%96%AF%E5%85%8B%E4%B8%8E%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%BA-AI%E5%AF%8C%E8%B6%B3%E4%B8%8E%E6%B2%BB%E7%90%86%E9%9A%BE%E9%A2%98/" rel="prev" title="马斯克与《经济学人》：AI 富足与治理难题">
+      <i class="fa fa-chevron-left"></i> 马斯克与《经济学人》：AI 富足与治理难题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/09/09/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%8A%9F/" rel="next" title="AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob">
+      AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%88%A4%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">一句话判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E4%B8%8B%E5%88%B0%E4%B8%8A%E7%90%86%E8%A7%A3%E8%BF%99%E5%A5%97%E6%9E%B6%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">从下到上理解这套架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ai-hypercomputer%E8%AE%AD%E7%BB%83%E6%8E%A8%E7%90%86%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%BA%95%E5%BA%A7"><span class="nav-number">2.1.</span> <span class="nav-text">1. AI
+Hypercomputer：训练、推理与数据处理底座</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agentic-data-cloud%E4%BC%81%E4%B8%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E4%B8%8E%E8%A1%8C%E5%8A%A8%E7%8A%B6%E6%80%81"><span class="nav-number">2.2.</span> <span class="nav-text">2. Agentic Data
+Cloud：企业上下文与行动状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#frontier-models%E9%80%9A%E7%94%A8%E6%8E%A8%E7%90%86%E7%94%9F%E6%88%90%E5%AA%92%E4%BD%93%E4%B8%8E%E5%BC%80%E6%94%BE%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">3. Frontier
+Models：通用推理、生成媒体与开放模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agent-platform%E7%9C%9F%E6%AD%A3%E7%9A%84%E7%94%9F%E4%BA%A7%E6%8E%A7%E5%88%B6%E9%9D%A2"><span class="nav-number">2.4.</span> <span class="nav-text">4. Agent
+Platform：真正的生产控制面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agents-applications%E4%B8%9A%E5%8A%A1%E5%85%A5%E5%8F%A3%E4%B8%8E%E4%BB%B7%E5%80%BC%E5%88%86%E5%8F%91"><span class="nav-number">2.5.</span> <span class="nav-text">5. Agents &amp;
+Applications：业务入口与价值分发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#agentic-defense%E4%B8%8D%E6%98%AF%E5%8D%95%E7%8B%AC%E4%B8%80%E5%B1%82%E8%80%8C%E6%98%AF%E6%A8%AA%E5%88%87%E5%85%A8%E6%A0%88"><span class="nav-number">3.</span> <span class="nav-text">Agentic
+Defense：不是单独一层，而是横切全栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84%E6%9E%B6%E6%9E%84%E5%8F%98%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">三个值得关注的架构变化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%AD%A3%E5%9C%A8%E4%BB%8E%E4%BA%A7%E5%93%81%E4%B8%AD%E5%BF%83%E5%8F%98%E6%88%90%E5%8F%AF%E6%9B%BF%E6%8D%A2%E7%9A%84%E8%83%BD%E5%8A%9B%E5%B1%82"><span class="nav-number">4.1.</span> <span class="nav-text">模型正在从“产品中心”变成“可替换的能力层”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%AD%A3%E5%9C%A8%E4%BB%8E%E7%A6%BB%E7%BA%BF%E5%88%86%E6%9E%90%E5%AF%B9%E8%B1%A1%E5%8F%98%E6%88%90agent-%E7%9A%84%E8%A1%8C%E5%8A%A8%E7%8A%B6%E6%80%81"><span class="nav-number">4.2.</span> <span class="nav-text">数据正在从“离线分析对象”变成“Agent
+的行动状态”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#agent-%E5%B7%A5%E7%A8%8B%E6%AD%A3%E5%9C%A8%E5%BD%A2%E6%88%90%E7%8B%AC%E7%AB%8B%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.3.</span> <span class="nav-text">Agent
+工程正在形成独立的软件生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81%E6%8D%AE%E4%B8%8E%E5%88%A4%E6%96%AD%E8%BE%B9%E7%95%8C"><span class="nav-number">5.</span> <span class="nav-text">证据与判断边界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">主要参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yulin LIU"
+      src="/images/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Yulin LIU</p>
+  <div class="site-description" itemprop="description">Stay Happy and Healthy !</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+<div id="days"></div>
+<script>
+function show_date_time() {
+  window.setTimeout(show_date_time, 1000);
+  const birthDay = new Date('09/09/2021 23:48:23');
+  const elapsed = Date.now() - birthDay.getTime();
+  const days = Math.floor(elapsed / 86400000);
+  const hours = String(Math.floor(elapsed / 3600000) % 24).padStart(2, '0');
+  const minutes = String(Math.floor(elapsed / 60000) % 60).padStart(2, '0');
+  const seconds = String(Math.floor(elapsed / 1000) % 60).padStart(2, '0');
+  document.getElementById('days').textContent =
+    `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+}
+show_date_time();
+</script>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yulin LIU</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+<script src="/js/clicklove.js"></script>
+
+</body>
+</html>
