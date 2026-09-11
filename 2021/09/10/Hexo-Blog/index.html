@@ -297,22 +297,6 @@ modules</a></li>
 <code>Accessing non-existent property ...</code>,</li>
 <li>follow the solution <a target="_blank" rel="noopener" href="https://www.haoyizebo.com/posts/710984d0/">here</a></li>
 </ul>
-<h2 id="add-algolia-search">Add algolia search</h2>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd foldername</span><br><span class="line">npm install hexo-algoliasearch --save</span><br></pre></td></tr></tbody></table></figure>
-<ul>
-<li><p>go to <a target="_blank" rel="noopener" href="https://www.algolia.com/">Algolia</a></p></li>
-<li><p>create <code>index_name</code>, add <code>ACLs</code>:
-<code>search</code>,<code>deleteObject</code>, <code>addObject</code>,
-<code>deleteIndex</code>, <code>listIndexes</code></p></li>
-<li><p>three Keys: Search-Only, Admin, new_Key</p></li>
-<li><p>one ID: Application ID</p></li>
-</ul>
-<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">algolia:</span></span><br><span class="line">  <span class="attr">applicationID:</span> <span class="string">Application</span> <span class="string">ID</span></span><br><span class="line">  <span class="attr">apiKey:</span> <span class="string">Search-Only</span></span><br><span class="line">  <span class="attr">adminApiKey:</span> <span class="string">Admin</span></span><br><span class="line">  <span class="attr">indexName:</span> <span class="string">index_name</span></span><br><span class="line">  <span class="attr">chunkSize:</span> <span class="number">5000</span></span><br><span class="line">  <span class="attr">fields:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tags</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">title</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export HEXO_ALGOLIA_INDEXING_KEY=new_Key</span><br><span class="line">hexo clean</span><br><span class="line">hexo algolia</span><br></pre></td></tr></tbody></table></figure>
-<ul>
-<li>when errors happen, try <code>hexo clean</code> and
-<code>hexo algolia</code> again.</li>
-</ul>
 <h2 id="add-favicon">Add favicon</h2>
 <ul>
 <li>open <a target="_blank" rel="noopener" href="https://www.favicon-generator.org/">web</a></li>
@@ -432,7 +416,7 @@ config)</li>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-installation"><span class="nav-number">1.</span> <span class="nav-text">Hexo
-Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup"><span class="nav-number">2.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-algolia-search"><span class="nav-number">3.</span> <span class="nav-text">Add algolia search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-favicon"><span class="nav-number">4.</span> <span class="nav-text">Add favicon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-font"><span class="nav-number">5.</span> <span class="nav-text">Multi-font</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#photo-gallery"><span class="nav-number">6.</span> <span class="nav-text">Photo Gallery</span></a></li></ol></div>
+Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup"><span class="nav-number">2.</span> <span class="nav-text">Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-favicon"><span class="nav-number">3.</span> <span class="nav-text">Add favicon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-font"><span class="nav-number">4.</span> <span class="nav-text">Multi-font</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#photo-gallery"><span class="nav-number">5.</span> <span class="nav-text">Photo Gallery</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

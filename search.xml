@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Init</title>
+    <url>/2021/09/09/Init/</url>
+    <content><![CDATA[<h2 id="helloworld">HelloWorld!</h2>
+<span id="more"></span>
+<p>Reading more test~</p>
+]]></content>
+      <categories>
+        <category>Life</category>
+      </categories>
+      <tags>
+        <tag>Genesis</tag>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Blog</title>
     <url>/2021/09/10/Hexo-Blog/</url>
     <content><![CDATA[<h2 id="hexo-installation"><a href="https://hexo.io/zh-cn/docs/">Hexo
@@ -16,22 +31,6 @@ modules</a></li>
 <li>you may see some warnings like
 <code>Accessing non-existent property ...</code>,</li>
 <li>follow the solution <a href="https://www.haoyizebo.com/posts/710984d0/">here</a></li>
-</ul>
-<h2 id="add-algolia-search">Add algolia search</h2>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">cd foldername</span><br><span class="line">npm install hexo-algoliasearch --save</span><br></pre></td></tr></tbody></table></figure>
-<ul>
-<li><p>go to <a href="https://www.algolia.com/">Algolia</a></p></li>
-<li><p>create <code>index_name</code>, add <code>ACLs</code>:
-<code>search</code>,<code>deleteObject</code>, <code>addObject</code>,
-<code>deleteIndex</code>, <code>listIndexes</code></p></li>
-<li><p>three Keys: Search-Only, Admin, new_Key</p></li>
-<li><p>one ID: Application ID</p></li>
-</ul>
-<figure class="highlight yml"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attr">algolia:</span></span><br><span class="line">  <span class="attr">applicationID:</span> <span class="string">Application</span> <span class="string">ID</span></span><br><span class="line">  <span class="attr">apiKey:</span> <span class="string">Search-Only</span></span><br><span class="line">  <span class="attr">adminApiKey:</span> <span class="string">Admin</span></span><br><span class="line">  <span class="attr">indexName:</span> <span class="string">index_name</span></span><br><span class="line">  <span class="attr">chunkSize:</span> <span class="number">5000</span></span><br><span class="line">  <span class="attr">fields:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">tags</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">title</span></span><br></pre></td></tr></tbody></table></figure>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">export HEXO_ALGOLIA_INDEXING_KEY=new_Key</span><br><span class="line">hexo clean</span><br><span class="line">hexo algolia</span><br></pre></td></tr></tbody></table></figure>
-<ul>
-<li>when errors happen, try <code>hexo clean</code> and
-<code>hexo algolia</code> again.</li>
 </ul>
 <h2 id="add-favicon">Add favicon</h2>
 <ul>
@@ -68,21 +67,6 @@ config)</li>
       </categories>
       <tags>
         <tag>Sharing</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Init</title>
-    <url>/2021/09/09/Init/</url>
-    <content><![CDATA[<h2 id="helloworld">HelloWorld!</h2>
-<span id="more"></span>
-<p>Reading more test~</p>
-]]></content>
-      <categories>
-        <category>Life</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
-        <tag>Genesis</tag>
       </tags>
   </entry>
   <entry>
@@ -568,6 +552,19 @@ it: &lt;a href:"/pdf/cs261.pdf"&gt;Download PDF</a>
       </tags>
   </entry>
   <entry>
+    <title>window post test</title>
+    <url>/2021/10/03/window-post-test/</url>
+    <content><![CDATA[<span id="more"></span>
+<p>Hello-World -------- From Windows</p>
+]]></content>
+      <categories>
+        <category>Self-Learning</category>
+      </categories>
+      <tags>
+        <tag>Coding</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《或许》--YOASOBI</title>
     <url>/2021/09/29/%E3%80%8A%E6%88%96%E8%AE%B8%E3%80%8B-YOASOBI/</url>
     <content><![CDATA[<p>最终我们还是成为了永不相见的陌路人。</p>
@@ -588,19 +585,6 @@ it: &lt;a href:"/pdf/cs261.pdf"&gt;Download PDF</a>
         <tag>Sharing</tag>
         <tag>Emotion</tag>
         <tag>Reading</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>window post test</title>
-    <url>/2021/10/03/window-post-test/</url>
-    <content><![CDATA[<span id="more"></span>
-<p>Hello-World -------- From Windows</p>
-]]></content>
-      <categories>
-        <category>Self-Learning</category>
-      </categories>
-      <tags>
-        <tag>Coding</tag>
       </tags>
   </entry>
   <entry>
@@ -735,50 +719,6 @@ it: &lt;a href:"/pdf/cs261.pdf"&gt;Download PDF</a>
       </tags>
   </entry>
   <entry>
-    <title>华为日记（一）</title>
-    <url>/2021/11/29/%E5%8D%8E%E4%B8%BA%E6%97%A5%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<p>今天下午40名左右的新员工参加的在东莞华为三丫坡的入职开班活动，大家分了组，认识了来自五湖四海的新朋友，也在寻找单身、最小年龄、喜欢旅游等各种标签指引下，打破了心理的障壁。晚上大家进行了小组蒙眼障碍前进，在这个活动中，我对许多名词有了新的深刻的认识：信任、责任、风险控制、团队协作、解决方案。</p>
-<span id="more"></span>
-<p>当我的视力被剥夺，只能用双手感受前方队友的肢体动作，那么要完成跨越障碍、上下楼梯、下蹲避障等动作，我就必须无条件相信他的所有行为。如果我犹豫或者怀疑，导致我中途停顿几秒，那么我可能会脱离他的引导，对下面的动作做出个人的误判，从而导致任务失败。</p>
-<p>在我身后，有未知数量的队友，他们也无条件信任我的行为，可以说我肩负着后方人员的安危，我有艰巨的责任将前方发出指令正确接收并合理传递下去，中间我有几次紧张到刚一收到信号就做出反应，后方的队友还未到达指定位置，我为团队捏了一把冷汗。</p>
-<p>中途我们在毫无征兆的情况下，更换了所有的队员，大家准备的信号与指示各不相同，一下子打乱了所有人的思绪，我也确实自此从未接受到前方新队员的任何指引，一切都是小心翼翼，幸运的是我是末尾的队员，负担减轻了许多。在这种危机风险下，大家几乎是各凭本能地在做出动作，再没有任何合作可言。我曾心里想过建议所有人都按照同一指令，但是又考虑可能有团队奖励，就错过了发声的机会。</p>
-<p>最后就是解决方案，当我们接到任务的时候，规则简单易懂，但是过程中可能会遇到的问题却完全没有头绪。大家头脑风暴后，渐渐有了一些思路，形成了泛化的、简易的、多场景的信号指引，不再具体为转多少度角、下蹲高度的一致性这种问题增添操作的复杂度。</p>
-<p>总的来说，半个小时的活动，打破了我自己的心墙，认识了好多友好的新朋友，我为以后能成为他们的一份子而自豪，当然我也要更加努力，争做先锋。</p>
-]]></content>
-      <categories>
-        <category>Huawei Diary</category>
-      </categories>
-      <tags>
-        <tag>Sharing</tag>
-        <tag>Experience</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>华为日记（二）</title>
-    <url>/2021/11/30/%E5%8D%8E%E4%B8%BA%E6%97%A5%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
-    <content><![CDATA[<p>我从读大学的时候就一直想象着能有一个自己的个人网站，有专属的、特殊的域名，上面记录着我的读书感悟、随笔、杂文以及照片。但我并不是那种愿意主动与他人分享人生经历的人，如果有缘的朋友能发现这个网站，看到我的故事与记录，那是我的荣幸与幸运。如果没有人浏览，那我就把它当作自己的分身，代表着我过去的想法、思考，每当我打开时，能够与自己对话，让自己成长。</p>
-<span id="more"></span>
-<p>终于我在博士期间完成了这个任务，在跟随简洁的、直观的教程步骤后，我就获得了一个本地blog站点，接下来我就需要注册域名与Github托管，这些也都很容易。尽管blog的精彩在于内容，但是能够定制化出自己的个性也是我很大的期望。</p>
-<p>我使用的主题的自由度很高，并且同时借鉴了两个主题的内容。于是在进行个性化修改与调试的时候，我就发现了许多问题，比如功能未正确开启、源文件加载错误、库版本变更与冲突、定制区域偏离等等。</p>
-<p>对于不是科班出身的我来说，独立进行项目调试与运行，特别是定制化功能的开发与实现是一个非常大的挑战。</p>
-<p>于是我首先一遍一遍地梳理代码，将原本正确的部分与我个人修改的部分做了标识与注释，之后进行断点调试，一步一步熟悉css，js文件的逻辑模块与语法。</p>
-<p>之后我进行了系统的搜索与筛选，将一些常见的、其他开发者曾经解决的问题进行了逐个排查，在看到todo
-list中的事项一个一个被打上勾的过程中，我的成就感与幸福感也随之增加。</p>
-<p>我也尝试提issue给库的贡献者，阐述问题，希望直接与开发者进行交流，后来由于在复现时我发现了错误的来源，于是放弃了提交。但是我鼓起了勇气，直接面对开发者，这对我的自信与热爱是极大的促进。</p>
-<p>最后，在经过四天的奋战后，我的小站终于上线了（域名好贵啊
-T.T）。当我打开我的网页，界面刷新出“hello
-world”的那一刻，我这四天的点点滴滴都涌上心头，百感交集。能够解决问题，在过程中不断挑战自己，精益求精，合理安排issue处理顺序，所有的经验又一次在我的脑海中夯实，这将会是我宝贵的财富。</p>
-<p>我希望自己能够管住自己的嘴，坐住自己的板凳，冷眼观人，冷耳听语，冷情当感，冷心思理。为了自己的热爱，勇往直前。</p>
-]]></content>
-      <categories>
-        <category>Huawei Diary</category>
-      </categories>
-      <tags>
-        <tag>Sharing</tag>
-        <tag>Experience</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《性张力下的中国人》</title>
     <url>/2021/11/09/%E3%80%8A%E6%80%A7%E5%BC%A0%E5%8A%9B%E4%B8%8B%E7%9A%84%E4%B8%AD%E5%9B%BD%E4%BA%BA%E3%80%8B/</url>
     <content><![CDATA[<h2 id="中国传统文化中性问题对立的两极">中国传统文化中性问题对立的两极</h2>
@@ -875,6 +815,88 @@ world”的那一刻，我这四天的点点滴滴都涌上心头，百感交集
       <tags>
         <tag>Reading</tag>
         <tag>大开眼界</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>华为日记（一）</title>
+    <url>/2021/11/29/%E5%8D%8E%E4%B8%BA%E6%97%A5%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>今天下午40名左右的新员工参加的在东莞华为三丫坡的入职开班活动，大家分了组，认识了来自五湖四海的新朋友，也在寻找单身、最小年龄、喜欢旅游等各种标签指引下，打破了心理的障壁。晚上大家进行了小组蒙眼障碍前进，在这个活动中，我对许多名词有了新的深刻的认识：信任、责任、风险控制、团队协作、解决方案。</p>
+<span id="more"></span>
+<p>当我的视力被剥夺，只能用双手感受前方队友的肢体动作，那么要完成跨越障碍、上下楼梯、下蹲避障等动作，我就必须无条件相信他的所有行为。如果我犹豫或者怀疑，导致我中途停顿几秒，那么我可能会脱离他的引导，对下面的动作做出个人的误判，从而导致任务失败。</p>
+<p>在我身后，有未知数量的队友，他们也无条件信任我的行为，可以说我肩负着后方人员的安危，我有艰巨的责任将前方发出指令正确接收并合理传递下去，中间我有几次紧张到刚一收到信号就做出反应，后方的队友还未到达指定位置，我为团队捏了一把冷汗。</p>
+<p>中途我们在毫无征兆的情况下，更换了所有的队员，大家准备的信号与指示各不相同，一下子打乱了所有人的思绪，我也确实自此从未接受到前方新队员的任何指引，一切都是小心翼翼，幸运的是我是末尾的队员，负担减轻了许多。在这种危机风险下，大家几乎是各凭本能地在做出动作，再没有任何合作可言。我曾心里想过建议所有人都按照同一指令，但是又考虑可能有团队奖励，就错过了发声的机会。</p>
+<p>最后就是解决方案，当我们接到任务的时候，规则简单易懂，但是过程中可能会遇到的问题却完全没有头绪。大家头脑风暴后，渐渐有了一些思路，形成了泛化的、简易的、多场景的信号指引，不再具体为转多少度角、下蹲高度的一致性这种问题增添操作的复杂度。</p>
+<p>总的来说，半个小时的活动，打破了我自己的心墙，认识了好多友好的新朋友，我为以后能成为他们的一份子而自豪，当然我也要更加努力，争做先锋。</p>
+]]></content>
+      <categories>
+        <category>Huawei Diary</category>
+      </categories>
+      <tags>
+        <tag>Sharing</tag>
+        <tag>Experience</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>华为日记（二）</title>
+    <url>/2021/11/30/%E5%8D%8E%E4%B8%BA%E6%97%A5%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<p>我从读大学的时候就一直想象着能有一个自己的个人网站，有专属的、特殊的域名，上面记录着我的读书感悟、随笔、杂文以及照片。但我并不是那种愿意主动与他人分享人生经历的人，如果有缘的朋友能发现这个网站，看到我的故事与记录，那是我的荣幸与幸运。如果没有人浏览，那我就把它当作自己的分身，代表着我过去的想法、思考，每当我打开时，能够与自己对话，让自己成长。</p>
+<span id="more"></span>
+<p>终于我在博士期间完成了这个任务，在跟随简洁的、直观的教程步骤后，我就获得了一个本地blog站点，接下来我就需要注册域名与Github托管，这些也都很容易。尽管blog的精彩在于内容，但是能够定制化出自己的个性也是我很大的期望。</p>
+<p>我使用的主题的自由度很高，并且同时借鉴了两个主题的内容。于是在进行个性化修改与调试的时候，我就发现了许多问题，比如功能未正确开启、源文件加载错误、库版本变更与冲突、定制区域偏离等等。</p>
+<p>对于不是科班出身的我来说，独立进行项目调试与运行，特别是定制化功能的开发与实现是一个非常大的挑战。</p>
+<p>于是我首先一遍一遍地梳理代码，将原本正确的部分与我个人修改的部分做了标识与注释，之后进行断点调试，一步一步熟悉css，js文件的逻辑模块与语法。</p>
+<p>之后我进行了系统的搜索与筛选，将一些常见的、其他开发者曾经解决的问题进行了逐个排查，在看到todo
+list中的事项一个一个被打上勾的过程中，我的成就感与幸福感也随之增加。</p>
+<p>我也尝试提issue给库的贡献者，阐述问题，希望直接与开发者进行交流，后来由于在复现时我发现了错误的来源，于是放弃了提交。但是我鼓起了勇气，直接面对开发者，这对我的自信与热爱是极大的促进。</p>
+<p>最后，在经过四天的奋战后，我的小站终于上线了（域名好贵啊
+T.T）。当我打开我的网页，界面刷新出“hello
+world”的那一刻，我这四天的点点滴滴都涌上心头，百感交集。能够解决问题，在过程中不断挑战自己，精益求精，合理安排issue处理顺序，所有的经验又一次在我的脑海中夯实，这将会是我宝贵的财富。</p>
+<p>我希望自己能够管住自己的嘴，坐住自己的板凳，冷眼观人，冷耳听语，冷情当感，冷心思理。为了自己的热爱，勇往直前。</p>
+]]></content>
+      <categories>
+        <category>Huawei Diary</category>
+      </categories>
+      <tags>
+        <tag>Sharing</tag>
+        <tag>Experience</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>华为日记（三）</title>
+    <url>/2021/12/01/%E5%8D%8E%E4%B8%BA%E6%97%A5%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="以客户为中心场景展示">以客户为中心场景展示</h2>
+<p>今天老师在课堂上进行了一个小活动，以小组为单位通过一些场景和故事表现华为的核心价值观：以客户为中心，以奋斗者为本，长期坚持艰苦奋斗，坚持自我批判。我们组分到的是“以客户为中心”主题表演，让大家自由发挥。我们首先想到的就是通过对比体现华为的优势，而正巧我最近在友商、华为对比了业务。于是我们进行了业务逻辑梳理，总结了客户分别在中国电信、苹果、华为购买手机的可能性。我个人负责的是华为旗舰店购买体验的展示。</p>
+<span id="more"></span>
+<p>我与组内的队长进行了下面的对话，并且对话语进行了精确的定位。</p>
+<p>华为员工：您好，欢迎光临华为旗舰店，请问您有什么需要呢？（华为接待客户开场，询问需求）</p>
+<p>客户：你好，我需要购买一台手机。（客户提出需求）</p>
+<p>华为员工：请问您有什么心意的款式么？（华为询问客户对于需求的预期）</p>
+<p>客户：没有，我随便看看。（客户告知预期）</p>
+<p>华为员工：请问这款手机是您还是您的家人使用呢？（华为定位客户群体）</p>
+<p>客户：我个人使用。（客户告知需求范围）</p>
+<p>华为员工：请问您对新手机有什么功能偏好么？您平时是拍照、玩游戏、还是商务呢？（华为询问客户使用习惯、特性需求，定位客户相关产品线与产品）</p>
+<p>客户：我不打游戏，平时拍拍照。（客户再次告知需求细节）</p>
+<p>华为员工：请问您对于价位有什么预期么？（华为再次缩小客户相关产品线）</p>
+<p>客户：没什么预期，希望购买你们的旗舰产品。（客户明确需求定位）</p>
+<p>华为员工：好的，那我们给您推荐华为最新旗舰产品，华为p40pro（华为引入具体产品）</p>
+<p>客户：它拍照真的好么？（客户质疑产品能力）</p>
+<p>华为员工：它搭载了莱卡影像系统······，它完全能够满足您现在的购机需求。（华为介绍产品详细信息）</p>
+<p>客户：我可以体验一下么？（客户提出测试、体验要求）</p>
+<p>华为员工：没有问题，您可以选择一款心仪的款式，我在旁边给您答疑。（华为展示产品效果）</p>
+<p>客户：非常好，我现在可以购买么？（客户初步确定采购意向，询问供应链服务）</p>
+<p>华为员工：可以的，您可以随意挑选，都有现货。（华为确认客户最终个性化、定制化需求，回答供应链问题）</p>
+<p>客户：好的，我愿意购买一台XX颜色、XX内存、XX芯片的款式？（客户确认订单）</p>
+<p>华为员工：嗯好的，请您确认您的账单与产品信息。如果手机出现任何问题，您都可以直接来到我们全球的旗舰店进行处理，或登陆咱们华为消费者官网进行在线客服咨询，当然也可以拨打各门店的电话，我们会最快给您答复。如果出现了技术问题，我们会为您转到专业工程师进行进一步的处理。（华为主动提出售后服务）</p>
+<p>客户：好的，谢谢你，我很满意。（客户提供初步反馈）</p>
+<p>华为：嗯好的，十分高兴能够为您提供满意的服务，祝您生活愉快！（华为表达客户满意的重要性，结语）</p>
+<p>我们通过一个简单的例子，复现了华为作为ICT公司在给客户提供服务时，时时处处以客户为中心，与客户一起创造价值，为客户创造价值的核心价值观。我们的表演也比较生动有趣，赢得了其他小伙伴的掌声。</p>
+]]></content>
+      <categories>
+        <category>Huawei Diary</category>
+      </categories>
+      <tags>
+        <tag>Sharing</tag>
+        <tag>Experience</tag>
       </tags>
   </entry>
   <entry>
@@ -977,44 +999,6 @@ world”的那一刻，我这四天的点点滴滴都涌上心头，百感交集
       <tags>
         <tag>Emotion</tag>
         <tag>Love</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>华为日记（三）</title>
-    <url>/2021/12/01/%E5%8D%8E%E4%B8%BA%E6%97%A5%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="以客户为中心场景展示">以客户为中心场景展示</h2>
-<p>今天老师在课堂上进行了一个小活动，以小组为单位通过一些场景和故事表现华为的核心价值观：以客户为中心，以奋斗者为本，长期坚持艰苦奋斗，坚持自我批判。我们组分到的是“以客户为中心”主题表演，让大家自由发挥。我们首先想到的就是通过对比体现华为的优势，而正巧我最近在友商、华为对比了业务。于是我们进行了业务逻辑梳理，总结了客户分别在中国电信、苹果、华为购买手机的可能性。我个人负责的是华为旗舰店购买体验的展示。</p>
-<span id="more"></span>
-<p>我与组内的队长进行了下面的对话，并且对话语进行了精确的定位。</p>
-<p>华为员工：您好，欢迎光临华为旗舰店，请问您有什么需要呢？（华为接待客户开场，询问需求）</p>
-<p>客户：你好，我需要购买一台手机。（客户提出需求）</p>
-<p>华为员工：请问您有什么心意的款式么？（华为询问客户对于需求的预期）</p>
-<p>客户：没有，我随便看看。（客户告知预期）</p>
-<p>华为员工：请问这款手机是您还是您的家人使用呢？（华为定位客户群体）</p>
-<p>客户：我个人使用。（客户告知需求范围）</p>
-<p>华为员工：请问您对新手机有什么功能偏好么？您平时是拍照、玩游戏、还是商务呢？（华为询问客户使用习惯、特性需求，定位客户相关产品线与产品）</p>
-<p>客户：我不打游戏，平时拍拍照。（客户再次告知需求细节）</p>
-<p>华为员工：请问您对于价位有什么预期么？（华为再次缩小客户相关产品线）</p>
-<p>客户：没什么预期，希望购买你们的旗舰产品。（客户明确需求定位）</p>
-<p>华为员工：好的，那我们给您推荐华为最新旗舰产品，华为p40pro（华为引入具体产品）</p>
-<p>客户：它拍照真的好么？（客户质疑产品能力）</p>
-<p>华为员工：它搭载了莱卡影像系统······，它完全能够满足您现在的购机需求。（华为介绍产品详细信息）</p>
-<p>客户：我可以体验一下么？（客户提出测试、体验要求）</p>
-<p>华为员工：没有问题，您可以选择一款心仪的款式，我在旁边给您答疑。（华为展示产品效果）</p>
-<p>客户：非常好，我现在可以购买么？（客户初步确定采购意向，询问供应链服务）</p>
-<p>华为员工：可以的，您可以随意挑选，都有现货。（华为确认客户最终个性化、定制化需求，回答供应链问题）</p>
-<p>客户：好的，我愿意购买一台XX颜色、XX内存、XX芯片的款式？（客户确认订单）</p>
-<p>华为员工：嗯好的，请您确认您的账单与产品信息。如果手机出现任何问题，您都可以直接来到我们全球的旗舰店进行处理，或登陆咱们华为消费者官网进行在线客服咨询，当然也可以拨打各门店的电话，我们会最快给您答复。如果出现了技术问题，我们会为您转到专业工程师进行进一步的处理。（华为主动提出售后服务）</p>
-<p>客户：好的，谢谢你，我很满意。（客户提供初步反馈）</p>
-<p>华为：嗯好的，十分高兴能够为您提供满意的服务，祝您生活愉快！（华为表达客户满意的重要性，结语）</p>
-<p>我们通过一个简单的例子，复现了华为作为ICT公司在给客户提供服务时，时时处处以客户为中心，与客户一起创造价值，为客户创造价值的核心价值观。我们的表演也比较生动有趣，赢得了其他小伙伴的掌声。</p>
-]]></content>
-      <categories>
-        <category>Huawei Diary</category>
-      </categories>
-      <tags>
-        <tag>Sharing</tag>
-        <tag>Experience</tag>
       </tags>
   </entry>
   <entry>
