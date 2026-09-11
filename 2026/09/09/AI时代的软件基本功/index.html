@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Neucha:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="当写代码成为廉价算力，软件工程的核心将从约束人的编码行为，转向约束 Agent 的产出系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob">
+<meta property="og:url" content="https://profile.yulin.love/2026/09/09/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%8A%9F/index.html">
+<meta property="og:site_name" content="I Know Nothing">
+<meta property="og:description" content="当写代码成为廉价算力，软件工程的核心将从约束人的编码行为，转向约束 Agent 的产出系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-09T14:33:45.000Z">
+<meta property="article:author" content="Yulin LIU">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Software Engineering">
+<meta property="article:tag" content="Agentic Coding">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://profile.yulin.love/2026/09/09/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%8A%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob | I Know Nothing</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c3b4df96df3c3c8fe7428c55a34aba50";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="I Know Nothing" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">I Know Nothing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://profile.yulin.love/2026/09/09/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%8A%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.JPG">
+      <meta itemprop="name" content="Yulin LIU">
+      <meta itemprop="description" content="Stay Happy and Healthy !">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I Know Nothing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-09-09 22:33:45" itemprop="dateCreated datePublished" datetime="2026-09-09T22:33:45+08:00">2026-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2026/09/09/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%8A%9F/" class="post-meta-item leancloud_visitors" data-flag-title="AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  
+            <div class="post-description">当写代码成为廉价算力，软件工程的核心将从约束人的编码行为，转向约束 Agent 的产出系统。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一句话判断">一句话判断</h2>
+<p>这场访谈真正讨论的不是“AI
+能不能写代码”，而是：<strong>当写代码从稀缺劳动变成廉价算力后，软件工程的核心从约束人的编码行为，迁移为约束
+Agent
+的产出系统；人的价值则上移到目标选择、架构分区、约束设计、异常识别与最终问责。</strong></p>
+<span id="more"></span>
+<p>这也是 Uncle Bob
+所说“基本功仍然重要”的深层含义：基本功没有消失，而是从程序员脑内的习惯，外化为可执行的
+Harness、测试、依赖规则、评测门禁和组织训练机制。</p>
+<h2 id="核心观点11-条关键判断">核心观点：11 条关键判断</h2>
+<h3 id="ai-生成很快系统吞吐反而可能变慢">1. AI
+生成很快，系统吞吐反而可能变慢</h3>
+<p>Bob 最初的真实困境是：Agent
+写代码很快，却不断留下需要人清理的混乱；随着混乱累积，它开始修 A 坏
+B、反复绕圈，人的总交付速度反而下降。</p>
+<p>他重新启用了两类过去“有效但太昂贵”的工具：</p>
+<ul>
+<li><strong>CRAP</strong>：结合测试覆盖率与圈复杂度，评估函数或方法的变更风险；更准确地说，它不是笼统给整个项目打一个质量总分。</li>
+<li><strong>变异测试</strong>：逐次、有控制地改动条件或运算符，再运行测试。若测试仍然通过，该变异体“存活”，说明测试没有识别这次行为变化；并不是“把全部逻辑同时反置后程序仍能运行”。</li>
+</ul>
+<p>AI
+带来的关键变化，是使这类高计算量、重复、枯燥的质量劳动第一次具备经济性。（约
+05:15–14:55）</p>
+<h3 id="lost-in-the-middle上下文越长不等于可用注意力越多">2. Lost in the
+Middle：上下文越长，不等于可用注意力越多</h3>
+<p>“中间会遗失”更准确的含义是：<strong>中部信息更容易被弱化或漏用</strong>，而不是物理消失。开头和结尾通常更容易获得模型注意；随着上下文增长，早期规则会被推入中部，遵从率下降。</p>
+<p>其工程结论不是继续扩大上下文，而是：缩短初始
+Prompt、只保留高优先级原则、按阶段重建上下文，并把不能遗忘的要求移出上下文。（约
+14:00–16:20）</p>
+<h3 id="用确定性机制取代指令累计">3. 用确定性机制取代指令累计</h3>
+<p>这条是访谈最关键的观点之一。Bob 发现，把每次失败都追加成一条 Prompt
+规则，只会形成越来越长的“指导意见”；模型是否遵守仍是概率性的。</p>
+<p>更可靠的结构是：</p>
+<ul>
+<li>Prompt 表达目标与少量原则；</li>
+<li>测试、类型、指标和策略检查器给出不可协商的通过/失败；</li>
+<li>Agent 在反馈 Loop 中反复修改，直到满足约束；</li>
+<li>人定义“什么叫正确”，而不是逐次提醒模型“请记得正确”。</li>
+</ul>
+<p>也就是说，组织经验要从自然语言建议升级为<strong>可执行的质量控制面</strong>。（约
+13:15–17:40）</p>
+<h3 id="loop-engineering用机器的速度余量换质量而不是简单牺牲总效率">4.
+Loop Engineering：用机器的速度余量换质量，而不是简单牺牲总效率</h3>
+<p>本文将这一机制概括为 “Loop
+Engineering”；这是分析术语，并非访谈中的正式命名。Bob 的机制是让 Agent
+在确定性工具前循环，直到复杂度、覆盖率、变异测试和验收全部合格。</p>
+<p>这确实会牺牲瞬时生成效率：一次五分钟的实现被拉长到一小时。但由于机器初始速度远高于人，团队可以把这部分速度红利用来购买过去负担不起的质量，并且仍可能快于人工半天。更精确的说法是：<strong>用局部速度换取质量与未来可变更性，目标是提高全生命周期总效率。</strong>（约
+16:20–18:30，22:00–23:30）</p>
+<h3 id="多-agent-的两项收益与三类成本">5. 多 Agent
+的两项收益与三类成本</h3>
+<p>多 Agent 的主要收益有两项：</p>
+<ul>
+<li><strong>并行性</strong>：多个实现或检查任务可以同时运行；</li>
+<li><strong>上下文可控</strong>：每个 Agent
+只处理一个窄任务，完成后退出，新 Agent
+以干净上下文接手，指令遵从和目标聚焦更好。</li>
+</ul>
+<p>相应成本包括：启动与重新理解代码库的成本、Agent
+之间的通信与交接成本，以及重复读取上下文带来的推理/Token
+成本。如果分工没有带来并行、上下文隔离或独立验证中的至少一项，增加 Agent
+数量只是增加编排税。（约 17:40–20:40）</p>
+<h3 id="五阶段工作流不是五个角色而是五种证明义务">6.
+五阶段工作流：不是五个角色，而是五种证明义务</h3>
+<p>Bob 的原始对比是：单 Agent 约 5 分钟但结果可疑；多 Agent 流水线约 1
+小时；人工约半天。他据此估计流水线仍可能有 4–5
+倍效率优势。这是个人经验，不是受控实验。</p>
+<p>五个阶段的准确输入输出为：</p>
+<ol type="1">
+<li><strong>Specifier</strong>：把人的需求转成
+Gherkin（Given–When–Then）高层验收描述，以及从真实用户视角操作 UI 的 QA
+流程。</li>
+<li><strong>Coder</strong>：编写单元测试与生产代码，实现当前 Story，并使
+Gherkin 验收场景通过；访谈没有说它输出新的 User Story。</li>
+<li><strong>Cleaner</strong>：运行 CRAP
+分析和代码审查，降低复杂度，清理实现阶段留下的结构问题。</li>
+<li><strong>Hardener</strong>：执行变异测试，毫不妥协地发现测试覆盖不到的行为缺口。</li>
+<li><strong>QA Agent</strong>：将 QA
+文档转成可执行脚本，真实操作系统并产生确定性的端到端结果。</li>
+</ol>
+<p>因此，多 Agent
+的本质不是组织角色扮演，而是把“实现、清理、挑战、验收”这些容易互相妥协的责任拆开。（约
+20:20–23:50）</p>
+<h3 id="把人的价值观给-ai照搬人的纪律多半是错的">7. 把人的价值观给
+AI，照搬人的纪律多半是错的</h3>
+<p>Bob 在此作出访谈中最有新意的区分之一：</p>
+<ul>
+<li><strong>价值观</strong>应该保留：可理解、低复杂度、行为可验证、依赖有边界、结果可验收。</li>
+<li><strong>纪律</strong>不必照搬：例如严格逐行执行红—绿—重构，是针对人的短期记忆和行为偏差形成的工作方式；Agent
+可能适合以函数或任务为更大粒度完成实现与测试。</li>
+</ul>
+<p>正确做法是先找到一条工程纪律保护的底层价值，再为 Agent
+重新设计实现机制与阈值，而不是机械复刻人的动作。（约 31:30–35:55）</p>
+<h3 id="变更成本大幅下降后昂贵的前置规划失去经济基础">8.
+变更成本大幅下降后，昂贵的前置规划失去经济基础</h3>
+<p>这一判断不能推导成“不需要规划”。Bob
+反对的是试图在执行前消灭全部不确定性：人的计划仍然不完整，Agent
+只会更快、更忠实地放大错误假设。</p>
+<p>当代码修改成本显著下降，更合理的方式是轻量对齐、小步实现、快速反馈、重新组织，再进入下一轮。<strong>便宜的是实现和修改，不是提前获得正确认知。</strong>（约
+35:55–42:10）</p>
+<h3
+id="spec-driven-的关键不只在有没有规约而在规约是否持久如何获得权威">9.
+Spec-driven
+的关键不只在“有没有规约”，而在规约是否持久、如何获得权威</h3>
+<p>Matt 提出了一个重要判别点：一次性
+Prompt、临时任务说明并不天然构成一种新范式；更关键的是规格是否被长期保存、持续回看并充当事实来源。</p>
+<p>Bob
+的回答更激进：他的需求规格是临时的，会不断变化并最终消失；人不再亲自写最终源码后，他倾向把运行结果、测试和工具约束视为更可靠的最终规格。因此真正应追问的是：</p>
+<ul>
+<li>规格是冻结的前置真理，还是随反馈演进的契约？</li>
+<li>需求、测试、运行系统发生冲突时，谁拥有最终解释权？</li>
+<li>哪些业务/合规规则必须长期保存，哪些实现规格可以临时化？</li>
+</ul>
+<p>因此，无需过度纠结范式名称，但不能把所有规格都视为可丢弃；业务规则、安全边界和审计依据仍需持久化。（约
+42:10–45:10）</p>
+<h3 id="使用-agent-之前先做过-agent-所承担的工作">10. 使用 Agent
+之前，先做过 Agent 所承担的工作</h3>
+<p>Bob 的建议是：新人仍应先亲自写代码；进入大量使用 Agent 的公司后，先像
+Agent
+一样接受边界明确的战术任务，并受到同样的确定性门禁约束。经过数月实践、能识别混乱与失败轨迹后，才逐渐获得调度
+Agent 的权力。</p>
+<p>这个训练方案本身未经验证，但它揭示了真正的组织风险：如果战术工作全部自动化，战略判断赖以形成的经验回路也会被切断。<strong>不能只建立
+Agent 生产线，还必须重建工程师的成长生产线。</strong>（约
+45:45–53:00）</p>
+<h3 id="编码基本功是把复杂性驯化成可理解形态的能力">11.
+编码基本功，是把复杂性驯化成可理解形态的能力</h3>
+<p>基本功的价值并不等于手写语法，而是通过命名、抽象、模块、接口、测试、依赖方向和反馈循环，把不可控的复杂性压缩成局部可理解、可改变、可验证的结构。这构成了全片的最终落点。</p>
+<p>模型也是在有限上下文中工作，因此同样受益于这些结构。AI
+只是把抽象层从编译器之上再次抬高，并没有取消复杂性。今天轻率丢掉的工程规则，往往会在系统规模扩大后以更昂贵的方式重新出现。（约
+53:00–56:39）</p>
+<p>这 11 条最终汇聚为同一个判断：<strong>Agentic Coding
+的竞争力不在“生成更多代码”，而在能否把模型的速度转化成经过约束、独立验证、结构清晰且持续可演进的产出。</strong></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Yulin LIU
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://profile.yulin.love/2026/09/09/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%8A%9F/" title="AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob">https://profile.yulin.love/2026/09/09/AI时代的软件基本功/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/Software-Engineering/" rel="tag"># Software Engineering</a>
+              <a href="/tags/Agentic-Coding/" rel="tag"># Agentic Coding</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/08/01/%E9%A9%AC%E6%96%AF%E5%85%8B%E4%B8%8E%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%BA-AI%E5%AF%8C%E8%B6%B3%E4%B8%8E%E6%B2%BB%E7%90%86%E9%9A%BE%E9%A2%98/" rel="prev" title="马斯克与《经济学人》：AI 富足与治理难题">
+      <i class="fa fa-chevron-left"></i> 马斯克与《经济学人》：AI 富足与治理难题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%88%A4%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">一句话判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%82%E7%82%B911-%E6%9D%A1%E5%85%B3%E9%94%AE%E5%88%A4%E6%96%AD"><span class="nav-number">2.</span> <span class="nav-text">核心观点：11 条关键判断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ai-%E7%94%9F%E6%88%90%E5%BE%88%E5%BF%AB%E7%B3%BB%E7%BB%9F%E5%90%9E%E5%90%90%E5%8F%8D%E8%80%8C%E5%8F%AF%E8%83%BD%E5%8F%98%E6%85%A2"><span class="nav-number">2.1.</span> <span class="nav-text">1. AI
+生成很快，系统吞吐反而可能变慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lost-in-the-middle%E4%B8%8A%E4%B8%8B%E6%96%87%E8%B6%8A%E9%95%BF%E4%B8%8D%E7%AD%89%E4%BA%8E%E5%8F%AF%E7%94%A8%E6%B3%A8%E6%84%8F%E5%8A%9B%E8%B6%8A%E5%A4%9A"><span class="nav-number">2.2.</span> <span class="nav-text">2. Lost in the
+Middle：上下文越长，不等于可用注意力越多</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%9C%BA%E5%88%B6%E5%8F%96%E4%BB%A3%E6%8C%87%E4%BB%A4%E7%B4%AF%E8%AE%A1"><span class="nav-number">2.3.</span> <span class="nav-text">3. 用确定性机制取代指令累计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loop-engineering%E7%94%A8%E6%9C%BA%E5%99%A8%E7%9A%84%E9%80%9F%E5%BA%A6%E4%BD%99%E9%87%8F%E6%8D%A2%E8%B4%A8%E9%87%8F%E8%80%8C%E4%B8%8D%E6%98%AF%E7%AE%80%E5%8D%95%E7%89%BA%E7%89%B2%E6%80%BB%E6%95%88%E7%8E%87"><span class="nav-number">2.4.</span> <span class="nav-text">4.
+Loop Engineering：用机器的速度余量换质量，而不是简单牺牲总效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A-agent-%E7%9A%84%E4%B8%A4%E9%A1%B9%E6%94%B6%E7%9B%8A%E4%B8%8E%E4%B8%89%E7%B1%BB%E6%88%90%E6%9C%AC"><span class="nav-number">2.5.</span> <span class="nav-text">5. 多 Agent
+的两项收益与三类成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E9%98%B6%E6%AE%B5%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8D%E6%98%AF%E4%BA%94%E4%B8%AA%E8%A7%92%E8%89%B2%E8%80%8C%E6%98%AF%E4%BA%94%E7%A7%8D%E8%AF%81%E6%98%8E%E4%B9%89%E5%8A%A1"><span class="nav-number">2.6.</span> <span class="nav-text">6.
+五阶段工作流：不是五个角色，而是五种证明义务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%8A%E4%BA%BA%E7%9A%84%E4%BB%B7%E5%80%BC%E8%A7%82%E7%BB%99-ai%E7%85%A7%E6%90%AC%E4%BA%BA%E7%9A%84%E7%BA%AA%E5%BE%8B%E5%A4%9A%E5%8D%8A%E6%98%AF%E9%94%99%E7%9A%84"><span class="nav-number">2.7.</span> <span class="nav-text">7. 把人的价值观给
+AI，照搬人的纪律多半是错的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E6%9B%B4%E6%88%90%E6%9C%AC%E5%A4%A7%E5%B9%85%E4%B8%8B%E9%99%8D%E5%90%8E%E6%98%82%E8%B4%B5%E7%9A%84%E5%89%8D%E7%BD%AE%E8%A7%84%E5%88%92%E5%A4%B1%E5%8E%BB%E7%BB%8F%E6%B5%8E%E5%9F%BA%E7%A1%80"><span class="nav-number">2.8.</span> <span class="nav-text">8.
+变更成本大幅下降后，昂贵的前置规划失去经济基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spec-driven-%E7%9A%84%E5%85%B3%E9%94%AE%E4%B8%8D%E5%8F%AA%E5%9C%A8%E6%9C%89%E6%B2%A1%E6%9C%89%E8%A7%84%E7%BA%A6%E8%80%8C%E5%9C%A8%E8%A7%84%E7%BA%A6%E6%98%AF%E5%90%A6%E6%8C%81%E4%B9%85%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E6%9D%83%E5%A8%81"><span class="nav-number">2.9.</span> <span class="nav-text">9.
+Spec-driven
+的关键不只在“有没有规约”，而在规约是否持久、如何获得权威</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-agent-%E4%B9%8B%E5%89%8D%E5%85%88%E5%81%9A%E8%BF%87-agent-%E6%89%80%E6%89%BF%E6%8B%85%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.10.</span> <span class="nav-text">10. 使用 Agent
+之前，先做过 Agent 所承担的工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%9F%BA%E6%9C%AC%E5%8A%9F%E6%98%AF%E6%8A%8A%E5%A4%8D%E6%9D%82%E6%80%A7%E9%A9%AF%E5%8C%96%E6%88%90%E5%8F%AF%E7%90%86%E8%A7%A3%E5%BD%A2%E6%80%81%E7%9A%84%E8%83%BD%E5%8A%9B"><span class="nav-number">2.11.</span> <span class="nav-text">11.
+编码基本功，是把复杂性驯化成可理解形态的能力</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yulin LIU"
+      src="/images/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Yulin LIU</p>
+  <div class="site-description" itemprop="description">Stay Happy and Healthy !</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+<div id="days"></div>
+<script>
+function show_date_time() {
+  window.setTimeout(show_date_time, 1000);
+  const birthDay = new Date('09/09/2021 23:48:23');
+  const elapsed = Date.now() - birthDay.getTime();
+  const days = Math.floor(elapsed / 86400000);
+  const hours = String(Math.floor(elapsed / 3600000) % 24).padStart(2, '0');
+  const minutes = String(Math.floor(elapsed / 60000) % 60).padStart(2, '0');
+  const seconds = String(Math.floor(elapsed / 1000) % 60).padStart(2, '0');
+  document.getElementById('days').textContent =
+    `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+}
+show_date_time();
+</script>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yulin LIU</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'wgIaib56XPioi8AShdp4zEnx-MdYXbMMI',
+      appKey     : 'xXV0Y1CFHP4TAaih2Pixnl16',
+      placeholder: "欢迎和我互动～",
+      avatar     : 'retro',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+<script src="/js/clicklove.js"></script>
+
+</body>
+</html>
