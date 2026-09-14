@@ -6,7 +6,7 @@
   <link href="https://profile.yulin.love/atom.xml" rel="self"/>
   
   <link href="https://profile.yulin.love/"/>
-  <updated>2026-09-09T14:33:45.000Z</updated>
+  <updated>2026-09-14T07:57:32.000Z</updated>
   <id>https://profile.yulin.love/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AI 安全，还是技术优势？——对 Dario Amodei《We Must Pace the Frontier》的解读与评析</title>
+    <link href="https://profile.yulin.love/2026/09/14/AI%E5%AE%89%E5%85%A8%E8%BF%98%E6%98%AF%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8A%BF/"/>
+    <id>https://profile.yulin.love/2026/09/14/AI%E5%AE%89%E5%85%A8%E8%BF%98%E6%98%AF%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8A%BF/</id>
+    <published>2026-09-14T07:57:32.000Z</published>
+    <updated>2026-09-14T07:57:32.000Z</updated>
+    
+    
+    <summary type="html">Dario Amodei 主张用能力阈值、持续评测和全球协调控制前沿 AI 风险；本文进一步审视，AI 系统安全为何不能被直接等同于美国技术领先。</summary>
+    
+    
+    
+    <category term="Tech" scheme="https://profile.yulin.love/categories/Tech/"/>
+    
+    
+    <category term="AI" scheme="https://profile.yulin.love/tags/AI/"/>
+    
+    <category term="AI Safety" scheme="https://profile.yulin.love/tags/AI-Safety/"/>
+    
+    <category term="AI Governance" scheme="https://profile.yulin.love/tags/AI-Governance/"/>
+    
+    <category term="Anthropic" scheme="https://profile.yulin.love/tags/Anthropic/"/>
+    
+    <category term="Geopolitics" scheme="https://profile.yulin.love/tags/Geopolitics/"/>
+    
+  </entry>
   
   <entry>
     <title>AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob</title>
@@ -81,11 +108,11 @@
     
     <category term="AI" scheme="https://profile.yulin.love/tags/AI/"/>
     
-    <category term="Interview" scheme="https://profile.yulin.love/tags/Interview/"/>
+    <category term="Google" scheme="https://profile.yulin.love/tags/Google/"/>
     
     <category term="Agent" scheme="https://profile.yulin.love/tags/Agent/"/>
     
-    <category term="Google" scheme="https://profile.yulin.love/tags/Google/"/>
+    <category term="Interview" scheme="https://profile.yulin.love/tags/Interview/"/>
     
     <category term="Globalization" scheme="https://profile.yulin.love/tags/Globalization/"/>
     
@@ -154,9 +181,9 @@
     
     <category term="AI" scheme="https://profile.yulin.love/tags/AI/"/>
     
-    <category term="DeepSeek" scheme="https://profile.yulin.love/tags/DeepSeek/"/>
-    
     <category term="Interview" scheme="https://profile.yulin.love/tags/Interview/"/>
+    
+    <category term="DeepSeek" scheme="https://profile.yulin.love/tags/DeepSeek/"/>
     
   </entry>
   

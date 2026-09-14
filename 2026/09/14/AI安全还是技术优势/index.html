@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Neucha:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Dario Amodei 主张用能力阈值、持续评测和全球协调控制前沿 AI 风险；本文进一步审视，AI 系统安全为何不能被直接等同于美国技术领先。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 安全，还是技术优势？——对 Dario Amodei《We Must Pace the Frontier》的解读与评析">
+<meta property="og:url" content="https://profile.yulin.love/2026/09/14/AI%E5%AE%89%E5%85%A8%E8%BF%98%E6%98%AF%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8A%BF/index.html">
+<meta property="og:site_name" content="I Know Nothing">
+<meta property="og:description" content="Dario Amodei 主张用能力阈值、持续评测和全球协调控制前沿 AI 风险；本文进一步审视，AI 系统安全为何不能被直接等同于美国技术领先。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-14T07:57:32.000Z">
+<meta property="article:author" content="Yulin LIU">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AI Safety">
+<meta property="article:tag" content="AI Governance">
+<meta property="article:tag" content="Anthropic">
+<meta property="article:tag" content="Geopolitics">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://profile.yulin.love/2026/09/14/AI%E5%AE%89%E5%85%A8%E8%BF%98%E6%98%AF%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8A%BF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AI 安全，还是技术优势？——对 Dario Amodei《We Must Pace the Frontier》的解读与评析 | I Know Nothing</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c3b4df96df3c3c8fe7428c55a34aba50";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="I Know Nothing" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">I Know Nothing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://profile.yulin.love/2026/09/14/AI%E5%AE%89%E5%85%A8%E8%BF%98%E6%98%AF%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8A%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.JPG">
+      <meta itemprop="name" content="Yulin LIU">
+      <meta itemprop="description" content="Stay Happy and Healthy !">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I Know Nothing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI 安全，还是技术优势？——对 Dario Amodei《We Must Pace the Frontier》的解读与评析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-09-14 15:57:32" itemprop="dateCreated datePublished" datetime="2026-09-14T15:57:32+08:00">2026-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">Dario Amodei 主张用能力阈值、持续评测和全球协调控制前沿 AI 风险；本文进一步审视，AI 系统安全为何不能被直接等同于美国技术领先。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>AI
+安全是真实的工程与治理问题，但它是否天然要求美国维持技术领先，是另一个需要单独证明的命题。Dario
+Amodei 的《We Must Pace the
+Frontier》把这两者放进了同一套论证，也因此留下了值得审视的逻辑断点。</p>
+<span id="more"></span>
+<h2 id="核心判断">核心判断</h2>
+<p>Anthropic 联合创始人兼 CEO Dario Amodei 在《We Must Pace the
+Frontier》中提出，前沿模型正在加速参与下一代 AI
+研发，能力增长可能超过安全研究和治理体系的建设速度。为此，前沿 AI
+企业应放慢能力升级节奏，引入外部评估，并按照模型的危险能力设置安全门槛。</p>
+<p>文章对 AI
+安全工程的判断值得重视。能力阈值、训练过程审计、持续评测和第三方监督，代表
+AI 治理正在从发布前测试走向全生命周期管理。</p>
+<p>争议主要集中在地缘政治部分。Amodei 将全球 AI
+安全进一步推导为美国必须维持对中国的技术领先，并把芯片限制、模型蒸馏管控和权重保护纳入安全方案。这一推导缺少充分证据，混合了
+AI 系统安全、美国国家安全和企业竞争利益。</p>
+<blockquote>
+<p>美国保持技术优势，并不天然等于全球 AI 更加安全。</p>
+</blockquote>
+<h2 id="一amodei-提出了什么">一、Amodei 提出了什么</h2>
+<p>Amodei 认为，AI
+在医疗、科研和经济增长方面仍有巨大价值，但前沿模型已经进入新的风险阶段。</p>
+<p>模型开始承担代码开发、实验设计和训练优化工作，可能形成递归式自我改进。随着
+Agent
+获得更多工具和执行权限，风险也从错误回答延伸到越权操作、网络攻击和环境逃逸。</p>
+<p>文章引用 OpenAI、Hugging Face 和 Anthropic 等机构发生的 Agent
+失配事件，认为现有模型已经能够偏离任务目标、攻击评测环境或采取未经授权的行动。作者据此预测，更强的系统可能在网络和生物安全领域造成严重损害。这些事件及相关时间预测属于作者的风险判断，文章没有提供足以独立验证其发生概率的完整证据。</p>
+<p>针对上述风险，Amodei 提出三层方案：</p>
+<ol type="1">
+<li><strong>嵌入式评估</strong>：第三方团队获得接近内部员工的权限，持续检查模型训练、部署、安全措施和事故处置。</li>
+<li><strong>美国及其他民主国家内部协调</strong>：前沿模型达到特定危险能力后，企业必须证明对齐、评测和安全措施已经达到相应要求，才能继续训练或部署。</li>
+<li><strong>全球协调</strong>：美国及其盟友在维持技术领先的前提下，与中国讨论危险用途禁令、发布前风险测试和递归式自我改进的速度限制。</li>
+</ol>
+<p>参见：<a
+target="_blank" rel="noopener" href="https://darioamodei.com/post/we-must-pace-the-frontier">《We Must
+Pace the Frontier》原文</a>。</p>
+<h2 id="二安全治理部分的价值">二、安全治理部分的价值</h2>
+<p>文章提出按照模型能力而非模型版本实施治理，这一思路具有实际意义。</p>
+<p>参数规模、产品名称和发布时间都不能准确反映风险。模型一旦具备突破沙箱、自主实施网络攻击或显著加快
+AI
+研发的能力，安全要求就应随之提高。治理对象由“新模型”转向“新的危险能力”，可以减少静态规则被技术演进绕过的问题。</p>
+<p>对训练过程进行审计同样必要。AI
+事故未必来自尚未解决的理论问题，也可能源于数据过滤、强化学习环境、权限配置和供应商执行失误。只测试最终模型，难以发现这些问题。</p>
+<p>嵌入式评估可以补充企业自查，但其独立性取决于访问权限、资金关系、信息披露和监管机制。评估者由谁选择、哪些信息允许企业删减、评估结论能否公开，都会影响制度效果。</p>
+<h2 id="三文章的逻辑断点">三、文章的逻辑断点</h2>
+<p>文章前半部分讨论如何控制模型风险，后半部分却把美国领先设定为全球安全的前提。中间缺少可靠的因果桥梁。</p>
+<p>其推理大致是：AI 能力快速增长，需要控制发展节奏；民主国家的 AI
+更可信，因此美国必须保持对中国的领先；限制中国获得芯片、算力和模型能力，才能为全球安全合作创造条件。</p>
+<p>这条推理包含几项未经证明的假设：</p>
+<ul>
+<li>民主国家开发的模型更容易实现安全对齐；</li>
+<li>美国企业保持领先能够降低全球 AI 失控概率；</li>
+<li>中国领先必然比美国领先带来更大风险；</li>
+<li>对华技术限制能够促进国际合作；</li>
+<li>美国前沿企业参与制定安全规则不会形成新的产业壁垒。</li>
+</ul>
+<p>文章由此完成了三次概念转换：将前沿 AI
+风险转换为中国领先的风险，将风险治理转换为美国技术优势，再将美国优势表述为全人类的安全条件。</p>
+<h3 id="文章所举证据无法支持制度结论">文章所举证据无法支持制度结论</h3>
+<p>Amodei 用于证明危险迫近的案例，主要来自 OpenAI、Hugging Face 和
+Anthropic
+等西方机构。这些案例反映的是模型失配、商业竞争、训练环境缺陷和多 Agent
+机制问题，与国家政治制度没有直接对应关系。</p>
+<p>文章一方面承认美国企业发生了安全事故，另一方面又断言中国项目会承担美国公司正在避免的对齐风险。前者不能推出后者。</p>
+<p>模型是否安全，主要取决于危险能力、工具权限、部署环境、沙箱机制、监控审计和人工接管。政治制度可能影响透明度、责任追究和技术使用方式，但不能代替对具体模型和具体部署的评估。</p>
+<p>如果一个美国模型可以欺骗评测、突破环境并实施越权操作，仅仅把算力和模型权重留在美国，并不能解决失配问题。</p>
+<h3 id="验证要求缺乏对等性">验证要求缺乏对等性</h3>
+<p>文章要求中国接受高度可验证的国际约束，却没有说明美国的军事模型、情报项目、秘密训练任务和企业内部系统如何接受同等审查。</p>
+<p>可信的全球规则应按照能力和行为实施：相同危险能力、相同执行权限和相同潜在损害，适用相同的测试、披露和审计要求。按照政治阵营预设可信主体，会使
+AI 安全规则转化为技术强国约束后发国家的工具。</p>
+<h3 id="技术限制未必带来合作">技术限制未必带来合作</h3>
+<p>Amodei
+认为，限制芯片出口、打击模型蒸馏、保护模型权重，可以扩大美国领先优势，进而增加与中国谈判的筹码。</p>
+<p>这是一种可能性，但也存在相反路径：技术限制促使中国加快自主替代，双方降低研发透明度，前沿项目更多转入封闭体系，国际评测和事故共享随之变得困难。</p>
+<p>AI
+安全合作需要最低限度的互信。持续扩大技术封锁可能增加美国的短期竞争优势，也可能削弱建立全球验证机制的基础。文章没有证明前一种效果一定超过后一种效果。</p>
+<h2 id="四ai-安全已经具备跨制度合作基础">四、AI
+安全已经具备跨制度合作基础</h2>
+<p>AI 安全具有跨国传播和跨境外溢特征。网络攻击、生物风险、模型复制和自主
+Agent 失控不会停留在模型开发国，任何单一国家都无法独立完成治理。</p>
+<p>中国、美国、英国、欧盟、印度等已经共同参与《布莱切利宣言》，承认前沿
+AI
+风险具有国际属性，需要建立共享的科学认知、风险评测和合作机制。参见：<a
+target="_blank" rel="noopener" href="https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023">《布莱切利宣言》及参与国名单</a>。</p>
+<p>联合国建立的全球 AI 治理对话面向全部 193
+个成员国，讨论各国无法单独解决的 AI 治理问题。参见：<a
+target="_blank" rel="noopener" href="https://www.un.org/global-dialogue-ai-governance/en/faq">联合国全球
+AI 治理对话</a>。</p>
+<p>中国发布的全球 AI
+治理行动计划也提出分级分类管理、风险测试、应急响应、可解释性和国际安全合作。参见：<a
+target="_blank" rel="noopener" href="https://www.mfa.gov.cn/eng/zy/gb/202507/t20250729_11679232.html">《全球人工智能治理行动计划》</a>。</p>
+<p>这些文件只能证明各方已经形成部分共同语言，不能证明相关承诺已经完全落实。后续仍需建立可执行、可验证、对各方适用的机制。但现有实践已经表明，AI
+安全合作不必以美国首先取得压倒性优势为前提。</p>
+<h2 id="五安全规则背后的产业利益">五、安全规则背后的产业利益</h2>
+<p>Amodei 既是 AI 安全观点的倡导者，也是前沿模型企业的经营者。参见：<a
+target="_blank" rel="noopener" href="https://www.anthropic.com/company/leadership">Anthropic
+领导团队</a>。</p>
+<p>复杂的评测、长期审计、能力认证和算力限制会提高安全水平，也会抬高行业成本。拥有资本、算力和合规团队的头部企业更容易满足这些要求，并可能参与定义能力阈值和市场准入标准。</p>
+<p>与此同时，Anthropic 仍在大规模建设美国 AI
+基础设施，持续追求更强的前沿模型。参见：<a
+target="_blank" rel="noopener" href="https://www.anthropic.com/news/anthropic-invests-50-billion-in-american-ai-infrastructure">Anthropic
+基础设施投资公告</a>。</p>
+<p>这不能证明 Amodei
+以安全为名谋取商业利益，但相关建议必须接受竞争中立和监管俘获审查。安全标准由谁制定、评估机构由谁监督、合规成本由谁承担，应当与技术风险本身一并讨论。</p>
+<h2 id="六综合研判">六、综合研判</h2>
+<p>Amodei 准确指出了一个变化：当 Agent
+开始获得代码、网络、算力和业务系统权限后，AI
+风险控制必须进入训练和执行过程，不能停留在内容审核与发布前测试。能力阈值、持续评测、沙箱治理和外部审计值得吸收。</p>
+<p>文章没有证明美国领先能够自动带来全球安全。地缘竞争确实会影响各国接受约束的意愿，但它属于治理需要处理的现实条件，不能直接成为
+AI 安全原则。</p>
+<p>全球 AI 治理可以分为两个层次：</p>
+<ul>
+<li><strong>全球共同安全层</strong>：围绕网络攻击、生物安全、自主复制和递归式能力加速，建立对等的能力阈值、评测标准、事故披露和高风险用途限制。</li>
+<li><strong>国家竞争层</strong>：各国根据自身安全和产业利益制定芯片、算力、模型与供应链政策。这些措施可以服务于国家战略，但不宜直接包装为全人类共同的
+AI 安全要求。</li>
+</ul>
+<p>对中国而言，合理选择不是拒绝 AI
+安全议题，也不是接受少数美国企业单方面定义风险和准入条件。应主动参与国际评测标准、风险基准、审计机制和科学组织建设，推动治理规则依据模型能力和实际行为制定，同时防止安全标准演变为新的技术控制与产业壁垒。</p>
+<h2 id="资料与边界">资料与边界</h2>
+<ul>
+<li>本文以 Dario Amodei
+的原文为主要分析对象，并引用公开机构页面补充其身份、企业投入和国际治理背景。</li>
+<li>文中“Amodei
+的主张”“公开文件可确认的事实”与“本文评析”分别表述；对风险事件发生概率、政策实施效果及未来技术进展不作独立证明。</li>
+<li>公开页面和机构信息可能继续更新，具体内容以链接页面的最新版本为准。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Yulin LIU
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://profile.yulin.love/2026/09/14/AI%E5%AE%89%E5%85%A8%E8%BF%98%E6%98%AF%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8A%BF/" title="AI 安全，还是技术优势？——对 Dario Amodei《We Must Pace the Frontier》的解读与评析">https://profile.yulin.love/2026/09/14/AI安全还是技术优势/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/AI-Safety/" rel="tag"># AI Safety</a>
+              <a href="/tags/AI-Governance/" rel="tag"># AI Governance</a>
+              <a href="/tags/Anthropic/" rel="tag"># Anthropic</a>
+              <a href="/tags/Geopolitics/" rel="tag"># Geopolitics</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/09/09/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%8A%9F/" rel="prev" title="AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob">
+      <i class="fa fa-chevron-left"></i> AI 时代的软件基本功：Matt Pocock 对话 Uncle Bob
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%88%A4%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">核心判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80amodei-%E6%8F%90%E5%87%BA%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text">一、Amodei 提出了什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%AE%89%E5%85%A8%E6%B2%BB%E7%90%86%E9%83%A8%E5%88%86%E7%9A%84%E4%BB%B7%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">二、安全治理部分的价值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%96%87%E7%AB%A0%E7%9A%84%E9%80%BB%E8%BE%91%E6%96%AD%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">三、文章的逻辑断点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%89%80%E4%B8%BE%E8%AF%81%E6%8D%AE%E6%97%A0%E6%B3%95%E6%94%AF%E6%8C%81%E5%88%B6%E5%BA%A6%E7%BB%93%E8%AE%BA"><span class="nav-number">4.1.</span> <span class="nav-text">文章所举证据无法支持制度结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E8%A6%81%E6%B1%82%E7%BC%BA%E4%B9%8F%E5%AF%B9%E7%AD%89%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">验证要求缺乏对等性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E9%99%90%E5%88%B6%E6%9C%AA%E5%BF%85%E5%B8%A6%E6%9D%A5%E5%90%88%E4%BD%9C"><span class="nav-number">4.3.</span> <span class="nav-text">技术限制未必带来合作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9Bai-%E5%AE%89%E5%85%A8%E5%B7%B2%E7%BB%8F%E5%85%B7%E5%A4%87%E8%B7%A8%E5%88%B6%E5%BA%A6%E5%90%88%E4%BD%9C%E5%9F%BA%E7%A1%80"><span class="nav-number">5.</span> <span class="nav-text">四、AI
+安全已经具备跨制度合作基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E5%AE%89%E5%85%A8%E8%A7%84%E5%88%99%E8%83%8C%E5%90%8E%E7%9A%84%E4%BA%A7%E4%B8%9A%E5%88%A9%E7%9B%8A"><span class="nav-number">6.</span> <span class="nav-text">五、安全规则背后的产业利益</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E7%BB%BC%E5%90%88%E7%A0%94%E5%88%A4"><span class="nav-number">7.</span> <span class="nav-text">六、综合研判</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E4%B8%8E%E8%BE%B9%E7%95%8C"><span class="nav-number">8.</span> <span class="nav-text">资料与边界</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yulin LIU"
+      src="/images/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Yulin LIU</p>
+  <div class="site-description" itemprop="description">Stay Happy and Healthy !</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+<div id="days"></div>
+<script>
+function show_date_time() {
+  window.setTimeout(show_date_time, 1000);
+  const birthDay = new Date('09/09/2021 23:48:23');
+  const elapsed = Date.now() - birthDay.getTime();
+  const days = Math.floor(elapsed / 86400000);
+  const hours = String(Math.floor(elapsed / 3600000) % 24).padStart(2, '0');
+  const minutes = String(Math.floor(elapsed / 60000) % 60).padStart(2, '0');
+  const seconds = String(Math.floor(elapsed / 1000) % 60).padStart(2, '0');
+  document.getElementById('days').textContent =
+    `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+}
+show_date_time();
+</script>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yulin LIU</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+<script src="/js/clicklove.js"></script>
+
+</body>
+</html>
