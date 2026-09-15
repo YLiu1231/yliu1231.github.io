@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Neucha:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="从 Prompt、Context 和 Harness 继续向上，理解如何设计可重复运行、有状态、有评判器并保留人工复核点的 Agent 循环。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Loop Engineering：别再问我什么是循环工程">
+<meta property="og:url" content="https://profile.yulin.love/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/index.html">
+<meta property="og:site_name" content="I Know Nothing">
+<meta property="og:description" content="从 Prompt、Context 和 Harness 继续向上，理解如何设计可重复运行、有状态、有评判器并保留人工复核点的 Agent 循环。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-15T05:22:12.000Z">
+<meta property="article:author" content="Yulin LIU">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Ebook">
+<meta property="article:tag" content="references">
+<meta property="article:tag" content="Loop Engineering">
+<meta property="article:tag" content="Agentic Coding">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://profile.yulin.love/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Loop Engineering：别再问我什么是循环工程 | I Know Nothing</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c3b4df96df3c3c8fe7428c55a34aba50";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="I Know Nothing" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">I Know Nothing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://profile.yulin.love/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.JPG">
+      <meta itemprop="name" content="Yulin LIU">
+      <meta itemprop="description" content="Stay Happy and Healthy !">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I Know Nothing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Loop Engineering：别再问我什么是循环工程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-15 13:22:12" itemprop="dateCreated datePublished" datetime="2026-06-15T13:22:12+08:00">2026-06-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Self-Learning/" itemprop="url" rel="index"><span itemprop="name">Self-Learning</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">从 Prompt、Context 和 Harness 继续向上，理解如何设计可重复运行、有状态、有评判器并保留人工复核点的 Agent 循环。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Loop Engineering 讨论的核心变化，是把人从逐句驱动 Agent
+的位置移到循环之外：人不再负责每一次
+Prompt，而是设计一套能够发现任务、保存状态、调用
+Agent、验证结果并决定是否继续的系统。</p>
+<span id="more"></span>
+<figure>
+<img
+src="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/cover.jpg"
+alt="《Loop Engineering：别再问我什么是循环工程》封面" />
+<figcaption aria-hidden="true">《Loop
+Engineering：别再问我什么是循环工程》封面</figcaption>
+</figure>
+<h2 id="这本书讲什么">这本书讲什么</h2>
+<p>《Loop Engineering：别再问我什么是循环工程》从概念演化开始，区分
+Prompt Engineering、Context Engineering、Harness Engineering 与 Loop
+Engineering 的职责边界，并把一个可持续运行的 Agent
+循环拆成可理解的动作和零件。</p>
+<p>书中没有把“自动运行”直接等同于工程完成。循环能否长期工作，还取决于状态能否跨轮保存、评判器能否独立判断、并行任务是否隔离、成本是否有上限，以及关键节点是否保留人工复核。</p>
+<h2 id="内容结构">内容结构</h2>
+<ul>
+<li><strong>它是什么</strong>：解释 Loop Engineering 的定义，以及它相对
+Prompt、Context 和 Harness 所处的位置。</li>
+<li><strong>它怎么转</strong>：拆解循环的五个动作、六个组成部分，以及生成器与评判器的分工。</li>
+<li><strong>它在哪运行、付出什么代价</strong>：结合真实案例讨论后台执行、验证债、理解腐烂和
+Token 失控。</li>
+<li><strong>如何开始</strong>：说明工程师在循环外仍需承担的责任，并给出第一个
+Loop 的搭建路径。</li>
+</ul>
+<h2 id="阅读时建议关注">阅读时建议关注</h2>
+<ol type="1">
+<li><strong>循环需要外部状态</strong>：进度和判断依据不能只存在于单次对话上下文。</li>
+<li><strong>生成器不能独自证明自己正确</strong>：测试、规则检查或独立评判器需要具备真正说“不”的能力。</li>
+<li><strong>自动化会放大错误和成本</strong>：必须设置预算、停止条件、隔离环境和人工接管点。</li>
+<li><strong>人的价值发生上移</strong>：工程师从逐步执行转向目标定义、循环设计、异常处理和结果验收。</li>
+</ol>
+<h2 id="下载与版本">下载与版本</h2>
+<ul>
+<li>作者：花叔</li>
+<li>文档版本：v260615</li>
+<li>PDF 内部编辑时间：2026-06-15 13:22:12</li>
+<li>规格：32 页，约 4.3 MB</li>
+<li><strong><a
+href="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/Loop-Engineering橙皮书-v260615.pdf">下载
+PDF：Loop Engineering 橙皮书</a></strong></li>
+</ul>
+<blockquote>
+<p>本书记录的是 2026 年 6
+月的工具与产品快照。命令、功能和定价可能继续变化，实际操作前应核对对应产品的当前官方文档。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Yulin LIU
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://profile.yulin.love/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/" title="Loop Engineering：别再问我什么是循环工程">https://profile.yulin.love/2026/06/15/Loop-Engineering别再问我什么是循环工程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/Agent/" rel="tag"># Agent</a>
+              <a href="/tags/Ebook/" rel="tag"># Ebook</a>
+              <a href="/tags/references/" rel="tag"># references</a>
+              <a href="/tags/Loop-Engineering/" rel="tag"># Loop Engineering</a>
+              <a href="/tags/Agentic-Coding/" rel="tag"># Agentic Coding</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/04/08/Hermes-Agent%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/" rel="prev" title="Hermes Agent：从入门到精通">
+      <i class="fa fa-chevron-left"></i> Hermes Agent：从入门到精通
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2026/07/23/%E6%A2%81%E6%96%87%E9%94%8B%E8%AE%BF%E8%B0%88-DeepSeek%E7%9A%84AGI%E6%88%98%E7%95%A5/" rel="next" title="梁文锋访谈：DeepSeek 的 AGI 战略">
+      梁文锋访谈：DeepSeek 的 AGI 战略 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%99%E6%9C%AC%E4%B9%A6%E8%AE%B2%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">这本书讲什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">内容结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E6%97%B6%E5%BB%BA%E8%AE%AE%E5%85%B3%E6%B3%A8"><span class="nav-number">3.</span> <span class="nav-text">阅读时建议关注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%89%88%E6%9C%AC"><span class="nav-number">4.</span> <span class="nav-text">下载与版本</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yulin LIU"
+      src="/images/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Yulin LIU</p>
+  <div class="site-description" itemprop="description">Stay Happy and Healthy !</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+<div id="days"></div>
+<script>
+function show_date_time() {
+  window.setTimeout(show_date_time, 1000);
+  const birthDay = new Date('09/09/2021 23:48:23');
+  const elapsed = Date.now() - birthDay.getTime();
+  const days = Math.floor(elapsed / 86400000);
+  const hours = String(Math.floor(elapsed / 3600000) % 24).padStart(2, '0');
+  const minutes = String(Math.floor(elapsed / 60000) % 60).padStart(2, '0');
+  const seconds = String(Math.floor(elapsed / 1000) % 60).padStart(2, '0');
+  document.getElementById('days').textContent =
+    `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+}
+show_date_time();
+</script>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yulin LIU</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+<script src="/js/clicklove.js"></script>
+
+</body>
+</html>

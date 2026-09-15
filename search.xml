@@ -385,6 +385,814 @@ src="/2022/02/19/%E3%80%8A%E7%9B%B2%E5%B1%B1%E3%80%8B/10.png" /></p>
       </tags>
   </entry>
   <entry>
+    <title>Hermes Agent：从入门到精通</title>
+    <url>/2026/04/08/Hermes-Agent%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/</url>
+    <content><![CDATA[<p>《Hermes Agent：从入门到精通》围绕 Nous Research 的开源 Agent
+框架展开，重点解释一个自主 Agent 如何通过学习循环、跨会话记忆和 Skill
+系统积累经验，并在后台持续运行。</p>
+<span id="more"></span>
+<figure>
+<img
+src="/2026/04/08/Hermes-Agent%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/cover.jpg"
+alt="《Hermes Agent：从入门到精通》封面" />
+<figcaption aria-hidden="true">《Hermes
+Agent：从入门到精通》封面</figcaption>
+</figure>
+<h2 id="这本书讲什么">这本书讲什么</h2>
+<p>这本手册从 Harness Engineering 与 Hermes 的关系切入，将 Hermes
+的整体结构概括为学习循环、三层记忆、Skill 系统、工具与 MCP、多平台
+Gateway。它既覆盖安装配置，也讨论个人知识助手、开发自动化、内容创作和多
+Agent 编排等使用场景。</p>
+<p>全书后半部分把重点放在自改进 Agent 的边界：自动创建或修改 Skill
+是否可控，记忆是否需要遗忘机制，开源代码是否等于实际可审计，以及人应该在什么层面继续保留监督权。</p>
+<h2 id="内容结构">内容结构</h2>
+<ul>
+<li><strong>概念</strong>：理解 Hermes 与普通 Agent、Harness Engineering
+及其他工具的关系。</li>
+<li><strong>核心机制</strong>：拆解学习循环、三层记忆、自我演进的
+Skill，以及工具与 MCP。</li>
+<li><strong>动手搭建</strong>：覆盖安装配置、首次对话、多平台接入、自定义
+Skill 和 MCP 集成。</li>
+<li><strong>实战场景</strong>：讨论知识助手、开发自动化、内容生产和多
+Agent 协作。</li>
+<li><strong>深度思考</strong>：比较 Hermes、OpenClaw 与 Claude
+Code，并分析自改进 Agent 的控制与信任边界。</li>
+</ul>
+<h2 id="阅读时建议关注">阅读时建议关注</h2>
+<ol type="1">
+<li><strong>记忆与 Skill
+承担不同职责</strong>：前者保存经历和偏好，后者沉淀可复用的执行方法。</li>
+<li><strong>自改进需要有效反馈</strong>：Agent
+可以优化“怎么做”，但任务方向和验收标准仍需由人定义。</li>
+<li><strong>可查看代码不等于已经完成审计</strong>：开源提供检查和修改的权利，不能替代真实的审查行为。</li>
+<li><strong>工具应按任务组合</strong>：交互编码、配置管理和自主后台运行对应不同工作模式，不必强行收敛到单一工具。</li>
+</ol>
+<h2 id="下载与版本">下载与版本</h2>
+<ul>
+<li>作者：花叔</li>
+<li>文档版本：v260407</li>
+<li>PDF 内部编辑时间：2026-04-08 17:38:33</li>
+<li>规格：63 页，约 7.6 MB</li>
+<li><strong><a
+href="/2026/04/08/Hermes-Agent%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/Hermes-Agent-从入门到精通-v260407.pdf">下载
+PDF：Hermes Agent 从入门到精通</a></strong></li>
+</ul>
+<blockquote>
+<p>本书基于 Hermes Agent v0.7.0
+编写。书中的版本、生态规模、工具数量、成本与平台支持情况均属于当时快照，后续使用应以当前官方资料为准。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Self-Learning</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Hermes Agent</tag>
+        <tag>Self-Improving Agent</tag>
+        <tag>Ebook</tag>
+        <tag>references</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Loop Engineering：别再问我什么是循环工程</title>
+    <url>/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<p>Loop Engineering 讨论的核心变化，是把人从逐句驱动 Agent
+的位置移到循环之外：人不再负责每一次
+Prompt，而是设计一套能够发现任务、保存状态、调用
+Agent、验证结果并决定是否继续的系统。</p>
+<span id="more"></span>
+<figure>
+<img
+src="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/cover.jpg"
+alt="《Loop Engineering：别再问我什么是循环工程》封面" />
+<figcaption aria-hidden="true">《Loop
+Engineering：别再问我什么是循环工程》封面</figcaption>
+</figure>
+<h2 id="这本书讲什么">这本书讲什么</h2>
+<p>《Loop Engineering：别再问我什么是循环工程》从概念演化开始，区分
+Prompt Engineering、Context Engineering、Harness Engineering 与 Loop
+Engineering 的职责边界，并把一个可持续运行的 Agent
+循环拆成可理解的动作和零件。</p>
+<p>书中没有把“自动运行”直接等同于工程完成。循环能否长期工作，还取决于状态能否跨轮保存、评判器能否独立判断、并行任务是否隔离、成本是否有上限，以及关键节点是否保留人工复核。</p>
+<h2 id="内容结构">内容结构</h2>
+<ul>
+<li><strong>它是什么</strong>：解释 Loop Engineering 的定义，以及它相对
+Prompt、Context 和 Harness 所处的位置。</li>
+<li><strong>它怎么转</strong>：拆解循环的五个动作、六个组成部分，以及生成器与评判器的分工。</li>
+<li><strong>它在哪运行、付出什么代价</strong>：结合真实案例讨论后台执行、验证债、理解腐烂和
+Token 失控。</li>
+<li><strong>如何开始</strong>：说明工程师在循环外仍需承担的责任，并给出第一个
+Loop 的搭建路径。</li>
+</ul>
+<h2 id="阅读时建议关注">阅读时建议关注</h2>
+<ol type="1">
+<li><strong>循环需要外部状态</strong>：进度和判断依据不能只存在于单次对话上下文。</li>
+<li><strong>生成器不能独自证明自己正确</strong>：测试、规则检查或独立评判器需要具备真正说“不”的能力。</li>
+<li><strong>自动化会放大错误和成本</strong>：必须设置预算、停止条件、隔离环境和人工接管点。</li>
+<li><strong>人的价值发生上移</strong>：工程师从逐步执行转向目标定义、循环设计、异常处理和结果验收。</li>
+</ol>
+<h2 id="下载与版本">下载与版本</h2>
+<ul>
+<li>作者：花叔</li>
+<li>文档版本：v260615</li>
+<li>PDF 内部编辑时间：2026-06-15 13:22:12</li>
+<li>规格：32 页，约 4.3 MB</li>
+<li><strong><a
+href="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/Loop-Engineering橙皮书-v260615.pdf">下载
+PDF：Loop Engineering 橙皮书</a></strong></li>
+</ul>
+<blockquote>
+<p>本书记录的是 2026 年 6
+月的工具与产品快照。命令、功能和定价可能继续变化，实际操作前应核对对应产品的当前官方文档。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Self-Learning</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Ebook</tag>
+        <tag>references</tag>
+        <tag>Loop Engineering</tag>
+        <tag>Agentic Coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>梁文锋访谈：DeepSeek 的 AGI 战略</title>
+    <url>/2026/07/23/%E6%A2%81%E6%96%87%E9%94%8B%E8%AE%BF%E8%B0%88-DeepSeek%E7%9A%84AGI%E6%88%98%E7%95%A5/</url>
+    <content><![CDATA[<h2 id="访谈概述">访谈概述</h2>
+<p><a
+href="https://news.qq.com/rain/a/20260723A04GBI00">腾讯科技完整整理稿</a>：梁文锋围绕同一套战略反复展开阐述：</p>
+<blockquote>
+<p>DeepSeek 不准备成为下一个超级
+App，而是要成为“开放、低成本、自我加速”的 AGI 基础设施公司。</p>
+</blockquote>
+<p>核心目标函数不是短期用户数、收入或估值，而是“<strong>提高最先实现 AGI
+的概率</strong>”。开源、低价、不抢应用、融资、押注 Coding
+Agent、适配国产芯片，看似分散，实际上都服务于这个目标。</p>
+<span id="more"></span>
+<h2 id="九个关键判断">九个关键判断</h2>
+<p>1、<strong>“战略克制”是最高原则</strong></p>
+<p>不追求超级
+App、不抢流量红利、不把利润最大化，是因为应用层竞争会消耗研发注意力。梁文锋反复强调，应优先提高做成
+AGI 的概率，而不是提前争夺利益。</p>
+<p>2、<strong>技术路线非常集中</strong></p>
+<p>路线图大致是：<strong>语言模型 → 思维链 → 通用 Agent → 持续学习 → AI
+自我迭代 → 具身智能</strong></p>
+<p>其中，<strong>持续学习被视为当前最关键的瓶颈</strong>；视频生成、3D、垂直医疗或金融
+Agent 都不是现阶段主线。</p>
+<p>3、<strong>Coding Agent 是战略起点，不只是产品</strong></p>
+<p>DeepSeek
+优先做编程，并不是因为程序员市场最大，而是代码具有清晰反馈、可验证结果和自动迭代条件。其真正目标是让模型参与开发下一代模型，形成“AI
+研发 AI”的内部飞轮。</p>
+<p>4、<strong>模型首先服务自己</strong></p>
+<p>梁文锋明确表示，模型第一目标不是让外部用户觉得好用，而是让 DeepSeek
+自己研发下一代模型时好用。由此看，C 端产品更像能力试验场，API
+是现金流来源，内部研发效率才是核心用途。</p>
+<p>5、<strong>真正瓶颈是算力和高质量数据</strong></p>
+<p>梁文锋认为，中美人才差距没有算力差距大；模型规模不是“已经足够”，而是受现有资源限制。同时，高质量数据标注昂贵、耗时，甚至需要核心研究员直接参与。</p>
+<p>6、<strong>人才护城河不是招聘，而是团队稳定</strong></p>
+<p>融资的重要用途之一，是通过期权稳定核心成员。无
+KPI、约一半时间自主探索、较少加班和共识决策，都是为了维持研究人员的内在动机。不过梁文锋也承认，团队扩大后必须补充正式组织架构。</p>
+<p>7、<strong>开源是战略武器，不只是理想主义</strong></p>
+<p>DeepSeek
+判断：权重公开并不会消除真正壁垒，因为高效部署、低成本推理、数据、基础设施和持续迭代仍很难复制。其
+V3、R1 以及 DeepEP、3FS、FlashMLA
+等基础设施的持续开放，也与这一说法基本一致。<a
+href="https://github.com/deepseek-ai/DeepSeek-V3">DeepSeek-V3</a>、<a
+href="https://github.com/deepseek-ai/deepseek-r1">DeepSeek-R1</a>、<a
+href="https://github.com/deepseek-ai/open-infra-index">DeepSeek
+开放基础设施</a></p>
+<p>8、<strong>低价不是促销，而是竞争范式</strong></p>
+<p>API
+只追求合理收益，不追求价格上限。低成本一方面扩大生态，另一方面能让同样算力训练更大模型。DeepSeek
+的公开技术报告也显示，其竞争力高度依赖模型架构、低精度训练和软硬件协同，而不只是“少用显卡”。公开的
+2.788 百万 H800 GPU 小时只是训练计算量，并不等于完整研发成本。<a
+href="https://github.com/deepseek-ai/DeepSeek-V3">DeepSeek-V3
+技术资料</a>、<a
+href="https://api-docs.deepseek.com/quick_start/pricing-details-usd">官方
+API 定价</a></p>
+<p>9、<strong>中国 AI 的优势将主要是系统性低成本</strong></p>
+<p>梁文锋判断，未来模型之间的差异主要剩下<strong>成本、时间和体验</strong>。中国未必始终最早，但可能通过工程效率、能源、芯片产能和较低利润诉求，<strong>成为全球最便宜的大规模智能供应方</strong>。</p>
+<h2 id="deepseek-背后的战略意图">DeepSeek 背后的战略意图</h2>
+<h3 id="用开源和低价主动商品化模型能力">1.
+用开源和低价主动“商品化”模型能力</h3>
+<p>DeepSeek 在主动压低基础模型的超额利润：</p>
+<ul>
+<li><p>开源让模型能力快速扩散；</p></li>
+<li><p>低价迫使行业按单位成本竞争；</p></li>
+<li><p>不做应用，减少与互联网平台的直接冲突；</p></li>
+<li><p>阿里、腾讯、智谱等即使使用或部署
+DeepSeek，也会扩大其技术影响力。</p></li>
+</ul>
+<p>这等于把竞争规则从“谁拥有独家模型”，改成“谁能迭代得最快、训练得最省、部署得最好”。DeepSeek
+恰恰把护城河放在后一层。</p>
+<h3 id="建立一个递归增强的研发系统">2. 建立一个递归增强的研发系统</h3>
+<p>Coding Agent → 持续学习 → 自我迭代，是整场交流最关键的战略线索。</p>
+<p>DeepSeek
+真正想制造的并不是某一代聊天机器人，而是一台能够帮助自己研究下一代模型的“研发机器”。一旦这个循环成立，模型研发就可能由线性的人力投入转向非线性加速。届时，今天的用户规模和应用收入都只是次要资产。</p>
+<h3 id="融资的本质是购买实验次数和时间">3.
+融资的本质是“购买实验次数和时间”</h3>
+<p>此次融资规模约 500 亿元、梁文锋本人投入约 200
+亿元以及腾讯、宁德时代等参投，已有其他媒体交叉报道，但具体条款仍未完全公开。从交流内容看，这笔钱主要解决三件事：</p>
+<ul>
+<li><p>购买算力，提高实验密度；</p></li>
+<li><p>用期权稳定核心研究团队；</p></li>
+<li><p>支撑高质量数据和国产芯片适配。</p></li>
+</ul>
+<p>所以它更像一次“科研军备扩充”，而不是准备大规模买量或建设应用矩阵。选择利益一致、敌意较低的投资者，也是在尽量降低外部资本对技术路线的干扰。</p>
+<h3 id="从-cuda-依赖中获得战略自主性">4. 从 CUDA
+依赖中获得战略自主性</h3>
+<p>DeepSeek
+不只是适配国产卡，而是在编译器、通信库、算子和文件系统层面建设自己的技术栈。其深层意图是：</p>
+<ul>
+<li><p>降低对单一芯片和 CUDA 生态的依赖；</p></li>
+<li><p>让模型可以在多种硬件上低成本运行；</p></li>
+<li><p>参与定义国产算力的真实工作负载和软件标准；</p></li>
+<li><p>换取更稳定的长期算力供给。</p></li>
+</ul>
+<p>如果成功，DeepSeek 不只是国产芯片的客户，还可能成为国产 AI
+计算生态的“需求定义者”。</p>
+<h3 id="保持基础设施中立借别人的渠道完成分发">5.
+保持基础设施中立，借别人的渠道完成分发</h3>
+<p>不做超级 App、不与互联网平台为敌，意味着 DeepSeek
+可以同时服务多个平台。平台负责用户、场景和分发，DeepSeek负责底层智能，最终可能形成这样的定位：</p>
+<blockquote>
+<p>上层让腾讯、阿里、京东以及创业公司竞争应用；DeepSeek
+位于下层，提供开放模型、低价 API、研发工具链和硬件适配。</p>
+</blockquote>
+<p>这比亲自经营所有应用更聚焦，也更符合其团队规模和算力约束。</p>
+]]></content>
+      <categories>
+        <category>Tech</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>DeepSeek</tag>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 智能体与工程化新人学习计划</title>
+    <url>/2026/07/28/AI%E6%99%BA%E8%83%BD%E4%BD%93%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%96%B0%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<p>这是一份面向工程新人的渐进式学习路线：从理解 LLM
+与工具调用开始，最终独立完成一个有需求、状态、权限、验证和停止条件的本地
+AI Agent。</p>
+<span id="more"></span>
+<h2 id="学习目标">1. 学习目标</h2>
+<p>完成本计划后，你应当能够：</p>
+<ul>
+<li>解释 LLM、Tool Use、AI Agent、Agent Harness、SDD 和 Loop Engineering
+的区别与联系；</li>
+<li>使用 Claude API
+完成基础消息调用，并理解多轮消息、Token、上下文窗口和停止原因；</li>
+<li>使用 Claude Code 阅读、修改、测试和验证项目代码；</li>
+<li>正确使用 <code>CLAUDE.md</code>、Agent Skills、Hooks、权限和
+sandbox；</li>
+<li>使用 Spec Kit 把模糊需求转化为
+<code>spec.md</code>、<code>plan.md</code> 和
+<code>tasks.md</code>；</li>
+<li>运行 Requirements、Design、Implementation、Convergence
+四个有界工程循环；</li>
+<li>使用测试、静态检查、运行结果和证据文件判断工作是否真正完成；</li>
+<li>区分普通项目内操作、需要人工审批的操作和禁止操作；</li>
+<li>独立完成一个有需求、有工具、有状态、有验证、有停止条件的本地 AI
+Agent。</li>
+</ul>
+<hr />
+<h2 id="核心知识地图">2. 核心知识地图</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户目标</span><br><span class="line">  ↓</span><br><span class="line">LLM API：messages → model response</span><br><span class="line">  ↓</span><br><span class="line">Tool Use：模型生成结构化工具调用</span><br><span class="line">  ↓</span><br><span class="line">Agent Loop：决定 → 行动 → 观察 → 调整</span><br><span class="line">  ↓</span><br><span class="line">Agent Harness：</span><br><span class="line">上下文 + 工具 + 状态 + 权限 + 日志 + 预算 + 验证</span><br><span class="line">  ↓</span><br><span class="line">Claude Code：</span><br><span class="line">面向软件工程任务的通用 Coding Agent Harness</span><br><span class="line">  ↓</span><br><span class="line">Spec-Driven Development：</span><br><span class="line">constitution → spec → plan → tasks → implementation</span><br><span class="line">  ↓</span><br><span class="line">Four-Loop Engineering：</span><br><span class="line">requirements → design → implementation → convergence</span><br><span class="line">  ↓</span><br><span class="line">证据通过 / 停滞升级 / 人工审批</span><br></pre></td></tr></table></figure>
+<h3 id="关键术语">关键术语</h3>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>术语</th>
+<th>简要定义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LLM 调用</td>
+<td>将结构化消息发送给模型，并获得下一条模型输出</td>
+</tr>
+<tr class="even">
+<td>Tool Use</td>
+<td>模型产生结构化工具请求，由应用或服务实际执行</td>
+</tr>
+<tr class="odd">
+<td>Agent</td>
+<td>能够在循环中自主选择行动、使用工具并根据结果调整的系统</td>
+</tr>
+<tr class="even">
+<td>Workflow</td>
+<td>主要由程序预先确定执行路径的 LLM 工作流</td>
+</tr>
+<tr class="odd">
+<td>Agent Harness</td>
+<td>围绕模型构建的上下文、工具、状态、权限、执行、观测和验证系统</td>
+</tr>
+<tr class="even">
+<td>Prompt Engineering</td>
+<td>优化传给模型的指令表达</td>
+</tr>
+<tr class="odd">
+<td>Context Engineering</td>
+<td>优化模型在当前步骤能够看到的信息</td>
+</tr>
+<tr class="even">
+<td>SDD</td>
+<td>以可执行规格和明确意图驱动设计、任务、实现与验证</td>
+</tr>
+<tr class="odd">
+<td>Loop Engineering</td>
+<td>为 Agent 设计有评价、有预算、有停止条件的反馈循环</td>
+</tr>
+<tr class="even">
+<td>Eval</td>
+<td>使用任务、测试、评分器和环境结果衡量 Agent 的真实表现</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="学习仓库与文件地图">3. 学习仓库与文件地图</h2>
+<p>主仓库：</p>
+<ul>
+<li><a
+href="https://github.com/YLiu1231/SpecKit-LoopEngineering">SpecKit-LoopEngineering</a></li>
+</ul>
+<p>开始学习前，应了解以下文件：</p>
+<table>
+<colgroup>
+<col style="width: 58%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>文件或目录</th>
+<th>学习重点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a
+href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/README.md"><code>README.md</code></a></td>
+<td>安装、初始化、安全模式和基本使用方法</td>
+</tr>
+<tr class="even">
+<td><a
+href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/CLAUDE.md"><code>CLAUDE.md</code></a></td>
+<td>稳定工程规则及 Four-Loop 使用顺序</td>
+</tr>
+<tr class="odd">
+<td><a
+href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/PROJECT-CONSTITUTION.md"><code>PROJECT-CONSTITUTION.md</code></a></td>
+<td>意图、证据、权限和治理原则</td>
+</tr>
+<tr class="even">
+<td><code>skills/speckit-*/SKILL.md</code></td>
+<td>Spec Kit 的规格、计划、任务、分析和实现流程</td>
+</tr>
+<tr class="odd">
+<td><code>skills/loop-*/SKILL.md</code></td>
+<td>四个有界工程循环及初始化流程</td>
+</tr>
+<tr class="even">
+<td><code>project-templates/</code></td>
+<td>Spec、Plan、Tasks 和 Checklist 模板</td>
+</tr>
+<tr class="odd">
+<td><a
+href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/policy.json.md"><code>runtime/policy.json.md</code></a></td>
+<td>循环预算、分数、停滞和停止规则</td>
+</tr>
+<tr class="even">
+<td><a
+href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/loopctl.py.md"><code>runtime/loopctl.py.md</code></a></td>
+<td>确定性检查、循环状态记录和升级逻辑</td>
+</tr>
+<tr class="odd">
+<td><a
+href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/security_guard.py.md"><code>runtime/security_guard.py.md</code></a></td>
+<td>文件边界、高风险命令和审批策略</td>
+</tr>
+<tr class="even">
+<td><code>install.sh</code> / <code>install.ps1</code></td>
+<td>跨平台安装、备份、更新和诊断</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="必修课程清单">4. 必修课程清单</h2>
+<h3 id="a.-claude-code">A. Claude Code</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />完成 <a
+href="https://anthropic.skilljar.com/claude-code-101">Claude Code
+101</a></label>
+<ul>
+<li>建议时间：1.5 小时</li>
+<li>学习重点：Agent Loop、上下文、Plan
+Mode、<code>CLAUDE.md</code>、Skills、MCP、Hooks。</li>
+</ul></li>
+<li><label><input type="checkbox" />阅读 <a
+href="https://code.claude.com/docs/en/quickstart">Claude Code
+Quickstart</a></label>
+<ul>
+<li>建议时间：20 分钟</li>
+<li>学习重点：安装、启动、代码探索、修改和验证。</li>
+</ul></li>
+<li><label><input type="checkbox" />阅读 <a
+href="https://www.anthropic.com/engineering/claude-code-best-practices">Claude
+Code Best Practices</a></label>
+<ul>
+<li>建议时间：30 分钟</li>
+<li>学习重点：探索、计划、实现、验证和上下文管理。</li>
+</ul></li>
+<li><label><input type="checkbox" />完成 <a
+href="https://anthropic.skilljar.com/introduction-to-agent-skills">Introduction
+to Agent Skills</a></label>
+<ul>
+<li>建议时间：30 分钟</li>
+<li>学习重点：<code>SKILL.md</code>、触发条件、渐进式加载、脚本和团队共享。</li>
+</ul></li>
+</ul>
+<h3 id="b.-llm-api-与-agent-基础">B. LLM API 与 Agent 基础</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />完成 <a
+href="https://anthropic.skilljar.com/claude-platform-101">Claude
+Platform 101</a></label>
+<ul>
+<li>建议时间：1 小时</li>
+<li>学习重点：API 请求、模型选择、Tool Use、Agent Loop
+和上下文管理。</li>
+</ul></li>
+<li><label><input type="checkbox" />阅读 <a
+href="https://platform.claude.com/docs/en/api/messages/create">Messages
+API</a></label>
+<ul>
+<li>建议时间：20 分钟</li>
+<li>学习重点：<code>messages</code>、<code>role</code>、<code>content</code>、<code>max_tokens</code>、<code>stop_reason</code>。</li>
+</ul></li>
+<li><label><input type="checkbox" />阅读 <a
+href="https://www.anthropic.com/engineering/building-effective-agents">Building
+Effective Agents</a></label>
+<ul>
+<li>建议时间：40 分钟</li>
+<li>学习重点：Workflow 与
+Agent、Routing、Parallelization、Evaluator–Optimizer。</li>
+</ul></li>
+</ul>
+<h3 id="c.-spec-driven-development">C. Spec-Driven Development</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />阅读 <a
+href="https://github.github.io/spec-kit/">GitHub Spec Kit
+官方文档</a></label>
+<ul>
+<li>建议时间：40 分钟</li>
+<li>学习重点：Constitution、Specify、Plan、Tasks、Implement。</li>
+</ul></li>
+<li><label><input type="checkbox" />观看 <a
+href="https://www.youtube.com/watch?v=a9eR1xsfvHg">GitHub Spec Kit
+官方视频概览</a></label>
+<ul>
+<li>学习重点：完整 SDD 工作流及各阶段产物。</li>
+</ul></li>
+<li><label><input type="checkbox" />完成 <a
+href="https://www.deeplearning.ai/alpha/short-courses/spec-driven-development-with-coding-agents">Spec-Driven
+Development with Coding Agents</a></label>
+<ul>
+<li>建议时间：1 小时 16 分钟</li>
+<li>学习重点：规格、项目宪法、计划、验证和 Agent Skills。</li>
+</ul></li>
+</ul>
+<h3 id="d.-harnessevals-与-loop-engineering">D. Harness、Evals 与 Loop
+Engineering</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />阅读 <a
+href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Demystifying
+Evals for AI Agents</a></label>
+<ul>
+<li>建议时间：45 分钟</li>
+<li>学习重点：Task、Trial、Grader、Trajectory、Outcome、Evaluation
+Harness。</li>
+</ul></li>
+<li><label><input type="checkbox" />阅读 <a
+href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective
+Harnesses for Long-Running Agents</a></label>
+<ul>
+<li>建议时间：30 分钟</li>
+<li>学习重点：跨会话状态、增量工作、初始化 Agent 和持久化进度。</li>
+</ul></li>
+<li><label><input type="checkbox" />阅读 <a
+href="https://www.anthropic.com/engineering/claude-code-sandboxing">Claude
+Code Sandboxing</a></label>
+<ul>
+<li>建议时间：25 分钟</li>
+<li>学习重点：文件系统隔离、网络隔离和最小权限。</li>
+</ul></li>
+<li><label><input type="checkbox" />阅读 <a
+href="https://www.ibm.com/think/topics/loop-engineering">IBM：What Is
+Loop Engineering</a></label>
+<ul>
+<li>建议时间：20 分钟</li>
+<li>学习重点：Agent 循环、反馈、验证和停止条件。</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="选修课程">5. 选修课程</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" /><a
+href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">Building
+with the Claude API</a></label>
+<ul>
+<li>约 8.1 小时；适合需要开发 AI 产品或后端服务的员工。</li>
+</ul></li>
+<li><label><input type="checkbox" /><a
+href="https://www.deeplearning.ai/courses/agentic-ai">DeepLearning.AI
+Agentic AI</a></label>
+<ul>
+<li>约 7 小时 45 分钟；覆盖 Reflection、Tool Use、Planning 和
+Multi-Agent。</li>
+</ul></li>
+<li><label><input type="checkbox" /><a
+href="https://github.com/walkinglabs/learn-harness-engineering">Learn
+Harness Engineering</a></label>
+<ul>
+<li>免费开源，提供简体中文。</li>
+</ul></li>
+<li><label><input type="checkbox" /><a
+href="https://rasa.com/course/harness-engineering">A Field Guide to
+Harness Engineering</a></label>
+<ul>
+<li>约 10 小时；重点是生产环境中的 Agent 故障与可靠性。</li>
+</ul></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Self-Learning</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>马斯克与《经济学人》：AI 富足与治理难题</title>
+    <url>/2026/08/01/%E9%A9%AC%E6%96%AF%E5%85%8B%E4%B8%8E%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%BA-AI%E5%AF%8C%E8%B6%B3%E4%B8%8E%E6%B2%BB%E7%90%86%E9%9A%BE%E9%A2%98/</url>
+    <content><![CDATA[<p>这场访谈的主线，不只是“马斯克预测了什么”，而是两套世界观的碰撞：</p>
+<ul>
+<li>马斯克：技术加速几乎不可阻挡，应设法降低风险，同时主动拥抱由 AI
+和机器人带来的富足。</li>
+<li>《经济学人》总编赞尼·明顿·贝多斯：即使终点可能富足，也不能跳过过渡期的失业、分配、权力集中和民主治理问题。</li>
+</ul>
+<p>以下依据视频对应的<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">完整英文逐字稿</a>整理。视频原址为<a
+href="https://www.bilibili.com/video/BV1s43E6oEhe/">哔哩哔哩</a>。</p>
+<span id="more"></span>
+<h2 id="马斯克的核心观点与论据">马斯克的核心观点与论据</h2>
+<h3 id="ai-和机器人将把经济带入近乎无限供给">1. AI
+和机器人将把经济带入“近乎无限供给”</h3>
+<p>马斯克预测：</p>
+<ul>
+<li>约五年内，AI 总体智能可能超过全体人类智能之和。</li>
+<li>十年左右，AI 能比人类更好地完成几乎所有工作。</li>
+<li>AI
+是“数字智能”，人形机器人是让智能作用于物理世界的“执行器”；二者结合后，可大规模生产商品和服务。</li>
+<li>当供给多到超过人的消费能力时，工作会变成类似园艺的自愿活动，货币的重要性也会下降。</li>
+</ul>
+<p>他的论据主要是：</p>
+<ul>
+<li>AI 能力正在以周为单位快速突破；</li>
+<li>他声称 AI 编程能力已超过约九成职业程序员；</li>
+<li>用 Stockfish
+击败顶尖棋手类比：一旦机器能力跨过临界点，人类就不再具有竞争优势；</li>
+<li>历史上“人工计算员”等职业也被计算机淘汰，而社会最终获得了更高生产率。<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">逐字稿相关段落</a></li>
+</ul>
+<p>评价：技术逻辑完整，但“五年超过全人类”“十年货币失去意义”主要是指数外推，访谈中没有给出可验证的模型、产能或部署数据。</p>
+<h3 id="他没有否认-ai-灭绝风险而是转向了不可阻挡的乐观主义">2.
+他没有否认 AI 灭绝风险，而是转向了“不可阻挡的乐观主义”</h3>
+<p>主持人指出，马斯克过去曾给出 AI/机器人导致人类灭绝约 10%—20%
+的风险判断。马斯克没有撤回风险判断，但认为：</p>
+<blockquote>
+<p>AI
+竞赛已经形成不可逆的全球动量，即使存在停止按钮，也未必应该按下，因为更大概率的结果是普遍富足。</p>
+</blockquote>
+<p>这构成了他的核心决策逻辑：</p>
+<p><strong>无法停止竞争 → 自己不参与也不能减速 →
+加入竞争，同时努力降低坏结果概率。</strong></p>
+<p>值得注意的是，他承认自己创办 OpenAI、间接促成 Anthropic
+出现，客观上加速了原本想约束的 AI
+竞赛。这说明其立场更接近“宿命式加速”，而不是传统意义上的安全优先。</p>
+<h3 id="ai-安全应先由头部公司互相测试政府保留最后干预权">3. AI
+安全应先由头部公司互相测试，政府保留最后干预权</h3>
+<p>马斯克提出一个具体方案：</p>
+<ul>
+<li>头部 AI 公司每周或每两周召开安全会议；</li>
+<li>新一代前沿模型发布前，提前一至两周通过 API 交给竞争对手测试；</li>
+<li>竞争对手发现重大网络、生物或其他安全风险后，可建议暂停；</li>
+<li>如果开发公司拒绝处理严重风险，再由政府介入。<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">安全机制讨论</a></li>
+</ul>
+<p>他的关键论据是：</p>
+<ul>
+<li>政府人员往往不在技术前沿，难以独立判断模型是否危险；</li>
+<li>竞争对手最懂技术，也最有动机指出对方模型的问题；</li>
+<li>可类比电影行业的分级自律机制。</li>
+</ul>
+<p>主持人的反驳是：这些公司彼此竞争、缺乏信任，且会被商业利益影响，公共安全不能完全依靠开发者自律。</p>
+<p>评价：这是访谈中马斯克最具体、也最具可执行性的政策建议；但仍缺少保密、知识产权、统一测试标准和责任追究机制。</p>
+<h3 id="中国可能在-ai-和机器人领域取得领先真正瓶颈是电力与算力">4.
+中国可能在 AI 和机器人领域取得领先，真正瓶颈是电力与算力</h3>
+<p>马斯克认为，中国 AI
+公司在计算资源相对有限的情况下已经接近前沿水平；如果获得更多芯片和算力，中国“很有可能在某个阶段成为领导者”。</p>
+<p>其逻辑链为：</p>
+<p><strong>AI 能力 ≈ 芯片 × 电力 × 冷却 × 工程规模；物理 AI
+还要加上机器人制造能力。</strong></p>
+<p>他强调：</p>
+<ul>
+<li>中国同时拥有较强的数字 AI 和机器人产业；</li>
+<li>AI 当前的约束不只是芯片，电力和冷却可能更紧；</li>
+<li>禁止美国公司使用中国模型，并不能阻止其他国家使用，也不能从根本上阻止中国领先。<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">中美
+AI 竞争讨论</a></li>
+</ul>
+<p>这部分的价值在于：他把 AI
+竞争从单纯的“算法和芯片竞争”，扩大成了能源与制造体系竞争。不过，访谈中的具体电力规模和模型排名属于马斯克的现场判断，不能直接当作已经核验的统计结论。</p>
+<h3 id="ai-会引发剧烈失业过渡最终需要普遍高收入">5. AI
+会引发剧烈失业过渡，最终需要“普遍高收入”</h3>
+<p>马斯克预计，首先受到冲击的是电脑和手机上的数字化工作，之后人形机器人将进入实体劳动。他主张最终应形成“普遍高收入”，而不只是最低生活保障。</p>
+<p>对于钱从哪里来，他的回答是：</p>
+<ul>
+<li>财政部可以直接向居民发放支票；</li>
+<li>如果 AI
+和机器人使商品、服务产出增长快于货币供应，结果可能是通缩而不是通胀；</li>
+<li>长期看，货币与税收都会因稀缺性的消失而降低重要性。</li>
+</ul>
+<p>主持人的核心追问是：即使终点成立，社会如何跨过当前到“富足社会”之间的过渡期？如果财富和
+AI 资产集中于少数公司，失业者如何获得购买力、尊严和政治参与感？</p>
+<p>评价：马斯克对技术终局描述鲜明，但对过渡期的收入分配、资产所有权和政治阻力回答较弱。他基本以“未来产出足够多”替代了对当下分配机制的说明。</p>
+<h3 id="集中控制公司是为了对抗资本市场的短期主义">6.
+集中控制公司，是为了对抗资本市场的短期主义</h3>
+<p>马斯克认为自己需要保持公司控制权，以便持续投资五至十年甚至更长周期的项目，例如月球基地、火星殖民和星舰，而不会因某一季度利润下降就被迫改变方向。</p>
+<p>他的论据是：</p>
+<ul>
+<li>职业基金经理的业绩和晋升取决于短期回报；</li>
+<li>这种激励会进一步迫使上市公司追逐季度利润；</li>
+<li>Alphabet、Meta 等创始人控制型公司也存在类似安排；</li>
+<li>如果自己突然离开，公司既有路线图仍可运行数年，但可能像乔布斯之后的苹果一样，失去突破式创新。<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">公司治理讨论</a></li>
+</ul>
+<p>主持人的反驳是：一人同时掌握资本、AI、通信基础设施和企业投票权，会形成严重的关键人物风险与权力失衡。</p>
+<p>这里双方实际上讨论的是：</p>
+<p><strong>长期创新是否足以正当化缺乏制衡的个人控制。</strong></p>
+<p>马斯克解释了集中控制的效率，却没有真正回答“如果掌权者判断错误，由谁纠正”。</p>
+<h3 id="对乌克兰支持防卫但认为领土完全收复已不现实">7.
+对乌克兰：支持防卫，但认为领土完全收复已不现实</h3>
+<p>马斯克表示，Starlink
+对乌克兰防卫发挥了重要作用；为阻止俄罗斯通过走私终端使用
+Starlink，SpaceX
+与乌克兰政府建立了终端白名单，但这也误伤了一些普通用户。</p>
+<p>在战争目标上，他主张：</p>
+<ul>
+<li>前线多年变化有限，继续战争会造成更多无意义死亡；</li>
+<li>俄罗斯完全撤出的目标“不现实”；</li>
+<li>应接受包含一定对俄让步的务实和平方案；</li>
+<li>这不是“亲俄”，而是对战场现实的判断。<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">乌克兰与
+Starlink 讨论</a></li>
+</ul>
+<p>主持人没有否认 Starlink
+的贡献，但追问：由一位企业家决定战争关键通信能力的开关，是否具有足够的合法性和问责机制。</p>
+<h3 id="对-doge承认政治介入过深但否认援助削减造成死亡">8. 对
+DOGE：承认政治介入过深，但否认援助削减造成死亡</h3>
+<p>马斯克承认自己“有点过度卷入政治”。他为 DOGE 辩护的论据包括：</p>
+<ul>
+<li>美国债务利息负担已经非常庞大；</li>
+<li>政府付款经常缺乏最终收款人信息；</li>
+<li>一些援助资金首先流向华盛顿的承包商，而不是目标国家；</li>
+<li>私人基金会拥有足够资金，可以及时接替部分援助项目。</li>
+</ul>
+<p>主持人同意政府援助存在浪费，但指出突然中断抗逆转录病毒药物等项目，可能造成不必要的伤亡。马斯克则断言“零人死亡”，并把未及时接替资金的责任部分归给私人基金会。<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">DOGE与援助争议</a></p>
+<p>评价：这是马斯克论证最薄弱的部分之一。“基金会拥有资金”并不能证明其具备即时接管药品采购、当地配送和医疗网络的能力；双方最终也没有拿出足够数据解决事实争议。</p>
+<h3 id="对欧洲安全边界文化整合和移民激励将决定社会稳定">9.
+对欧洲：安全边界、文化整合和移民激励将决定社会稳定</h3>
+<p>马斯克否认自己属于极右翼，把立场概括为：</p>
+<ul>
+<li>安全城市；</li>
+<li>安全边界；</li>
+<li>合理财政支出；</li>
+<li>支持能守法、工作并接受西方价值观的移民；</li>
+<li>反对大量无法实现文化整合的人口持续进入。</li>
+</ul>
+<p>他预测，如果拥有“与西方价值相冲突”的群体持续快速扩大，英国约二十年后可能发生内战。其主要论据是：</p>
+<ul>
+<li>福利国家提高了移民的经济吸引力；</li>
+<li>当价值观相互冲突的群体争夺制度规则时，会产生暴力对抗；</li>
+<li>传统媒体低估了欧洲的移民、犯罪和言论审查问题。<a
+href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">欧洲争论部分</a></li>
+</ul>
+<p>赞尼的反驳更有针对性：</p>
+<ul>
+<li>马斯克已经数年没有长期生活在英国；</li>
+<li>英国和伦敦的暴力犯罪状况并不支持其“失控”叙事；</li>
+<li>他支持的部分政治人物并不只是主张边境管理，而具有威权倾向；</li>
+<li>面向两亿多关注者传播极端案例，会放大恐惧、部落主义和社会撕裂；</li>
+<li>欧洲确有问题，但马斯克夸大了规模，也忽略了受控移民对老龄化欧洲的收益。</li>
+</ul>
+<p>评价：双方最终能在“需要受控移民和有效整合”上达成共识，真正分歧在于问题的严重程度，以及马斯克的传播方式是在预警风险，还是在放大风险。马斯克的“内战”预测主要建立在激励与文化冲突推演上，访谈中缺乏系统统计证据。</p>
+<h2 id="这场访谈最值得记住的三点">这场访谈最值得记住的三点</h2>
+<ol type="1">
+<li>马斯克现在的核心立场不是单纯的 AI 乐观主义，而是：<strong>AI
+有重大风险，但竞赛已经不可逆，因此最现实的策略是加入并影响它。</strong></li>
+<li>他在技术和产业问题上的论证通常有明确的因果链——智能、机器人、能源、产能；但涉及社会政策时，更依赖类比、个人经验和未来预测。</li>
+<li>赞尼最有力的质疑不是“技术不会进步”，而是：<strong>谁拥有技术、谁承担过渡成本、谁约束拥有巨大技术与传播权力的人。</strong></li>
+</ol>
+<p>一句话概括：马斯克相信“技术最终会解决稀缺性”，赞尼追问的则是“在抵达那个未来以前，制度能否承受失业、权力集中和社会撕裂”。</p>
+]]></content>
+      <categories>
+        <category>Self-Learning</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Interview</tag>
+        <tag>Society</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DeepSeek Harness：从开机到拆开</title>
+    <url>/2026/08/14/DeepSeek-Harness%E4%BB%8E%E5%BC%80%E6%9C%BA%E5%88%B0%E6%8B%86%E5%BC%80/</url>
+    <content><![CDATA[<p>《DeepSeek Harness：从开机到拆开》记录了 DeepSeek Harness v0.1
+开发者预览版发布时的产品状态。它既说明如何把 Coding Agent
+跑起来，也进一步拆解会话事件流、工具系统、插件机制和自我改造能力。</p>
+<span id="more"></span>
+<figure>
+<img
+src="/2026/08/14/DeepSeek-Harness%E4%BB%8E%E5%BC%80%E6%9C%BA%E5%88%B0%E6%8B%86%E5%BC%80/cover.jpg"
+alt="《DeepSeek Harness：从开机到拆开》封面" />
+<figcaption aria-hidden="true">《DeepSeek
+Harness：从开机到拆开》封面</figcaption>
+</figure>
+<h2 id="这本书讲什么">这本书讲什么</h2>
+<p>这不是一份只复述官方说明的安装教程。书中材料来自官方仓库与文档、683
+篇设计笔记，以及作者在本机完成的一手测试。内容从“十分钟完成第一项任务”开始，逐步进入权限边界、四种运行模式、会话事件、成本统计、动态工具、PTC
+模式、Skill、MCP 与插件冲突。</p>
+<p>全书特别关注产品在开发者预览阶段的真实状态：哪些行为已经跑通，哪些文档与实现存在差异，哪些接口可能发生破坏性变化。读者既能看到功能，也能理解
+Agent Harness 的运行边界和失败方式。</p>
+<h2 id="内容结构">内容结构</h2>
+<ul>
+<li><strong>进门</strong>：完成首次运行，理解工作区、权限、四种模式，以及从
+Claude Code 迁移时可以复用的内容。</li>
+<li><strong>主线</strong>：分析会话事件流、单次任务成本、动态工具、PTC
+模式和长任务执行。</li>
+<li><strong>地基</strong>：梳理
+Skill、MCP、插件之间的关系，并复盘已经出现的问题。</li>
+<li><strong>收束</strong>：观察一个大量使用 AI 编写的代码库，并讨论
+DeepSeek Harness 的技术选择与代价。</li>
+</ul>
+<h2 id="阅读时建议关注">阅读时建议关注</h2>
+<ol type="1">
+<li><strong>本地运行不等于数据不出本机</strong>：进程、文件、模型请求和遥测需要分别判断。</li>
+<li><strong>权限模型不只是一组开关</strong>：沙箱、审批策略、工作区范围与网络访问共同决定风险边界。</li>
+<li><strong>成本需要从真实事件流中核算</strong>：模型调用、缓存、工具执行和长任务循环都会影响最终费用。</li>
+<li><strong>可扩展性也会引入冲突</strong>：当 Skill、MCP
+和多个插件同时管理工具或文件时，需要明确优先级与失败提示。</li>
+</ol>
+<h2 id="下载与版本">下载与版本</h2>
+<ul>
+<li>作者：花叔</li>
+<li>文档版本：v260814</li>
+<li>PDF 内部编辑时间：2026-08-14 10:59:45</li>
+<li>规格：120 页，约 13.4 MB</li>
+<li><strong><a
+href="/2026/08/14/DeepSeek-Harness%E4%BB%8E%E5%BC%80%E6%9C%BA%E5%88%B0%E6%8B%86%E5%BC%80/DeepSeek-Harness-Orange-Book-zh-v260814.pdf">下载
+PDF：DeepSeek Harness 橙皮书</a></strong></li>
+</ul>
+<blockquote>
+<p>本书对应 DeepSeek Harness v0.1
+开发者预览版。项目仍在快速迭代，接口、价格和产品行为可能变化；实际使用时应以当前官方仓库与文档为准。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Self-Learning</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Ebook</tag>
+        <tag>references</tag>
+        <tag>DeepSeek</tag>
+        <tag>Harness Engineering</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Google 大中华区总裁访谈：从 AI 普及到中国开发者全球化通道</title>
     <url>/2026/08/24/Google%E5%A4%A7%E4%B8%AD%E5%8D%8E%E5%8C%BA%E6%80%BB%E8%A3%81%E8%AE%BF%E8%B0%88-%E4%BB%8EAI%E6%99%AE%E5%8F%8A%E5%88%B0%E5%85%A8%E7%90%83%E5%8C%96%E9%80%9A%E9%81%93/</url>
     <content><![CDATA[<p>这场访谈表面上谈
@@ -798,502 +1606,10 @@ Agent”，而是看到背后的控制权变化：开发者从代码执行者变
       </categories>
       <tags>
         <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Interview</tag>
         <tag>Google</tag>
-        <tag>Agent</tag>
-        <tag>Interview</tag>
         <tag>Globalization</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>马斯克与《经济学人》：AI 富足与治理难题</title>
-    <url>/2026/08/01/%E9%A9%AC%E6%96%AF%E5%85%8B%E4%B8%8E%E7%BB%8F%E6%B5%8E%E5%AD%A6%E4%BA%BA-AI%E5%AF%8C%E8%B6%B3%E4%B8%8E%E6%B2%BB%E7%90%86%E9%9A%BE%E9%A2%98/</url>
-    <content><![CDATA[<p>这场访谈的主线，不只是“马斯克预测了什么”，而是两套世界观的碰撞：</p>
-<ul>
-<li>马斯克：技术加速几乎不可阻挡，应设法降低风险，同时主动拥抱由 AI
-和机器人带来的富足。</li>
-<li>《经济学人》总编赞尼·明顿·贝多斯：即使终点可能富足，也不能跳过过渡期的失业、分配、权力集中和民主治理问题。</li>
-</ul>
-<p>以下依据视频对应的<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">完整英文逐字稿</a>整理。视频原址为<a
-href="https://www.bilibili.com/video/BV1s43E6oEhe/">哔哩哔哩</a>。</p>
-<span id="more"></span>
-<h2 id="马斯克的核心观点与论据">马斯克的核心观点与论据</h2>
-<h3 id="ai-和机器人将把经济带入近乎无限供给">1. AI
-和机器人将把经济带入“近乎无限供给”</h3>
-<p>马斯克预测：</p>
-<ul>
-<li>约五年内，AI 总体智能可能超过全体人类智能之和。</li>
-<li>十年左右，AI 能比人类更好地完成几乎所有工作。</li>
-<li>AI
-是“数字智能”，人形机器人是让智能作用于物理世界的“执行器”；二者结合后，可大规模生产商品和服务。</li>
-<li>当供给多到超过人的消费能力时，工作会变成类似园艺的自愿活动，货币的重要性也会下降。</li>
-</ul>
-<p>他的论据主要是：</p>
-<ul>
-<li>AI 能力正在以周为单位快速突破；</li>
-<li>他声称 AI 编程能力已超过约九成职业程序员；</li>
-<li>用 Stockfish
-击败顶尖棋手类比：一旦机器能力跨过临界点，人类就不再具有竞争优势；</li>
-<li>历史上“人工计算员”等职业也被计算机淘汰，而社会最终获得了更高生产率。<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">逐字稿相关段落</a></li>
-</ul>
-<p>评价：技术逻辑完整，但“五年超过全人类”“十年货币失去意义”主要是指数外推，访谈中没有给出可验证的模型、产能或部署数据。</p>
-<h3 id="他没有否认-ai-灭绝风险而是转向了不可阻挡的乐观主义">2.
-他没有否认 AI 灭绝风险，而是转向了“不可阻挡的乐观主义”</h3>
-<p>主持人指出，马斯克过去曾给出 AI/机器人导致人类灭绝约 10%—20%
-的风险判断。马斯克没有撤回风险判断，但认为：</p>
-<blockquote>
-<p>AI
-竞赛已经形成不可逆的全球动量，即使存在停止按钮，也未必应该按下，因为更大概率的结果是普遍富足。</p>
-</blockquote>
-<p>这构成了他的核心决策逻辑：</p>
-<p><strong>无法停止竞争 → 自己不参与也不能减速 →
-加入竞争，同时努力降低坏结果概率。</strong></p>
-<p>值得注意的是，他承认自己创办 OpenAI、间接促成 Anthropic
-出现，客观上加速了原本想约束的 AI
-竞赛。这说明其立场更接近“宿命式加速”，而不是传统意义上的安全优先。</p>
-<h3 id="ai-安全应先由头部公司互相测试政府保留最后干预权">3. AI
-安全应先由头部公司互相测试，政府保留最后干预权</h3>
-<p>马斯克提出一个具体方案：</p>
-<ul>
-<li>头部 AI 公司每周或每两周召开安全会议；</li>
-<li>新一代前沿模型发布前，提前一至两周通过 API 交给竞争对手测试；</li>
-<li>竞争对手发现重大网络、生物或其他安全风险后，可建议暂停；</li>
-<li>如果开发公司拒绝处理严重风险，再由政府介入。<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">安全机制讨论</a></li>
-</ul>
-<p>他的关键论据是：</p>
-<ul>
-<li>政府人员往往不在技术前沿，难以独立判断模型是否危险；</li>
-<li>竞争对手最懂技术，也最有动机指出对方模型的问题；</li>
-<li>可类比电影行业的分级自律机制。</li>
-</ul>
-<p>主持人的反驳是：这些公司彼此竞争、缺乏信任，且会被商业利益影响，公共安全不能完全依靠开发者自律。</p>
-<p>评价：这是访谈中马斯克最具体、也最具可执行性的政策建议；但仍缺少保密、知识产权、统一测试标准和责任追究机制。</p>
-<h3 id="中国可能在-ai-和机器人领域取得领先真正瓶颈是电力与算力">4.
-中国可能在 AI 和机器人领域取得领先，真正瓶颈是电力与算力</h3>
-<p>马斯克认为，中国 AI
-公司在计算资源相对有限的情况下已经接近前沿水平；如果获得更多芯片和算力，中国“很有可能在某个阶段成为领导者”。</p>
-<p>其逻辑链为：</p>
-<p><strong>AI 能力 ≈ 芯片 × 电力 × 冷却 × 工程规模；物理 AI
-还要加上机器人制造能力。</strong></p>
-<p>他强调：</p>
-<ul>
-<li>中国同时拥有较强的数字 AI 和机器人产业；</li>
-<li>AI 当前的约束不只是芯片，电力和冷却可能更紧；</li>
-<li>禁止美国公司使用中国模型，并不能阻止其他国家使用，也不能从根本上阻止中国领先。<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">中美
-AI 竞争讨论</a></li>
-</ul>
-<p>这部分的价值在于：他把 AI
-竞争从单纯的“算法和芯片竞争”，扩大成了能源与制造体系竞争。不过，访谈中的具体电力规模和模型排名属于马斯克的现场判断，不能直接当作已经核验的统计结论。</p>
-<h3 id="ai-会引发剧烈失业过渡最终需要普遍高收入">5. AI
-会引发剧烈失业过渡，最终需要“普遍高收入”</h3>
-<p>马斯克预计，首先受到冲击的是电脑和手机上的数字化工作，之后人形机器人将进入实体劳动。他主张最终应形成“普遍高收入”，而不只是最低生活保障。</p>
-<p>对于钱从哪里来，他的回答是：</p>
-<ul>
-<li>财政部可以直接向居民发放支票；</li>
-<li>如果 AI
-和机器人使商品、服务产出增长快于货币供应，结果可能是通缩而不是通胀；</li>
-<li>长期看，货币与税收都会因稀缺性的消失而降低重要性。</li>
-</ul>
-<p>主持人的核心追问是：即使终点成立，社会如何跨过当前到“富足社会”之间的过渡期？如果财富和
-AI 资产集中于少数公司，失业者如何获得购买力、尊严和政治参与感？</p>
-<p>评价：马斯克对技术终局描述鲜明，但对过渡期的收入分配、资产所有权和政治阻力回答较弱。他基本以“未来产出足够多”替代了对当下分配机制的说明。</p>
-<h3 id="集中控制公司是为了对抗资本市场的短期主义">6.
-集中控制公司，是为了对抗资本市场的短期主义</h3>
-<p>马斯克认为自己需要保持公司控制权，以便持续投资五至十年甚至更长周期的项目，例如月球基地、火星殖民和星舰，而不会因某一季度利润下降就被迫改变方向。</p>
-<p>他的论据是：</p>
-<ul>
-<li>职业基金经理的业绩和晋升取决于短期回报；</li>
-<li>这种激励会进一步迫使上市公司追逐季度利润；</li>
-<li>Alphabet、Meta 等创始人控制型公司也存在类似安排；</li>
-<li>如果自己突然离开，公司既有路线图仍可运行数年，但可能像乔布斯之后的苹果一样，失去突破式创新。<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">公司治理讨论</a></li>
-</ul>
-<p>主持人的反驳是：一人同时掌握资本、AI、通信基础设施和企业投票权，会形成严重的关键人物风险与权力失衡。</p>
-<p>这里双方实际上讨论的是：</p>
-<p><strong>长期创新是否足以正当化缺乏制衡的个人控制。</strong></p>
-<p>马斯克解释了集中控制的效率，却没有真正回答“如果掌权者判断错误，由谁纠正”。</p>
-<h3 id="对乌克兰支持防卫但认为领土完全收复已不现实">7.
-对乌克兰：支持防卫，但认为领土完全收复已不现实</h3>
-<p>马斯克表示，Starlink
-对乌克兰防卫发挥了重要作用；为阻止俄罗斯通过走私终端使用
-Starlink，SpaceX
-与乌克兰政府建立了终端白名单，但这也误伤了一些普通用户。</p>
-<p>在战争目标上，他主张：</p>
-<ul>
-<li>前线多年变化有限，继续战争会造成更多无意义死亡；</li>
-<li>俄罗斯完全撤出的目标“不现实”；</li>
-<li>应接受包含一定对俄让步的务实和平方案；</li>
-<li>这不是“亲俄”，而是对战场现实的判断。<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">乌克兰与
-Starlink 讨论</a></li>
-</ul>
-<p>主持人没有否认 Starlink
-的贡献，但追问：由一位企业家决定战争关键通信能力的开关，是否具有足够的合法性和问责机制。</p>
-<h3 id="对-doge承认政治介入过深但否认援助削减造成死亡">8. 对
-DOGE：承认政治介入过深，但否认援助削减造成死亡</h3>
-<p>马斯克承认自己“有点过度卷入政治”。他为 DOGE 辩护的论据包括：</p>
-<ul>
-<li>美国债务利息负担已经非常庞大；</li>
-<li>政府付款经常缺乏最终收款人信息；</li>
-<li>一些援助资金首先流向华盛顿的承包商，而不是目标国家；</li>
-<li>私人基金会拥有足够资金，可以及时接替部分援助项目。</li>
-</ul>
-<p>主持人同意政府援助存在浪费，但指出突然中断抗逆转录病毒药物等项目，可能造成不必要的伤亡。马斯克则断言“零人死亡”，并把未及时接替资金的责任部分归给私人基金会。<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">DOGE与援助争议</a></p>
-<p>评价：这是马斯克论证最薄弱的部分之一。“基金会拥有资金”并不能证明其具备即时接管药品采购、当地配送和医疗网络的能力；双方最终也没有拿出足够数据解决事实争议。</p>
-<h3 id="对欧洲安全边界文化整合和移民激励将决定社会稳定">9.
-对欧洲：安全边界、文化整合和移民激励将决定社会稳定</h3>
-<p>马斯克否认自己属于极右翼，把立场概括为：</p>
-<ul>
-<li>安全城市；</li>
-<li>安全边界；</li>
-<li>合理财政支出；</li>
-<li>支持能守法、工作并接受西方价值观的移民；</li>
-<li>反对大量无法实现文化整合的人口持续进入。</li>
-</ul>
-<p>他预测，如果拥有“与西方价值相冲突”的群体持续快速扩大，英国约二十年后可能发生内战。其主要论据是：</p>
-<ul>
-<li>福利国家提高了移民的经济吸引力；</li>
-<li>当价值观相互冲突的群体争夺制度规则时，会产生暴力对抗；</li>
-<li>传统媒体低估了欧洲的移民、犯罪和言论审查问题。<a
-href="https://elonmuskarchive.org/video/economist-elon-musk-2026-07-23">欧洲争论部分</a></li>
-</ul>
-<p>赞尼的反驳更有针对性：</p>
-<ul>
-<li>马斯克已经数年没有长期生活在英国；</li>
-<li>英国和伦敦的暴力犯罪状况并不支持其“失控”叙事；</li>
-<li>他支持的部分政治人物并不只是主张边境管理，而具有威权倾向；</li>
-<li>面向两亿多关注者传播极端案例，会放大恐惧、部落主义和社会撕裂；</li>
-<li>欧洲确有问题，但马斯克夸大了规模，也忽略了受控移民对老龄化欧洲的收益。</li>
-</ul>
-<p>评价：双方最终能在“需要受控移民和有效整合”上达成共识，真正分歧在于问题的严重程度，以及马斯克的传播方式是在预警风险，还是在放大风险。马斯克的“内战”预测主要建立在激励与文化冲突推演上，访谈中缺乏系统统计证据。</p>
-<h2 id="这场访谈最值得记住的三点">这场访谈最值得记住的三点</h2>
-<ol type="1">
-<li>马斯克现在的核心立场不是单纯的 AI 乐观主义，而是：<strong>AI
-有重大风险，但竞赛已经不可逆，因此最现实的策略是加入并影响它。</strong></li>
-<li>他在技术和产业问题上的论证通常有明确的因果链——智能、机器人、能源、产能；但涉及社会政策时，更依赖类比、个人经验和未来预测。</li>
-<li>赞尼最有力的质疑不是“技术不会进步”，而是：<strong>谁拥有技术、谁承担过渡成本、谁约束拥有巨大技术与传播权力的人。</strong></li>
-</ol>
-<p>一句话概括：马斯克相信“技术最终会解决稀缺性”，赞尼追问的则是“在抵达那个未来以前，制度能否承受失业、权力集中和社会撕裂”。</p>
-]]></content>
-      <categories>
-        <category>Self-Learning</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Interview</tag>
-        <tag>Society</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI 智能体与工程化新人学习计划</title>
-    <url>/2026/07/28/AI%E6%99%BA%E8%83%BD%E4%BD%93%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%96%B0%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<p>这是一份面向工程新人的渐进式学习路线：从理解 LLM
-与工具调用开始，最终独立完成一个有需求、状态、权限、验证和停止条件的本地
-AI Agent。</p>
-<span id="more"></span>
-<h2 id="学习目标">1. 学习目标</h2>
-<p>完成本计划后，你应当能够：</p>
-<ul>
-<li>解释 LLM、Tool Use、AI Agent、Agent Harness、SDD 和 Loop Engineering
-的区别与联系；</li>
-<li>使用 Claude API
-完成基础消息调用，并理解多轮消息、Token、上下文窗口和停止原因；</li>
-<li>使用 Claude Code 阅读、修改、测试和验证项目代码；</li>
-<li>正确使用 <code>CLAUDE.md</code>、Agent Skills、Hooks、权限和
-sandbox；</li>
-<li>使用 Spec Kit 把模糊需求转化为
-<code>spec.md</code>、<code>plan.md</code> 和
-<code>tasks.md</code>；</li>
-<li>运行 Requirements、Design、Implementation、Convergence
-四个有界工程循环；</li>
-<li>使用测试、静态检查、运行结果和证据文件判断工作是否真正完成；</li>
-<li>区分普通项目内操作、需要人工审批的操作和禁止操作；</li>
-<li>独立完成一个有需求、有工具、有状态、有验证、有停止条件的本地 AI
-Agent。</li>
-</ul>
-<hr />
-<h2 id="核心知识地图">2. 核心知识地图</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用户目标</span><br><span class="line">  ↓</span><br><span class="line">LLM API：messages → model response</span><br><span class="line">  ↓</span><br><span class="line">Tool Use：模型生成结构化工具调用</span><br><span class="line">  ↓</span><br><span class="line">Agent Loop：决定 → 行动 → 观察 → 调整</span><br><span class="line">  ↓</span><br><span class="line">Agent Harness：</span><br><span class="line">上下文 + 工具 + 状态 + 权限 + 日志 + 预算 + 验证</span><br><span class="line">  ↓</span><br><span class="line">Claude Code：</span><br><span class="line">面向软件工程任务的通用 Coding Agent Harness</span><br><span class="line">  ↓</span><br><span class="line">Spec-Driven Development：</span><br><span class="line">constitution → spec → plan → tasks → implementation</span><br><span class="line">  ↓</span><br><span class="line">Four-Loop Engineering：</span><br><span class="line">requirements → design → implementation → convergence</span><br><span class="line">  ↓</span><br><span class="line">证据通过 / 停滞升级 / 人工审批</span><br></pre></td></tr></table></figure>
-<h3 id="关键术语">关键术语</h3>
-<table>
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 75%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>术语</th>
-<th>简要定义</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>LLM 调用</td>
-<td>将结构化消息发送给模型，并获得下一条模型输出</td>
-</tr>
-<tr class="even">
-<td>Tool Use</td>
-<td>模型产生结构化工具请求，由应用或服务实际执行</td>
-</tr>
-<tr class="odd">
-<td>Agent</td>
-<td>能够在循环中自主选择行动、使用工具并根据结果调整的系统</td>
-</tr>
-<tr class="even">
-<td>Workflow</td>
-<td>主要由程序预先确定执行路径的 LLM 工作流</td>
-</tr>
-<tr class="odd">
-<td>Agent Harness</td>
-<td>围绕模型构建的上下文、工具、状态、权限、执行、观测和验证系统</td>
-</tr>
-<tr class="even">
-<td>Prompt Engineering</td>
-<td>优化传给模型的指令表达</td>
-</tr>
-<tr class="odd">
-<td>Context Engineering</td>
-<td>优化模型在当前步骤能够看到的信息</td>
-</tr>
-<tr class="even">
-<td>SDD</td>
-<td>以可执行规格和明确意图驱动设计、任务、实现与验证</td>
-</tr>
-<tr class="odd">
-<td>Loop Engineering</td>
-<td>为 Agent 设计有评价、有预算、有停止条件的反馈循环</td>
-</tr>
-<tr class="even">
-<td>Eval</td>
-<td>使用任务、测试、评分器和环境结果衡量 Agent 的真实表现</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="学习仓库与文件地图">3. 学习仓库与文件地图</h2>
-<p>主仓库：</p>
-<ul>
-<li><a
-href="https://github.com/YLiu1231/SpecKit-LoopEngineering">SpecKit-LoopEngineering</a></li>
-</ul>
-<p>开始学习前，应了解以下文件：</p>
-<table>
-<colgroup>
-<col style="width: 58%" />
-<col style="width: 41%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>文件或目录</th>
-<th>学习重点</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a
-href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/README.md"><code>README.md</code></a></td>
-<td>安装、初始化、安全模式和基本使用方法</td>
-</tr>
-<tr class="even">
-<td><a
-href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/CLAUDE.md"><code>CLAUDE.md</code></a></td>
-<td>稳定工程规则及 Four-Loop 使用顺序</td>
-</tr>
-<tr class="odd">
-<td><a
-href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/PROJECT-CONSTITUTION.md"><code>PROJECT-CONSTITUTION.md</code></a></td>
-<td>意图、证据、权限和治理原则</td>
-</tr>
-<tr class="even">
-<td><code>skills/speckit-*/SKILL.md</code></td>
-<td>Spec Kit 的规格、计划、任务、分析和实现流程</td>
-</tr>
-<tr class="odd">
-<td><code>skills/loop-*/SKILL.md</code></td>
-<td>四个有界工程循环及初始化流程</td>
-</tr>
-<tr class="even">
-<td><code>project-templates/</code></td>
-<td>Spec、Plan、Tasks 和 Checklist 模板</td>
-</tr>
-<tr class="odd">
-<td><a
-href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/policy.json.md"><code>runtime/policy.json.md</code></a></td>
-<td>循环预算、分数、停滞和停止规则</td>
-</tr>
-<tr class="even">
-<td><a
-href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/loopctl.py.md"><code>runtime/loopctl.py.md</code></a></td>
-<td>确定性检查、循环状态记录和升级逻辑</td>
-</tr>
-<tr class="odd">
-<td><a
-href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/security_guard.py.md"><code>runtime/security_guard.py.md</code></a></td>
-<td>文件边界、高风险命令和审批策略</td>
-</tr>
-<tr class="even">
-<td><code>install.sh</code> / <code>install.ps1</code></td>
-<td>跨平台安装、备份、更新和诊断</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="必修课程清单">4. 必修课程清单</h2>
-<h3 id="a.-claude-code">A. Claude Code</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />完成 <a
-href="https://anthropic.skilljar.com/claude-code-101">Claude Code
-101</a></label>
-<ul>
-<li>建议时间：1.5 小时</li>
-<li>学习重点：Agent Loop、上下文、Plan
-Mode、<code>CLAUDE.md</code>、Skills、MCP、Hooks。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-href="https://code.claude.com/docs/en/quickstart">Claude Code
-Quickstart</a></label>
-<ul>
-<li>建议时间：20 分钟</li>
-<li>学习重点：安装、启动、代码探索、修改和验证。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-href="https://www.anthropic.com/engineering/claude-code-best-practices">Claude
-Code Best Practices</a></label>
-<ul>
-<li>建议时间：30 分钟</li>
-<li>学习重点：探索、计划、实现、验证和上下文管理。</li>
-</ul></li>
-<li><label><input type="checkbox" />完成 <a
-href="https://anthropic.skilljar.com/introduction-to-agent-skills">Introduction
-to Agent Skills</a></label>
-<ul>
-<li>建议时间：30 分钟</li>
-<li>学习重点：<code>SKILL.md</code>、触发条件、渐进式加载、脚本和团队共享。</li>
-</ul></li>
-</ul>
-<h3 id="b.-llm-api-与-agent-基础">B. LLM API 与 Agent 基础</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />完成 <a
-href="https://anthropic.skilljar.com/claude-platform-101">Claude
-Platform 101</a></label>
-<ul>
-<li>建议时间：1 小时</li>
-<li>学习重点：API 请求、模型选择、Tool Use、Agent Loop
-和上下文管理。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-href="https://platform.claude.com/docs/en/api/messages/create">Messages
-API</a></label>
-<ul>
-<li>建议时间：20 分钟</li>
-<li>学习重点：<code>messages</code>、<code>role</code>、<code>content</code>、<code>max_tokens</code>、<code>stop_reason</code>。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-href="https://www.anthropic.com/engineering/building-effective-agents">Building
-Effective Agents</a></label>
-<ul>
-<li>建议时间：40 分钟</li>
-<li>学习重点：Workflow 与
-Agent、Routing、Parallelization、Evaluator–Optimizer。</li>
-</ul></li>
-</ul>
-<h3 id="c.-spec-driven-development">C. Spec-Driven Development</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />阅读 <a
-href="https://github.github.io/spec-kit/">GitHub Spec Kit
-官方文档</a></label>
-<ul>
-<li>建议时间：40 分钟</li>
-<li>学习重点：Constitution、Specify、Plan、Tasks、Implement。</li>
-</ul></li>
-<li><label><input type="checkbox" />观看 <a
-href="https://www.youtube.com/watch?v=a9eR1xsfvHg">GitHub Spec Kit
-官方视频概览</a></label>
-<ul>
-<li>学习重点：完整 SDD 工作流及各阶段产物。</li>
-</ul></li>
-<li><label><input type="checkbox" />完成 <a
-href="https://www.deeplearning.ai/alpha/short-courses/spec-driven-development-with-coding-agents">Spec-Driven
-Development with Coding Agents</a></label>
-<ul>
-<li>建议时间：1 小时 16 分钟</li>
-<li>学习重点：规格、项目宪法、计划、验证和 Agent Skills。</li>
-</ul></li>
-</ul>
-<h3 id="d.-harnessevals-与-loop-engineering">D. Harness、Evals 与 Loop
-Engineering</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />阅读 <a
-href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Demystifying
-Evals for AI Agents</a></label>
-<ul>
-<li>建议时间：45 分钟</li>
-<li>学习重点：Task、Trial、Grader、Trajectory、Outcome、Evaluation
-Harness。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective
-Harnesses for Long-Running Agents</a></label>
-<ul>
-<li>建议时间：30 分钟</li>
-<li>学习重点：跨会话状态、增量工作、初始化 Agent 和持久化进度。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-href="https://www.anthropic.com/engineering/claude-code-sandboxing">Claude
-Code Sandboxing</a></label>
-<ul>
-<li>建议时间：25 分钟</li>
-<li>学习重点：文件系统隔离、网络隔离和最小权限。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-href="https://www.ibm.com/think/topics/loop-engineering">IBM：What Is
-Loop Engineering</a></label>
-<ul>
-<li>建议时间：20 分钟</li>
-<li>学习重点：Agent 循环、反馈、验证和停止条件。</li>
-</ul></li>
-</ul>
-<hr />
-<h2 id="选修课程">5. 选修课程</h2>
-<ul class="task-list">
-<li><label><input type="checkbox" /><a
-href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">Building
-with the Claude API</a></label>
-<ul>
-<li>约 8.1 小时；适合需要开发 AI 产品或后端服务的员工。</li>
-</ul></li>
-<li><label><input type="checkbox" /><a
-href="https://www.deeplearning.ai/courses/agentic-ai">DeepLearning.AI
-Agentic AI</a></label>
-<ul>
-<li>约 7 小时 45 分钟；覆盖 Reflection、Tool Use、Planning 和
-Multi-Agent。</li>
-</ul></li>
-<li><label><input type="checkbox" /><a
-href="https://github.com/walkinglabs/learn-harness-engineering">Learn
-Harness Engineering</a></label>
-<ul>
-<li>免费开源，提供简体中文。</li>
-</ul></li>
-<li><label><input type="checkbox" /><a
-href="https://rasa.com/course/harness-engineering">A Field Guide to
-Harness Engineering</a></label>
-<ul>
-<li>约 10 小时；重点是生产环境中的 Agent 故障与可靠性。</li>
-</ul></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Self-Learning</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -1424,121 +1740,6 @@ DeepMind 模型与模型卡</a></li>
         <tag>Google Cloud</tag>
         <tag>Cloud Architecture</tag>
         <tag>Agent Platform</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>梁文锋访谈：DeepSeek 的 AGI 战略</title>
-    <url>/2026/07/23/%E6%A2%81%E6%96%87%E9%94%8B%E8%AE%BF%E8%B0%88-DeepSeek%E7%9A%84AGI%E6%88%98%E7%95%A5/</url>
-    <content><![CDATA[<h2 id="访谈概述">访谈概述</h2>
-<p><a
-href="https://news.qq.com/rain/a/20260723A04GBI00">腾讯科技完整整理稿</a>：梁文锋围绕同一套战略反复展开阐述：</p>
-<blockquote>
-<p>DeepSeek 不准备成为下一个超级
-App，而是要成为“开放、低成本、自我加速”的 AGI 基础设施公司。</p>
-</blockquote>
-<p>核心目标函数不是短期用户数、收入或估值，而是“<strong>提高最先实现 AGI
-的概率</strong>”。开源、低价、不抢应用、融资、押注 Coding
-Agent、适配国产芯片，看似分散，实际上都服务于这个目标。</p>
-<span id="more"></span>
-<h2 id="九个关键判断">九个关键判断</h2>
-<p>1、<strong>“战略克制”是最高原则</strong></p>
-<p>不追求超级
-App、不抢流量红利、不把利润最大化，是因为应用层竞争会消耗研发注意力。梁文锋反复强调，应优先提高做成
-AGI 的概率，而不是提前争夺利益。</p>
-<p>2、<strong>技术路线非常集中</strong></p>
-<p>路线图大致是：<strong>语言模型 → 思维链 → 通用 Agent → 持续学习 → AI
-自我迭代 → 具身智能</strong></p>
-<p>其中，<strong>持续学习被视为当前最关键的瓶颈</strong>；视频生成、3D、垂直医疗或金融
-Agent 都不是现阶段主线。</p>
-<p>3、<strong>Coding Agent 是战略起点，不只是产品</strong></p>
-<p>DeepSeek
-优先做编程，并不是因为程序员市场最大，而是代码具有清晰反馈、可验证结果和自动迭代条件。其真正目标是让模型参与开发下一代模型，形成“AI
-研发 AI”的内部飞轮。</p>
-<p>4、<strong>模型首先服务自己</strong></p>
-<p>梁文锋明确表示，模型第一目标不是让外部用户觉得好用，而是让 DeepSeek
-自己研发下一代模型时好用。由此看，C 端产品更像能力试验场，API
-是现金流来源，内部研发效率才是核心用途。</p>
-<p>5、<strong>真正瓶颈是算力和高质量数据</strong></p>
-<p>梁文锋认为，中美人才差距没有算力差距大；模型规模不是“已经足够”，而是受现有资源限制。同时，高质量数据标注昂贵、耗时，甚至需要核心研究员直接参与。</p>
-<p>6、<strong>人才护城河不是招聘，而是团队稳定</strong></p>
-<p>融资的重要用途之一，是通过期权稳定核心成员。无
-KPI、约一半时间自主探索、较少加班和共识决策，都是为了维持研究人员的内在动机。不过梁文锋也承认，团队扩大后必须补充正式组织架构。</p>
-<p>7、<strong>开源是战略武器，不只是理想主义</strong></p>
-<p>DeepSeek
-判断：权重公开并不会消除真正壁垒，因为高效部署、低成本推理、数据、基础设施和持续迭代仍很难复制。其
-V3、R1 以及 DeepEP、3FS、FlashMLA
-等基础设施的持续开放，也与这一说法基本一致。<a
-href="https://github.com/deepseek-ai/DeepSeek-V3">DeepSeek-V3</a>、<a
-href="https://github.com/deepseek-ai/deepseek-r1">DeepSeek-R1</a>、<a
-href="https://github.com/deepseek-ai/open-infra-index">DeepSeek
-开放基础设施</a></p>
-<p>8、<strong>低价不是促销，而是竞争范式</strong></p>
-<p>API
-只追求合理收益，不追求价格上限。低成本一方面扩大生态，另一方面能让同样算力训练更大模型。DeepSeek
-的公开技术报告也显示，其竞争力高度依赖模型架构、低精度训练和软硬件协同，而不只是“少用显卡”。公开的
-2.788 百万 H800 GPU 小时只是训练计算量，并不等于完整研发成本。<a
-href="https://github.com/deepseek-ai/DeepSeek-V3">DeepSeek-V3
-技术资料</a>、<a
-href="https://api-docs.deepseek.com/quick_start/pricing-details-usd">官方
-API 定价</a></p>
-<p>9、<strong>中国 AI 的优势将主要是系统性低成本</strong></p>
-<p>梁文锋判断，未来模型之间的差异主要剩下<strong>成本、时间和体验</strong>。中国未必始终最早，但可能通过工程效率、能源、芯片产能和较低利润诉求，<strong>成为全球最便宜的大规模智能供应方</strong>。</p>
-<h2 id="deepseek-背后的战略意图">DeepSeek 背后的战略意图</h2>
-<h3 id="用开源和低价主动商品化模型能力">1.
-用开源和低价主动“商品化”模型能力</h3>
-<p>DeepSeek 在主动压低基础模型的超额利润：</p>
-<ul>
-<li><p>开源让模型能力快速扩散；</p></li>
-<li><p>低价迫使行业按单位成本竞争；</p></li>
-<li><p>不做应用，减少与互联网平台的直接冲突；</p></li>
-<li><p>阿里、腾讯、智谱等即使使用或部署
-DeepSeek，也会扩大其技术影响力。</p></li>
-</ul>
-<p>这等于把竞争规则从“谁拥有独家模型”，改成“谁能迭代得最快、训练得最省、部署得最好”。DeepSeek
-恰恰把护城河放在后一层。</p>
-<h3 id="建立一个递归增强的研发系统">2. 建立一个递归增强的研发系统</h3>
-<p>Coding Agent → 持续学习 → 自我迭代，是整场交流最关键的战略线索。</p>
-<p>DeepSeek
-真正想制造的并不是某一代聊天机器人，而是一台能够帮助自己研究下一代模型的“研发机器”。一旦这个循环成立，模型研发就可能由线性的人力投入转向非线性加速。届时，今天的用户规模和应用收入都只是次要资产。</p>
-<h3 id="融资的本质是购买实验次数和时间">3.
-融资的本质是“购买实验次数和时间”</h3>
-<p>此次融资规模约 500 亿元、梁文锋本人投入约 200
-亿元以及腾讯、宁德时代等参投，已有其他媒体交叉报道，但具体条款仍未完全公开。从交流内容看，这笔钱主要解决三件事：</p>
-<ul>
-<li><p>购买算力，提高实验密度；</p></li>
-<li><p>用期权稳定核心研究团队；</p></li>
-<li><p>支撑高质量数据和国产芯片适配。</p></li>
-</ul>
-<p>所以它更像一次“科研军备扩充”，而不是准备大规模买量或建设应用矩阵。选择利益一致、敌意较低的投资者，也是在尽量降低外部资本对技术路线的干扰。</p>
-<h3 id="从-cuda-依赖中获得战略自主性">4. 从 CUDA
-依赖中获得战略自主性</h3>
-<p>DeepSeek
-不只是适配国产卡，而是在编译器、通信库、算子和文件系统层面建设自己的技术栈。其深层意图是：</p>
-<ul>
-<li><p>降低对单一芯片和 CUDA 生态的依赖；</p></li>
-<li><p>让模型可以在多种硬件上低成本运行；</p></li>
-<li><p>参与定义国产算力的真实工作负载和软件标准；</p></li>
-<li><p>换取更稳定的长期算力供给。</p></li>
-</ul>
-<p>如果成功，DeepSeek 不只是国产芯片的客户，还可能成为国产 AI
-计算生态的“需求定义者”。</p>
-<h3 id="保持基础设施中立借别人的渠道完成分发">5.
-保持基础设施中立，借别人的渠道完成分发</h3>
-<p>不做超级 App、不与互联网平台为敌，意味着 DeepSeek
-可以同时服务多个平台。平台负责用户、场景和分发，DeepSeek负责底层智能，最终可能形成这样的定位：</p>
-<blockquote>
-<p>上层让腾讯、阿里、京东以及创业公司竞争应用；DeepSeek
-位于下层，提供开放模型、低价 API、研发工具链和硬件适配。</p>
-</blockquote>
-<p>这比亲自经营所有应用更聚焦，也更符合其团队规模和算力约束。</p>
-]]></content>
-      <categories>
-        <category>Tech</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Interview</tag>
-        <tag>DeepSeek</tag>
       </tags>
   </entry>
   <entry>
@@ -1681,8 +1882,8 @@ Agent 生产线，还必须重建工程师的成长生产线。</strong>（约
       </categories>
       <tags>
         <tag>AI</tag>
-        <tag>Software Engineering</tag>
         <tag>Agentic Coding</tag>
+        <tag>Software Engineering</tag>
       </tags>
   </entry>
   <entry>
