@@ -554,6 +554,44 @@ Harness Engineering</a></label>
     
     
     
+<section class="post-interactions" aria-label="文章互动"
+         data-reaction-endpoint="https://reactions.yulin.love/v1/reactions">
+  <div class="post-reactions" aria-labelledby="post-reactions-title">
+    <span id="post-reactions-title" class="post-reactions__label">这篇文章对你有帮助吗？</span>
+    <button class="post-reaction-button" type="button" data-reaction="1" aria-pressed="false">
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+      <span>赞</span>
+      <span data-reaction-count="1">0</span>
+    </button>
+    <button class="post-reaction-button" type="button" data-reaction="-1" aria-pressed="false">
+      <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+      <span>踩</span>
+      <span data-reaction-count="-1">0</span>
+    </button>
+    <span class="post-reactions__status" role="status" aria-live="polite"></span>
+  </div>
+  <div class="post-comments" aria-labelledby="post-comments-title">
+    <h3 id="post-comments-title" class="post-comments__title">评论</h3>
+    <div class="giscus"></div>
+    <script src="https://giscus.app/client.js"
+            data-repo="YLiu1231/yliu1231.github.io"
+            data-repo-id="MDEwOlJlcG9zaXRvcnk0MDQ3ODYxNjE="
+            data-category="Announcements"
+            data-category-id="DIC_kwDOGCCL8c4DFvpV"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="0"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="noborder_light"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async></script>
+  </div>
+</section>
+<script src="/js/post-interactions.js" defer></script>
+
         
 
 <div>
