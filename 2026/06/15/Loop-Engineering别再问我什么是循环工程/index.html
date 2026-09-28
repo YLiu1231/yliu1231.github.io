@@ -27,6 +27,7 @@
 <meta property="og:site_name" content="I Know Nothing">
 <meta property="og:description" content="从 Prompt、Context 和 Harness 继续向上，理解如何设计可重复运行、有状态、有评判器并保留人工复核点的 Agent 循环。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://profile.yulin.love/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/cover.jpg">
 <meta property="article:published_time" content="2026-06-15T05:22:12.000Z">
 <meta property="article:author" content="Yulin LIU">
 <meta property="article:tag" content="AI">
@@ -36,6 +37,7 @@
 <meta property="article:tag" content="Loop Engineering">
 <meta property="article:tag" content="Agentic Coding">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://profile.yulin.love/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/cover.jpg">
 
 <link rel="canonical" href="https://profile.yulin.love/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/">
 
@@ -256,54 +258,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Loop Engineering 讨论的核心变化，是把人从逐句驱动 Agent
-的位置移到循环之外：人不再负责每一次
-Prompt，而是设计一套能够发现任务、保存状态、调用
-Agent、验证结果并决定是否继续的系统。</p>
+        <p>Loop Engineering 讨论的核心变化，是把人从逐句驱动 Agent 的位置移到循环之外：人不再负责每一次 Prompt，而是设计一套能够发现任务、保存状态、调用 Agent、验证结果并决定是否继续的系统。</p>
 <span id="more"></span>
-<figure>
-<img
-src="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/cover.jpg"
-alt="《Loop Engineering：别再问我什么是循环工程》封面" />
-<figcaption aria-hidden="true">《Loop
-Engineering：别再问我什么是循环工程》封面</figcaption>
-</figure>
-<h2 id="这本书讲什么">这本书讲什么</h2>
-<p>《Loop Engineering：别再问我什么是循环工程》从概念演化开始，区分
-Prompt Engineering、Context Engineering、Harness Engineering 与 Loop
-Engineering 的职责边界，并把一个可持续运行的 Agent
-循环拆成可理解的动作和零件。</p>
+
+<p><img src="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/cover.jpg" alt="《Loop Engineering：别再问我什么是循环工程》封面"></p>
+<h2 id="这本书讲什么"><a href="#这本书讲什么" class="headerlink" title="这本书讲什么"></a>这本书讲什么</h2><p>《Loop Engineering：别再问我什么是循环工程》从概念演化开始，区分 Prompt Engineering、Context Engineering、Harness Engineering 与 Loop Engineering 的职责边界，并把一个可持续运行的 Agent 循环拆成可理解的动作和零件。</p>
 <p>书中没有把“自动运行”直接等同于工程完成。循环能否长期工作，还取决于状态能否跨轮保存、评判器能否独立判断、并行任务是否隔离、成本是否有上限，以及关键节点是否保留人工复核。</p>
-<h2 id="内容结构">内容结构</h2>
-<ul>
-<li><strong>它是什么</strong>：解释 Loop Engineering 的定义，以及它相对
-Prompt、Context 和 Harness 所处的位置。</li>
+<h2 id="内容结构"><a href="#内容结构" class="headerlink" title="内容结构"></a>内容结构</h2><ul>
+<li><strong>它是什么</strong>：解释 Loop Engineering 的定义，以及它相对 Prompt、Context 和 Harness 所处的位置。</li>
 <li><strong>它怎么转</strong>：拆解循环的五个动作、六个组成部分，以及生成器与评判器的分工。</li>
-<li><strong>它在哪运行、付出什么代价</strong>：结合真实案例讨论后台执行、验证债、理解腐烂和
-Token 失控。</li>
-<li><strong>如何开始</strong>：说明工程师在循环外仍需承担的责任，并给出第一个
-Loop 的搭建路径。</li>
+<li><strong>它在哪运行、付出什么代价</strong>：结合真实案例讨论后台执行、验证债、理解腐烂和 Token 失控。</li>
+<li><strong>如何开始</strong>：说明工程师在循环外仍需承担的责任，并给出第一个 Loop 的搭建路径。</li>
 </ul>
-<h2 id="阅读时建议关注">阅读时建议关注</h2>
-<ol type="1">
+<h2 id="阅读时建议关注"><a href="#阅读时建议关注" class="headerlink" title="阅读时建议关注"></a>阅读时建议关注</h2><ol>
 <li><strong>循环需要外部状态</strong>：进度和判断依据不能只存在于单次对话上下文。</li>
 <li><strong>生成器不能独自证明自己正确</strong>：测试、规则检查或独立评判器需要具备真正说“不”的能力。</li>
 <li><strong>自动化会放大错误和成本</strong>：必须设置预算、停止条件、隔离环境和人工接管点。</li>
 <li><strong>人的价值发生上移</strong>：工程师从逐步执行转向目标定义、循环设计、异常处理和结果验收。</li>
 </ol>
-<h2 id="下载与版本">下载与版本</h2>
-<ul>
+<h2 id="下载与版本"><a href="#下载与版本" class="headerlink" title="下载与版本"></a>下载与版本</h2><ul>
 <li>作者：花叔</li>
 <li>文档版本：v260615</li>
 <li>PDF 内部编辑时间：2026-06-15 13:22:12</li>
 <li>规格：32 页，约 4.3 MB</li>
-<li><strong><a
-href="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/Loop-Engineering橙皮书-v260615.pdf">下载
-PDF：Loop Engineering 橙皮书</a></strong></li>
+<li><strong><a href="/2026/06/15/Loop-Engineering%E5%88%AB%E5%86%8D%E9%97%AE%E6%88%91%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AA%E7%8E%AF%E5%B7%A5%E7%A8%8B/Loop-Engineering%E6%A9%99%E7%9A%AE%E4%B9%A6-v260615.pdf">下载 PDF：Loop Engineering 橙皮书</a></strong></li>
 </ul>
 <blockquote>
-<p>本书记录的是 2026 年 6
-月的工具与产品快照。命令、功能和定价可能继续变化，实际操作前应核对对应产品的当前官方文档。</p>
+<p>本书记录的是 2026 年 6 月的工具与产品快照。命令、功能和定价可能继续变化，实际操作前应核对对应产品的当前官方文档。</p>
 </blockquote>
 
     </div>
@@ -464,7 +445,7 @@ PDF：Loop Engineering 橙皮书</a></strong></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -477,7 +458,7 @@ PDF：Loop Engineering 橙皮书</a></strong></li>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -253,300 +253,233 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这是一份面向工程新人的渐进式学习路线：从理解 LLM
-与工具调用开始，最终独立完成一个有需求、状态、权限、验证和停止条件的本地
-AI Agent。</p>
+        <p>这是一份面向工程新人的渐进式学习路线：从理解 LLM 与工具调用开始，最终独立完成一个有需求、状态、权限、验证和停止条件的本地 AI Agent。</p>
 <span id="more"></span>
-<h2 id="学习目标">1. 学习目标</h2>
-<p>完成本计划后，你应当能够：</p>
+
+<h2 id="1-学习目标"><a href="#1-学习目标" class="headerlink" title="1. 学习目标"></a>1. 学习目标</h2><p>完成本计划后，你应当能够：</p>
 <ul>
-<li>解释 LLM、Tool Use、AI Agent、Agent Harness、SDD 和 Loop Engineering
-的区别与联系；</li>
-<li>使用 Claude API
-完成基础消息调用，并理解多轮消息、Token、上下文窗口和停止原因；</li>
+<li>解释 LLM、Tool Use、AI Agent、Agent Harness、SDD 和 Loop Engineering 的区别与联系；</li>
+<li>使用 Claude API 完成基础消息调用，并理解多轮消息、Token、上下文窗口和停止原因；</li>
 <li>使用 Claude Code 阅读、修改、测试和验证项目代码；</li>
-<li>正确使用 <code>CLAUDE.md</code>、Agent Skills、Hooks、权限和
-sandbox；</li>
-<li>使用 Spec Kit 把模糊需求转化为
-<code>spec.md</code>、<code>plan.md</code> 和
-<code>tasks.md</code>；</li>
-<li>运行 Requirements、Design、Implementation、Convergence
-四个有界工程循环；</li>
+<li>正确使用 <code>CLAUDE.md</code>、Agent Skills、Hooks、权限和 sandbox；</li>
+<li>使用 Spec Kit 把模糊需求转化为 <code>spec.md</code>、<code>plan.md</code> 和 <code>tasks.md</code>；</li>
+<li>运行 Requirements、Design、Implementation、Convergence 四个有界工程循环；</li>
 <li>使用测试、静态检查、运行结果和证据文件判断工作是否真正完成；</li>
 <li>区分普通项目内操作、需要人工审批的操作和禁止操作；</li>
-<li>独立完成一个有需求、有工具、有状态、有验证、有停止条件的本地 AI
-Agent。</li>
+<li>独立完成一个有需求、有工具、有状态、有验证、有停止条件的本地 AI Agent。</li>
 </ul>
-<hr />
-<h2 id="核心知识地图">2. 核心知识地图</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">用户目标</span><br><span class="line">  ↓</span><br><span class="line">LLM API：messages → model response</span><br><span class="line">  ↓</span><br><span class="line">Tool Use：模型生成结构化工具调用</span><br><span class="line">  ↓</span><br><span class="line">Agent Loop：决定 → 行动 → 观察 → 调整</span><br><span class="line">  ↓</span><br><span class="line">Agent Harness：</span><br><span class="line">上下文 + 工具 + 状态 + 权限 + 日志 + 预算 + 验证</span><br><span class="line">  ↓</span><br><span class="line">Claude Code：</span><br><span class="line">面向软件工程任务的通用 Coding Agent Harness</span><br><span class="line">  ↓</span><br><span class="line">Spec-Driven Development：</span><br><span class="line">constitution → spec → plan → tasks → implementation</span><br><span class="line">  ↓</span><br><span class="line">Four-Loop Engineering：</span><br><span class="line">requirements → design → implementation → convergence</span><br><span class="line">  ↓</span><br><span class="line">证据通过 / 停滞升级 / 人工审批</span><br></pre></td></tr></table></figure>
-<h3 id="关键术语">关键术语</h3>
-<table>
-<colgroup>
-<col style="width: 24%" />
-<col style="width: 75%" />
-</colgroup>
+<hr>
+<h2 id="2-核心知识地图"><a href="#2-核心知识地图" class="headerlink" title="2. 核心知识地图"></a>2. 核心知识地图</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">用户目标</span><br><span class="line">  ↓</span><br><span class="line">LLM API：messages → model response</span><br><span class="line">  ↓</span><br><span class="line">Tool Use：模型生成结构化工具调用</span><br><span class="line">  ↓</span><br><span class="line">Agent Loop：决定 → 行动 → 观察 → 调整</span><br><span class="line">  ↓</span><br><span class="line">Agent Harness：</span><br><span class="line">上下文 + 工具 + 状态 + 权限 + 日志 + 预算 + 验证</span><br><span class="line">  ↓</span><br><span class="line">Claude Code：</span><br><span class="line">面向软件工程任务的通用 Coding Agent Harness</span><br><span class="line">  ↓</span><br><span class="line">Spec-Driven Development：</span><br><span class="line">constitution → spec → plan → tasks → implementation</span><br><span class="line">  ↓</span><br><span class="line">Four-Loop Engineering：</span><br><span class="line">requirements → design → implementation → convergence</span><br><span class="line">  ↓</span><br><span class="line">证据通过 / 停滞升级 / 人工审批</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键术语"><a href="#关键术语" class="headerlink" title="关键术语"></a>关键术语</h3><table>
 <thead>
-<tr class="header">
+<tr>
 <th>术语</th>
 <th>简要定义</th>
 </tr>
 </thead>
-<tbody>
-<tr class="odd">
+<tbody><tr>
 <td>LLM 调用</td>
 <td>将结构化消息发送给模型，并获得下一条模型输出</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Tool Use</td>
 <td>模型产生结构化工具请求，由应用或服务实际执行</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Agent</td>
 <td>能够在循环中自主选择行动、使用工具并根据结果调整的系统</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Workflow</td>
 <td>主要由程序预先确定执行路径的 LLM 工作流</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Agent Harness</td>
 <td>围绕模型构建的上下文、工具、状态、权限、执行、观测和验证系统</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Prompt Engineering</td>
 <td>优化传给模型的指令表达</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Context Engineering</td>
 <td>优化模型在当前步骤能够看到的信息</td>
 </tr>
-<tr class="even">
+<tr>
 <td>SDD</td>
 <td>以可执行规格和明确意图驱动设计、任务、实现与验证</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Loop Engineering</td>
 <td>为 Agent 设计有评价、有预算、有停止条件的反馈循环</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Eval</td>
 <td>使用任务、测试、评分器和环境结果衡量 Agent 的真实表现</td>
 </tr>
-</tbody>
-</table>
-<hr />
-<h2 id="学习仓库与文件地图">3. 学习仓库与文件地图</h2>
-<p>主仓库：</p>
+</tbody></table>
+<hr>
+<h2 id="3-学习仓库与文件地图"><a href="#3-学习仓库与文件地图" class="headerlink" title="3. 学习仓库与文件地图"></a>3. 学习仓库与文件地图</h2><p>主仓库：</p>
 <ul>
-<li><a
-target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering">SpecKit-LoopEngineering</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering">SpecKit-LoopEngineering</a></li>
 </ul>
 <p>开始学习前，应了解以下文件：</p>
 <table>
-<colgroup>
-<col style="width: 58%" />
-<col style="width: 41%" />
-</colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>文件或目录</th>
 <th>学习重点</th>
 </tr>
 </thead>
-<tbody>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/README.md"><code>README.md</code></a></td>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/README.md"><code>README.md</code></a></td>
 <td>安装、初始化、安全模式和基本使用方法</td>
 </tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/CLAUDE.md"><code>CLAUDE.md</code></a></td>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/CLAUDE.md"><code>CLAUDE.md</code></a></td>
 <td>稳定工程规则及 Four-Loop 使用顺序</td>
 </tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/PROJECT-CONSTITUTION.md"><code>PROJECT-CONSTITUTION.md</code></a></td>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/PROJECT-CONSTITUTION.md"><code>PROJECT-CONSTITUTION.md</code></a></td>
 <td>意图、证据、权限和治理原则</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>skills/speckit-*/SKILL.md</code></td>
 <td>Spec Kit 的规格、计划、任务、分析和实现流程</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>skills/loop-*/SKILL.md</code></td>
 <td>四个有界工程循环及初始化流程</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>project-templates/</code></td>
 <td>Spec、Plan、Tasks 和 Checklist 模板</td>
 </tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/policy.json.md"><code>runtime/policy.json.md</code></a></td>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/policy.json.md"><code>runtime/policy.json.md</code></a></td>
 <td>循环预算、分数、停滞和停止规则</td>
 </tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/loopctl.py.md"><code>runtime/loopctl.py.md</code></a></td>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/loopctl.py.md"><code>runtime/loopctl.py.md</code></a></td>
 <td>确定性检查、循环状态记录和升级逻辑</td>
 </tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/security_guard.py.md"><code>runtime/security_guard.py.md</code></a></td>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/security_guard.py.md"><code>runtime/security_guard.py.md</code></a></td>
 <td>文件边界、高风险命令和审批策略</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>install.sh</code> / <code>install.ps1</code></td>
 <td>跨平台安装、备份、更新和诊断</td>
 </tr>
-</tbody>
-</table>
-<hr />
-<h2 id="必修课程清单">4. 必修课程清单</h2>
-<h3 id="a.-claude-code">A. Claude Code</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />完成 <a
-target="_blank" rel="noopener" href="https://anthropic.skilljar.com/claude-code-101">Claude Code
-101</a></label>
+</tbody></table>
+<hr>
+<h2 id="4-必修课程清单"><a href="#4-必修课程清单" class="headerlink" title="4. 必修课程清单"></a>4. 必修课程清单</h2><h3 id="A-Claude-Code"><a href="#A-Claude-Code" class="headerlink" title="A. Claude Code"></a>A. Claude Code</h3><ul>
+<li><p><input disabled="" type="checkbox">  完成 <a target="_blank" rel="noopener" href="https://anthropic.skilljar.com/claude-code-101">Claude Code 101</a></p>
 <ul>
 <li>建议时间：1.5 小时</li>
-<li>学习重点：Agent Loop、上下文、Plan
-Mode、<code>CLAUDE.md</code>、Skills、MCP、Hooks。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://code.claude.com/docs/en/quickstart">Claude Code
-Quickstart</a></label>
+<li>学习重点：Agent Loop、上下文、Plan Mode、<code>CLAUDE.md</code>、Skills、MCP、Hooks。</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  阅读 <a target="_blank" rel="noopener" href="https://code.claude.com/docs/en/quickstart">Claude Code Quickstart</a></p>
 <ul>
 <li>建议时间：20 分钟</li>
 <li>学习重点：安装、启动、代码探索、修改和验证。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/claude-code-best-practices">Claude
-Code Best Practices</a></label>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  阅读 <a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/claude-code-best-practices">Claude Code Best Practices</a></p>
 <ul>
 <li>建议时间：30 分钟</li>
 <li>学习重点：探索、计划、实现、验证和上下文管理。</li>
-</ul></li>
-<li><label><input type="checkbox" />完成 <a
-target="_blank" rel="noopener" href="https://anthropic.skilljar.com/introduction-to-agent-skills">Introduction
-to Agent Skills</a></label>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  完成 <a target="_blank" rel="noopener" href="https://anthropic.skilljar.com/introduction-to-agent-skills">Introduction to Agent Skills</a></p>
 <ul>
 <li>建议时间：30 分钟</li>
 <li>学习重点：<code>SKILL.md</code>、触发条件、渐进式加载、脚本和团队共享。</li>
-</ul></li>
 </ul>
-<h3 id="b.-llm-api-与-agent-基础">B. LLM API 与 Agent 基础</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />完成 <a
-target="_blank" rel="noopener" href="https://anthropic.skilljar.com/claude-platform-101">Claude
-Platform 101</a></label>
-<ul>
+</li>
+</ul>
+<h3 id="B-LLM-API-与-Agent-基础"><a href="#B-LLM-API-与-Agent-基础" class="headerlink" title="B. LLM API 与 Agent 基础"></a>B. LLM API 与 Agent 基础</h3><ul>
+<li><input disabled="" type="checkbox"> 完成 <a target="_blank" rel="noopener" href="https://anthropic.skilljar.com/claude-platform-101">Claude Platform 101</a><ul>
 <li>建议时间：1 小时</li>
-<li>学习重点：API 请求、模型选择、Tool Use、Agent Loop
-和上下文管理。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/api/messages/create">Messages
-API</a></label>
-<ul>
+<li>学习重点：API 请求、模型选择、Tool Use、Agent Loop 和上下文管理。</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 阅读 <a target="_blank" rel="noopener" href="https://platform.claude.com/docs/en/api/messages/create">Messages API</a><ul>
 <li>建议时间：20 分钟</li>
 <li>学习重点：<code>messages</code>、<code>role</code>、<code>content</code>、<code>max_tokens</code>、<code>stop_reason</code>。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/building-effective-agents">Building
-Effective Agents</a></label>
-<ul>
-<li>建议时间：40 分钟</li>
-<li>学习重点：Workflow 与
-Agent、Routing、Parallelization、Evaluator–Optimizer。</li>
-</ul></li>
 </ul>
-<h3 id="c.-spec-driven-development">C. Spec-Driven Development</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://github.github.io/spec-kit/">GitHub Spec Kit
-官方文档</a></label>
+</li>
+<li><input disabled="" type="checkbox"> 阅读 <a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/building-effective-agents">Building Effective Agents</a><ul>
+<li>建议时间：40 分钟</li>
+<li>学习重点：Workflow 与 Agent、Routing、Parallelization、Evaluator–Optimizer。</li>
+</ul>
+</li>
+</ul>
+<h3 id="C-Spec-Driven-Development"><a href="#C-Spec-Driven-Development" class="headerlink" title="C. Spec-Driven Development"></a>C. Spec-Driven Development</h3><ul>
+<li><p><input disabled="" type="checkbox">  阅读 <a target="_blank" rel="noopener" href="https://github.github.io/spec-kit/">GitHub Spec Kit 官方文档</a></p>
 <ul>
 <li>建议时间：40 分钟</li>
 <li>学习重点：Constitution、Specify、Plan、Tasks、Implement。</li>
-</ul></li>
-<li><label><input type="checkbox" />观看 <a
-target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=a9eR1xsfvHg">GitHub Spec Kit
-官方视频概览</a></label>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  观看 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=a9eR1xsfvHg">GitHub Spec Kit 官方视频概览</a></p>
 <ul>
 <li>学习重点：完整 SDD 工作流及各阶段产物。</li>
-</ul></li>
-<li><label><input type="checkbox" />完成 <a
-target="_blank" rel="noopener" href="https://www.deeplearning.ai/alpha/short-courses/spec-driven-development-with-coding-agents">Spec-Driven
-Development with Coding Agents</a></label>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  完成 <a target="_blank" rel="noopener" href="https://www.deeplearning.ai/alpha/short-courses/spec-driven-development-with-coding-agents">Spec-Driven Development with Coding Agents</a></p>
 <ul>
 <li>建议时间：1 小时 16 分钟</li>
 <li>学习重点：规格、项目宪法、计划、验证和 Agent Skills。</li>
-</ul></li>
 </ul>
-<h3 id="d.-harnessevals-与-loop-engineering">D. Harness、Evals 与 Loop
-Engineering</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Demystifying
-Evals for AI Agents</a></label>
+</li>
+</ul>
+<h3 id="D-Harness、Evals-与-Loop-Engineering"><a href="#D-Harness、Evals-与-Loop-Engineering" class="headerlink" title="D. Harness、Evals 与 Loop Engineering"></a>D. Harness、Evals 与 Loop Engineering</h3><ul>
+<li><p><input disabled="" type="checkbox">  阅读 <a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Demystifying Evals for AI Agents</a></p>
 <ul>
 <li>建议时间：45 分钟</li>
-<li>学习重点：Task、Trial、Grader、Trajectory、Outcome、Evaluation
-Harness。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective
-Harnesses for Long-Running Agents</a></label>
+<li>学习重点：Task、Trial、Grader、Trajectory、Outcome、Evaluation Harness。</li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  阅读 <a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective Harnesses for Long-Running Agents</a></p>
 <ul>
 <li>建议时间：30 分钟</li>
 <li>学习重点：跨会话状态、增量工作、初始化 Agent 和持久化进度。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/claude-code-sandboxing">Claude
-Code Sandboxing</a></label>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  阅读 <a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/claude-code-sandboxing">Claude Code Sandboxing</a></p>
 <ul>
 <li>建议时间：25 分钟</li>
 <li>学习重点：文件系统隔离、网络隔离和最小权限。</li>
-</ul></li>
-<li><label><input type="checkbox" />阅读 <a
-target="_blank" rel="noopener" href="https://www.ibm.com/think/topics/loop-engineering">IBM：What Is
-Loop Engineering</a></label>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  阅读 <a target="_blank" rel="noopener" href="https://www.ibm.com/think/topics/loop-engineering">IBM：What Is Loop Engineering</a></p>
 <ul>
 <li>建议时间：20 分钟</li>
 <li>学习重点：Agent 循环、反馈、验证和停止条件。</li>
-</ul></li>
 </ul>
-<hr />
-<h2 id="选修课程">5. 选修课程</h2>
-<ul class="task-list">
-<li><label><input type="checkbox" /><a
-target="_blank" rel="noopener" href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">Building
-with the Claude API</a></label>
-<ul>
+</li>
+</ul>
+<hr>
+<h2 id="5-选修课程"><a href="#5-选修课程" class="headerlink" title="5. 选修课程"></a>5. 选修课程</h2><ul>
+<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://anthropic.skilljar.com/claude-with-the-anthropic-api">Building with the Claude API</a><ul>
 <li>约 8.1 小时；适合需要开发 AI 产品或后端服务的员工。</li>
-</ul></li>
-<li><label><input type="checkbox" /><a
-target="_blank" rel="noopener" href="https://www.deeplearning.ai/courses/agentic-ai">DeepLearning.AI
-Agentic AI</a></label>
-<ul>
-<li>约 7 小时 45 分钟；覆盖 Reflection、Tool Use、Planning 和
-Multi-Agent。</li>
-</ul></li>
-<li><label><input type="checkbox" /><a
-target="_blank" rel="noopener" href="https://github.com/walkinglabs/learn-harness-engineering">Learn
-Harness Engineering</a></label>
-<ul>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://www.deeplearning.ai/courses/agentic-ai">DeepLearning.AI Agentic AI</a><ul>
+<li>约 7 小时 45 分钟；覆盖 Reflection、Tool Use、Planning 和 Multi-Agent。</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://github.com/walkinglabs/learn-harness-engineering">Learn Harness Engineering</a><ul>
 <li>免费开源，提供简体中文。</li>
-</ul></li>
-<li><label><input type="checkbox" /><a
-target="_blank" rel="noopener" href="https://rasa.com/course/harness-engineering">A Field Guide to
-Harness Engineering</a></label>
-<ul>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <a target="_blank" rel="noopener" href="https://rasa.com/course/harness-engineering">A Field Guide to Harness Engineering</a><ul>
 <li>约 10 小时；重点是生产环境中的 Agent 故障与可靠性。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -688,8 +621,7 @@ Harness Engineering</a></label>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">1. 学习目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">2. 核心知识地图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.1.</span> <span class="nav-text">关键术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E4%BB%93%E5%BA%93%E4%B8%8E%E6%96%87%E4%BB%B6%E5%9C%B0%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">3. 学习仓库与文件地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E4%BF%AE%E8%AF%BE%E7%A8%8B%E6%B8%85%E5%8D%95"><span class="nav-number">4.</span> <span class="nav-text">4. 必修课程清单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a.-claude-code"><span class="nav-number">4.1.</span> <span class="nav-text">A. Claude Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b.-llm-api-%E4%B8%8E-agent-%E5%9F%BA%E7%A1%80"><span class="nav-number">4.2.</span> <span class="nav-text">B. LLM API 与 Agent 基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c.-spec-driven-development"><span class="nav-number">4.3.</span> <span class="nav-text">C. Spec-Driven Development</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d.-harnessevals-%E4%B8%8E-loop-engineering"><span class="nav-number">4.4.</span> <span class="nav-text">D. Harness、Evals 与 Loop
-Engineering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E4%BF%AE%E8%AF%BE%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">5. 选修课程</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">1. 学习目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">2. 核心知识地图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%9C%AF%E8%AF%AD"><span class="nav-number">2.1.</span> <span class="nav-text">关键术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AD%A6%E4%B9%A0%E4%BB%93%E5%BA%93%E4%B8%8E%E6%96%87%E4%BB%B6%E5%9C%B0%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">3. 学习仓库与文件地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BF%85%E4%BF%AE%E8%AF%BE%E7%A8%8B%E6%B8%85%E5%8D%95"><span class="nav-number">4.</span> <span class="nav-text">4. 必修课程清单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Claude-Code"><span class="nav-number">4.1.</span> <span class="nav-text">A. Claude Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-LLM-API-%E4%B8%8E-Agent-%E5%9F%BA%E7%A1%80"><span class="nav-number">4.2.</span> <span class="nav-text">B. LLM API 与 Agent 基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-Spec-Driven-Development"><span class="nav-number">4.3.</span> <span class="nav-text">C. Spec-Driven Development</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-Harness%E3%80%81Evals-%E4%B8%8E-Loop-Engineering"><span class="nav-number">4.4.</span> <span class="nav-text">D. Harness、Evals 与 Loop Engineering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%80%89%E4%BF%AE%E8%AF%BE%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">5. 选修课程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -705,7 +637,7 @@ Engineering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -718,7 +650,7 @@ Engineering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
