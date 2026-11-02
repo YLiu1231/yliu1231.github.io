@@ -6,7 +6,7 @@
   <link href="https://profile.yulin.love/atom.xml" rel="self"/>
   
   <link href="https://profile.yulin.love/"/>
-  <updated>2026-11-02T06:53:04.000Z</updated>
+  <updated>2026-11-02T15:17:05.000Z</updated>
   <id>https://profile.yulin.love/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpecKit Loop Engineering：用四个有界 Loop 驱动存量项目增量研发</title>
+    <link href="https://profile.yulin.love/2026/11/02/SpecKit-Loop-Engineering/"/>
+    <id>https://profile.yulin.love/2026/11/02/SpecKit-Loop-Engineering/</id>
+    <published>2026-11-02T15:17:05.000Z</published>
+    <updated>2026-11-02T15:17:05.000Z</updated>
+    
+    
+    <summary type="html">面向存量项目，把需求、设计、实施与收敛组织成四个有界 Loop，以阶段准出、证据、预算和问题回流连接用户意图与工程实现。</summary>
+    
+    
+    
+    <category term="Tech" scheme="https://profile.yulin.love/categories/Tech/"/>
+    
+    
+    <category term="AI" scheme="https://profile.yulin.love/tags/AI/"/>
+    
+    <category term="Agent" scheme="https://profile.yulin.love/tags/Agent/"/>
+    
+    <category term="Loop Engineering" scheme="https://profile.yulin.love/tags/Loop-Engineering/"/>
+    
+    <category term="Agentic Coding" scheme="https://profile.yulin.love/tags/Agentic-Coding/"/>
+    
+    <category term="Software Engineering" scheme="https://profile.yulin.love/tags/Software-Engineering/"/>
+    
+    <category term="Spec Kit" scheme="https://profile.yulin.love/tags/Spec-Kit/"/>
+    
+  </entry>
   
   <entry>
     <title>让 Agent 真正理解业务：从文档检索到电商知识与语义底座</title>
