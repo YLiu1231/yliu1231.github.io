@@ -6,7 +6,7 @@
   <link href="https://profile.yulin.love/atom.xml" rel="self"/>
   
   <link href="https://profile.yulin.love/"/>
-  <updated>2026-09-28T15:44:19.000Z</updated>
+  <updated>2026-11-02T06:53:04.000Z</updated>
   <id>https://profile.yulin.love/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>让 Agent 真正理解业务：从文档检索到电商知识与语义底座</title>
+    <link href="https://profile.yulin.love/2026/11/02/%E8%AE%A9Agent%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1-%E7%94%B5%E5%95%86%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%BA%95%E5%BA%A7/"/>
+    <id>https://profile.yulin.love/2026/11/02/%E8%AE%A9Agent%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1-%E7%94%B5%E5%95%86%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%BA%95%E5%BA%A7/</id>
+    <published>2026-11-02T06:53:04.000Z</published>
+    <updated>2026-11-02T06:53:04.000Z</updated>
+    
+    
+    <summary type="html">电商 Agent 要可靠判断商品、权益、规则和实时状态，需要把文档检索、业务对象、结构化查询与实时接口组织成可追溯、可评价、可运营的知识服务。</summary>
+    
+    
+    
+    <category term="Tech" scheme="https://profile.yulin.love/categories/Tech/"/>
+    
+    
+    <category term="AI" scheme="https://profile.yulin.love/tags/AI/"/>
+    
+    <category term="Agent" scheme="https://profile.yulin.love/tags/Agent/"/>
+    
+    <category term="Knowledge Engineering" scheme="https://profile.yulin.love/tags/Knowledge-Engineering/"/>
+    
+    <category term="RAG" scheme="https://profile.yulin.love/tags/RAG/"/>
+    
+    <category term="Knowledge Graph" scheme="https://profile.yulin.love/tags/Knowledge-Graph/"/>
+    
+    <category term="E-commerce" scheme="https://profile.yulin.love/tags/E-commerce/"/>
+    
+  </entry>
   
   <entry>
     <title>SL、SDM 与 SE：岗位职责、决策边界与协作原则</title>
@@ -31,13 +60,13 @@
     <category term="Self-Learning" scheme="https://profile.yulin.love/categories/Self-Learning/"/>
     
     
+    <category term="Software Engineering" scheme="https://profile.yulin.love/tags/Software-Engineering/"/>
+    
     <category term="Leadership" scheme="https://profile.yulin.love/tags/Leadership/"/>
     
     <category term="Delivery Management" scheme="https://profile.yulin.love/tags/Delivery-Management/"/>
     
     <category term="Systems Engineering" scheme="https://profile.yulin.love/tags/Systems-Engineering/"/>
-    
-    <category term="Software Engineering" scheme="https://profile.yulin.love/tags/Software-Engineering/"/>
     
   </entry>
   
@@ -328,7 +357,8 @@
     <updated>2022-02-08T12:24:19.000Z</updated>
     
     
-    <summary type="html">&lt;p&gt;​        如果这个剧的长度由15集缩短到10集，那观感会好很多，评分会给到8分，现在我给7分。&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;​
+如果这个剧的长度由15集缩短到10集，那观感会好很多，评分会给到8分，现在我给7分。&lt;/p&gt;</summary>
     
     
     
@@ -370,12 +400,12 @@
     <updated>2021-11-09T15:30:54.000Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;中国传统文化中性问题对立的两极&quot;&gt;&lt;a href=&quot;#中国传统文化中性问题对立的两极&quot; class=&quot;headerlink&quot; title=&quot;中国传统文化中性问题对立的两极&quot;&gt;&lt;/a&gt;中国传统文化中性问题对立的两极&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;重生殖、子嗣、多妻、人欲（性欲）&lt;/p&gt;
-&lt;/li&gt;
+    <summary type="html">&lt;h2
+id=&quot;中国传统文化中性问题对立的两极&quot;&gt;中国传统文化中性问题对立的两极&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;重生殖、子嗣、多妻、人欲（性欲）&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;礼教&lt;/p&gt;
-&lt;p&gt;平衡之法：所处环境地位、所受教养熏陶、所秉资质天赋&lt;/p&gt;
-&lt;/li&gt;
+&lt;p&gt;平衡之法：所处环境地位、所受教养熏陶、所秉资质天赋&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary>
     
     
@@ -420,7 +450,7 @@
     
     
     <summary type="html">&lt;p&gt;许三观面前的桌子上放着三盘炒猪肝，一瓶黄酒，还有两个二两的黄酒，他开始笑了，他吃着炒猪肝，喝着黄酒，他对许玉兰说：&lt;/p&gt;
-&lt;p&gt;​    “我这辈子就是今天吃得最好。”&lt;/p&gt;</summary>
+&lt;p&gt;​ “我这辈子就是今天吃得最好。”&lt;/p&gt;</summary>
     
     
     

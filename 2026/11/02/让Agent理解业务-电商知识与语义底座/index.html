@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Neucha:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"profile.yulin.love","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="电商 Agent 要可靠判断商品、权益、规则和实时状态，需要把文档检索、业务对象、结构化查询与实时接口组织成可追溯、可评价、可运营的知识服务。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让 Agent 真正理解业务：从文档检索到电商知识与语义底座">
+<meta property="og:url" content="https://profile.yulin.love/2026/11/02/%E8%AE%A9Agent%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1-%E7%94%B5%E5%95%86%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%BA%95%E5%BA%A7/index.html">
+<meta property="og:site_name" content="I Know Nothing">
+<meta property="og:description" content="电商 Agent 要可靠判断商品、权益、规则和实时状态，需要把文档检索、业务对象、结构化查询与实时接口组织成可追溯、可评价、可运营的知识服务。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-02T06:53:04.000Z">
+<meta property="article:author" content="Yulin LIU">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Knowledge Engineering">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="Knowledge Graph">
+<meta property="article:tag" content="E-commerce">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://profile.yulin.love/2026/11/02/%E8%AE%A9Agent%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1-%E7%94%B5%E5%95%86%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%BA%95%E5%BA%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>让 Agent 真正理解业务：从文档检索到电商知识与语义底座 | I Know Nothing</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c3b4df96df3c3c8fe7428c55a34aba50";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="I Know Nothing" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">I Know Nothing</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://profile.yulin.love/2026/11/02/%E8%AE%A9Agent%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1-%E7%94%B5%E5%95%86%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%BA%95%E5%BA%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.JPG">
+      <meta itemprop="name" content="Yulin LIU">
+      <meta itemprop="description" content="Stay Happy and Healthy !">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I Know Nothing">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          让 Agent 真正理解业务：从文档检索到电商知识与语义底座
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-11-02 14:53:04" itemprop="dateCreated datePublished" datetime="2026-11-02T14:53:04+08:00">2026-11-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">电商 Agent 要可靠判断商品、权益、规则和实时状态，需要把文档检索、业务对象、结构化查询与实时接口组织成可追溯、可评价、可运营的知识服务。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一个电商运营人员希望 Agent
+判断：这批商品能否使用某项优惠券，并与另一项权益组合。</p>
+<p>回答这个问题，需要识别准确的商品集合和权益对象，找到适用渠道、人群与有效期，检查组合规则，必要时再查询当前业务状态。即使检索到了相关说明文档，其中缺少的适用条件、已经变化的状态，也足以让最终判断出错。</p>
+<p>当 Agent
+开始参与营销策划、用户体验分析和运营配置，企业知识服务就需要承担更多责任：解释业务含义，连接分散的证据，获取当前事实，并为后续动作提供可校验的依据。文档解析、切片和向量检索仍然重要，但需要放进一套更完整的技术体系中。</p>
+<p>本文结合企业落地案例、官方技术文档和开源实现，讨论一种适合电商场景的方向：围绕业务对象组织知识，让文档检索、结构化查询和实时业务接口协同工作，再通过评价与版本管理维持知识质量。</p>
+<span id="more"></span>
+<h2 id="业务含义在哪里丢失">业务含义，在哪里丢失</h2>
+<p>业务知识通常分散在不同载体中。商品属性存在主数据里，权益规则存在制度和系统配置中，用户体验问题存在原声与工单里，营销效果存在报表和复盘材料中。业务人员能够完成任务，是因为他们知道这些信息之间的联系，也知道哪些材料只是参考、哪些系统才是最终依据。</p>
+<p>如果把所有内容转换成文本，再统一切片和向量化，这些联系可能在加工过程中丢失。</p>
+<p>一张商务表格被拆开后，金额仍然存在，列名和适用条件却不在同一个片段中；一段工单保留了问题描述，处理过程与解决方案落在另外几个片段里；两份活动材料使用相同名称，却对应不同批次。模型找到的内容在语义上相关，未必适用于当前任务。</p>
+<p>这种差异在电商分析中尤其明显。“最近一个月反馈最多的问题及其占比”，需要确定统计范围、时间窗、去重方式和分类口径，再查询总体数据。向量检索返回的几十条相关原声，可以作为说明问题的证据，却不能直接充当统计总体。</p>
+<p>因此，知识底座需要保留三种联系：材料内部的结构，业务对象之间的关系，以及证据与适用条件之间的对应。检索算法的作用，是在这些信息得到妥善表达之后，把当前任务真正需要的内容找出来。</p>
+<h2 id="落地案例揭示了什么">落地案例揭示了什么</h2>
+<p>LinkedIn 的客服实践提供了一个清楚的例子。公司作者在 2024
+年发表的论文中，将历史工单组织成工单内部的树状结构和跨工单的关系图，通过规则与模板约束的
+LLM
+解析材料，再按问题检索相关子图。论文报告，生产环境随机分组对照中，工单解决时间中位数从
+7 小时降至 5 小时，下降
+28.6%。研究没有充分披露样本规模和显著性，仍需保留这一限制。<a
+target="_blank" rel="noopener" href="https://arxiv.org/html/2404.17723v2">论文全文</a></p>
+<p>这个案例对电商服务的启发，是保留原声、体验问题、处理过程和解决建议之间的结构。已有的业务关系可以帮助系统找回更完整的依据；图谱是否有价值，应通过问题解决效果判断。</p>
+<p>Uber Genie 的改进则展示了知识生产链的另一面。团队针对 40
+多份安全与隐私政策、100
+多道专家测试题，同时改进表格保真、元数据增强、来源路由、BM25
+与向量检索，以及自动评价。文章报告，可接受答案比例相对提高
+27%，错误建议相对减少
+60%。这两个数字来自指定测试集，不能外推为全公司业务效率的提升。<a
+target="_blank" rel="noopener" href="https://www.uber.com/us/en/blog/enhanced-agentic-rag/">Uber
+工程文章</a></p>
+<p>对商务材料而言，这种改进方式很有借鉴意义。表格的行列关系如果已经在解析时丢失，后续检索很难准确找回完整条件。材料质量、检索范围与评价标准，需要一起设计。</p>
+<p>电商知识结构化还可以参考 Amazon 的实践。AutoKnow
+将现有分类、商品目录和行为数据结合起来，处理分类扩展、属性发现、补全、清洗及同义词归并。2020
+年的官方文章报告，消费品图谱事实量增加接近 200%，商品类型识别准确率为
+87.7%。这些数字反映知识覆盖与识别效果，不能解释为销售收益。<a
+target="_blank" rel="noopener" href="https://www.amazon.science/blog/building-product-graphs-automatically">Amazon
+Science</a></p>
+<p>后续 COSMO
+进一步将用户行为背后的意图纳入知识生成，通过人工标注和质量筛选构建知识，并报告已应用于搜索导航及线上
+A/B
+实验。它提示了一项值得研究的能力：连接消费者的表达、需求和商品属性，同时保留模型推断与已确认事实的区别。<a
+target="_blank" rel="noopener" href="https://www.amazon.science/publications/cosmo-a-large-scale-e-commerce-common-sense-knowledge-generation-and-serving-system-at-amazon">COSMO，SIGMOD
+2024</a></p>
+<p>这些案例解决的问题并不相同，却共同强调了业务结构、加工质量和验证。单独增加一个模型或图数据库，无法替代这几项工作。</p>
+<h2 id="知识结构化应从哪些资产开始">知识结构化，应从哪些资产开始</h2>
+<p>电商知识体系可以围绕七类关联资产组织。它们描述的是需要管理的业务含义，并不要求分别建设七套系统。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>资产</th>
+<th>应当明确的内容</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>术语与分类</td>
+<td>标准名称、别名、上下位关系和定义</td>
+<td>消费者所说的“券用不了”，对应哪类权益使用问题</td>
+</tr>
+<tr class="even">
+<td>业务对象与关系</td>
+<td>对象标识、属性、关系和权威来源</td>
+<td>商品、活动、优惠券及配置草稿之间的联系</td>
+</tr>
+<tr class="odd">
+<td>规则与条件</td>
+<td>适用范围、前提、例外、优先级和有效期</td>
+<td>某项权益对渠道、人群及商品的要求</td>
+</tr>
+<tr class="even">
+<td>指标口径</td>
+<td>公式、粒度、时间窗、过滤和归因方式</td>
+<td>ROI 是否扣除退款、营销成本包含哪些项目</td>
+</tr>
+<tr class="odd">
+<td>证据与经验</td>
+<td>来源、结论、适用条件和验证状态</td>
+<td>白皮书条款、用户原声、已确认的处理案例</td>
+</tr>
+<tr class="even">
+<td>动态事实</td>
+<td>当前值、状态、查询时间和变更记录</td>
+<td>库存、配置生效状态、审批结果</td>
+</tr>
+<tr class="odd">
+<td>动作与完成标准</td>
+<td>输入输出、前置条件、权限和核验方式</td>
+<td>创建草稿、校验权益、确认配置是否生效</td>
+</tr>
+</tbody>
+</table>
+<p>这套结构有几个需要特别处理的地方。</p>
+<p>对象应尽量复用业务系统中的稳定标识。同名活动、不同规格商品、不同批次优惠券，不能仅凭文本相似度合并。跨系统标识存在差异时，需要维护映射；无法确定的关联应保留为候选。</p>
+<p>规则必须携带适用条件和时间。一条描述只有与商品范围、渠道、地区、人群和有效版本结合起来，才可能支持准确判断。规则生效时间与系统收到更新的时间也可能不同，追溯设计需要考虑这种差异。</p>
+<p>证据应保留其性质。用户说“价格变贵了”，记录的是用户感知；模型标注“负面情绪”，记录的是模型判断；实际成交价格则由业务系统提供。它们可以相互关联，但可信程度和用途不同。个人确认过的经验，也需要经过相应流程，才能成为组织共享知识。</p>
+<p>指标定义同样需要独立维护。分析历史营销活动时，如果退款、成本和归因口径不一致，即使每条
+SQL
+都能执行，比较结果仍然可能失真。已有指标语义层和权威定义应被直接复用。</p>
+<p>在表达方式上，可以借鉴 <a
+target="_blank" rel="noopener" href="https://www.w3.org/TR/skos-reference/">SKOS</a>
+的概念与标签机制、<a target="_blank" rel="noopener" href="https://www.w3.org/TR/shacl/">SHACL</a>
+的约束校验思路，以及 <a
+target="_blank" rel="noopener" href="https://www.w3.org/TR/prov-overview/">PROV</a>
+的来源表达。具体采用 JSON
+Schema、关系表还是图模型，应由查询与治理需求决定。</p>
+<p>架构师的交付也应随之扩展：除了对象和术语定义，还需要提供关键关系、规则及指标口径、权威来源映射，以及一组必须回答正确的业务问题。用真实问题检查语义模型，才能发现定义是否足以支持工作。</p>
+<h2 id="技术底座如何组织">技术底座如何组织</h2>
+<p>知识技术底座需要同时支撑知识生产与在线使用。前一条链路把分散材料加工为可发布、可追溯的知识资产，后一条链路根据任务选择信息来源，组合证据与实时事实。评价和运营贯穿两条链路，使使用中暴露的问题能够回到知识加工与发布环节。</p>
+<p>下面是一种面向电商任务的逻辑架构。图中的模块表示职责，可以由现有系统、开源组件或自建服务共同承担。</p>
+<ul>
+<li><strong>知识生产链</strong>：文档、表格、主数据与用户反馈 →
+接入与解析 → 语义加工 → 知识资产管理 →
+全文、向量、对象关系与摘要等派生检索表示。</li>
+<li><strong>在线服务链</strong>：任务问题、业务对象与用户权限 →
+查询规划与路由 → 派生检索表示及权威业务系统 → 证据组织 → Agent 与领域
+Skills。</li>
+<li><strong>反馈闭环</strong>：Agent 任务结果 →
+任务验证、问题归因与回归评测 → 返回语义加工与知识发布环节。</li>
+</ul>
+<p>知识生产链维护内容及其来源依赖；在线链路继承用户权限，读取已经发布且适用的知识，并查询需要实时确认的事实。实时业务数据保留在权威系统中，业务动作仍由相应接口执行。</p>
+<h3
+id="接入与解析保留结构再生成片段">接入与解析：保留结构，再生成片段</h3>
+<p>接入阶段应保留原件和可追溯的中间表示。表格需要保留表头、行列关系和脚注，流程需要保留步骤与分支，政策需要保留章节与适用条件。原生表格、HTML
+或接口字段可以直接读取时，应优先利用这些结构。对用户反馈，则要保留原始表述，并把情感、观点等模型标签作为关联的加工结果。</p>
+<p>Docling 的统一文档表示、结构分块和 token 感知的
+HybridChunker，是这一层可以考察的开源能力。其分块机制支持在表格拆分后重复表头。具体材料是否解析正确，仍需检查；代码许可与所用模型许可也应分别核对。<a
+target="_blank" rel="noopener" href="https://docling-project.github.io/docling/concepts/chunking/">Docling
+分块机制</a>、<a
+target="_blank" rel="noopener" href="https://github.com/docling-project/docling">官方仓库</a></p>
+<p>切片之后保留多少上下文，需要通过评价确定。Anthropic 的 Contextual
+Retrieval 实验为片段补充上下文，并结合 BM25 和重排，报告 top-20
+检索失败率从 5.7% 降至 1.9%。下降 67%
+指失败率的相对变化，不能解释为答案准确率增加 67
+个百分点，也不能直接据此确定其他业务的最佳切片参数。<a
+target="_blank" rel="noopener" href="https://www.anthropic.com/research/contextual-retrieval">实验说明</a></p>
+<h3
+id="语义加工将材料与业务定义连接起来">语义加工：将材料与业务定义连接起来</h3>
+<p>语义加工包括术语归一、对象识别、单位和时间标准化、关系抽取、规则条件提取及冲突检查。已有业务系统明确提供的字段和标识，应直接使用；模型可以辅助处理非结构化材料，提出候选映射，再由程序或责任人校验。</p>
+<p>架构师定义的对象、术语和关系，应当进入这一加工过程。例如，抽取权益条件时，需要识别条件属于哪一种权益、针对哪些商品和人群、在哪个时间范围内成立，并将结果关联到原文。存在同名对象、条件冲突或证据不足时，应保留待确认状态，避免在加工阶段将不确定性隐藏起来。</p>
+<p>加工工具需要支持查看原文与抽取结果、修改映射、检查约束和重新处理。每次纠正都应能定位到对应的材料与规则，便于同类问题复用处理方法。</p>
+<h3
+id="分层存储区分知识资产与派生索引">分层存储：区分知识资产与派生索引</h3>
+<p>不同信息有不同的生命周期，存储应按职责分工。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>存储职责</th>
+<th>主要承载内容</th>
+<th>设计要点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>原始材料与解析产物</td>
+<td>原件、结构化文档、页码、段落及表格定位</td>
+<td>保留来源，支持重新加工和原文核对</td>
+</tr>
+<tr class="even">
+<td>知识资产与元数据</td>
+<td>对象定义、规则条件、版本、权限、责任人及审核记录</td>
+<td>管理哪些知识已确认、已发布，以及适用范围</td>
+</tr>
+<tr class="odd">
+<td>全文与向量索引</td>
+<td>用于搜索和相似度匹配的表示</td>
+<td>可由源材料及语义资产重建，记录生成版本</td>
+</tr>
+<tr class="even">
+<td>关系存储</td>
+<td>对象关联、跨文档关系、证据依赖</td>
+<td>按查询需求选择关系表或图存储，保留关系来源</td>
+</tr>
+<tr class="odd">
+<td>权威业务系统</td>
+<td>当前价格、库存、资格、配置状态及执行结果</td>
+<td>通过接口查询或受控快照使用，标明时效</td>
+</tr>
+</tbody>
+</table>
+<p>统一语义访问不要求统一物理数据库。是否引入独立图数据库，应取决于关系遍历、数据规模和维护需求；部分对象关联可以通过关系表与受控查询完成。向量和自动抽取图不应成为知识的唯一存放位置，否则更换模型或重建索引时，可能连同已经确认的业务含义一起丢失。</p>
+<h3
+id="查询与检索按问题类型选择路径">查询与检索：按问题类型选择路径</h3>
+<p>在线查询首先需要明确用户要查哪个对象、什么时间范围，以及需要解释、统计还是状态确认，再选择相应的信息获取方式。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>问题类型</th>
+<th>主要查询路径</th>
+<th>返回结果应携带的依据</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>查询白皮书或操作指南</td>
+<td>文档混合检索、重排与上下文扩展</td>
+<td>原文、版本、适用条件</td>
+</tr>
+<tr class="even">
+<td>查询商品或活动属性</td>
+<td>对象标识与结构化查询</td>
+<td>对象 ID、字段含义、权威来源</td>
+</tr>
+<tr class="odd">
+<td>确认配置是否生效</td>
+<td>实时业务接口</td>
+<td>查询时间、实际状态</td>
+</tr>
+<tr class="even">
+<td>查找相关体验问题</td>
+<td>结构化过滤、关系查找与原声检索</td>
+<td>分类依据、反馈出处及关联对象</td>
+</tr>
+<tr class="odd">
+<td>分析主要问题及占比</td>
+<td>确定范围的聚合分析，再取代表性证据</td>
+<td>总体范围、分母、去重及时间口径</td>
+</tr>
+<tr class="even">
+<td>判断权益适用或组合条件</td>
+<td>对象与规则查询，结合必要的文本证据</td>
+<td>适用条件、例外及规则核验结果</td>
+</tr>
+</tbody>
+</table>
+<p>全文检索适合准确术语和编号，向量检索帮助匹配不同表达，关系查询补足对象之间的联系。召回后可以融合候选结果、重排、去重，并恢复必要的章节或表格上下文。权限、有效期和发布状态需要贯穿查询及结果返回过程，不能留给生成模型自行判断。简单问题可以走明确路径，只有确有需要的复杂问题才进入多轮检索与推理。</p>
+<p>Elastic 提供全文、向量、融合及重排能力，BGE-M3
+提供稠密、稀疏和多向量检索表示。这些组件可以组成检索链路，但是否带来增益，取决于具体数据、版本与配置，仍需通过业务问题集检验。<a
+target="_blank" rel="noopener" href="https://www.elastic.co/docs/solutions/search/ranking">Elastic
+文档</a>、<a target="_blank" rel="noopener" href="https://huggingface.co/BAAI/bge-m3">BGE-M3
+官方说明</a></p>
+<h3 id="服务输出让-agent-获得可追溯的结果">服务输出：让 Agent
+获得可追溯的结果</h3>
+<p>最终提供给 Agent
+的结果，应当说明它对应哪个对象、来自哪里、适用什么条件、采用哪个版本，以及还有哪些信息缺失。动态事实还需要附带查询时间，模型推断需要与已经确认的内容区分。存在冲突时，应返回冲突依据，交由明确的规则或责任人处理。</p>
+<p>MCP 或普通 API
+可以承载这种服务接口，业务语义与质量保证则需要在接口背后实现。上层 Agent
+负责结合任务目标组织工作，知识服务负责提供可用依据，业务接口负责规则核验和实际操作。这样的职责划分，使不同
+Agent 和 Skills
+可以复用同一套知识服务，也便于分别评价检索、推理与执行的效果。</p>
+<h2
+id="可运营意味着知识变化后仍然可信">可运营，意味着知识变化后仍然可信</h2>
+<p>知识服务上线后，真正持续发生的工作是更新。政策会调整，活动会结束，商品会下架，材料会被撤回，模型和解析器也会升级。平台必须知道这些变化影响了哪些结果。</p>
+<p>Ring
+的公开案例将知识入库评价与生产发布分开，按地域元数据限制检索，并提供版本回退。文章报告新增
+locale 的扩展成本减少
+21%，属于客户与供应商自报的成本效果。这一案例更值得借鉴的部分，是把知识更新作为有验证、有发布状态的过程管理。<a
+target="_blank" rel="noopener" href="https://aws.amazon.com/blogs/machine-learning/how-ring-scales-global-customer-support-with-amazon-bedrock-knowledge-bases/">Ring
+与 AWS 联合案例</a></p>
+<p>对企业知识服务，可以区分候选、待确认、已发布和已失效等状态。内容、解析策略、抽取模型和索引发生变化时，应能比较影响，并在出现问题时回退。删除一份文档，还需要处理它所派生的片段、关系、摘要和缓存，防止已撤回的材料继续作为有效依据。</p>
+<p>权限也需要沿知识加工和使用链路传递。用户能够接入某个系统，不代表可以读取其中全部材料；检索、关系扩展、缓存和引用返回，都应遵守相应的访问范围。</p>
+<p>质量评价要能够定位错误。一次错误回答，可能来自材料缺失、表格解析错误、对象关联错误、规则过期、召回遗漏，也可能是模型误用了正确证据。把这些原因混成一个满意度分数，很难指导改进。</p>
+<p>因此，评价应覆盖知识加工、证据检索和最终任务结果。金额、日期、商品标识、配置字段等内容适合确定性比对；表达质量和证据支持度可以辅以模型评价，再由专家校准。<a
+target="_blank" rel="noopener" href="https://docs.ragas.io/en/latest/concepts/metrics/available_metrics/">Ragas</a>
+提供了多种评价指标，但评价工具仍需要业务标准才能发挥作用。</p>
+<p>业务语义还应与动作连接。General Mills 的客户署名案例披露，约 200
+张主数据和运营表进入
+Ontology，系统结合约束、产能与成本提出供应链建议，超过 70%
+的建议被人工接受。这个接受率来自整体应用的客户自报，不能等同正确率，也不能归因于某一个图谱算法。<a
+target="_blank" rel="noopener" href="https://www.palantir.com/assets/xrfr7uokpv1b/1aLBn65y83vdytjpXJKZcO/16989b788b34cb677f6d763d56a72349/Building_an_Intelligent_AI-Driven_Supply_Chain_at_General_Mills_-_AIPCon_March_-24_Impact_Study.pdf">客户案例</a></p>
+<p>Palantir
+的产品机制提供了更具体的参考：对象关系映射业务数据，动作提交条件检查用户、参数和当前状态，语义变更支持审核与合并。对电商任务而言，这意味着知识可以解释依据，业务系统与规则服务则负责校验并执行操作。<a
+target="_blank" rel="noopener" href="https://www.palantir.com/docs/foundry/architecture-center/ontology-system">Ontology
+架构</a>、<a
+target="_blank" rel="noopener" href="https://www.palantir.com/docs/foundry/action-types/submission-criteria">动作条件</a>、<a
+target="_blank" rel="noopener" href="https://www.palantir.com/docs/foundry/ontologies/review-ontology-proposals">变更审核</a></p>
+<h2 id="如何看待开源方案">如何看待开源方案</h2>
+<p>开源项目处于不同层次，选型时需要先明确希望复用哪一段能力。</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>方案</th>
+<th>值得重点考察的部分</th>
+<th>需要关注的边界</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://github.com/infiniflow/ragflow">RAGFlow</a></td>
+<td>文档加工、分块干预、引用和检索运营</td>
+<td>发布版本与主分支的差异，以及权限、接口和现有基础设施兼容</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://github.com/OpenSPG/KAG">OpenSPG/KAG</a></td>
+<td>Schema 约束、概念对齐、知识与原文互索引、逻辑检索</td>
+<td>平台依赖、维护情况、本地模型效果及知识治理能力</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://github.com/HKUDS/LightRAG">LightRAG</a></td>
+<td>图增强检索、跨文档关联和来源维护</td>
+<td>抽取图的可信度、更新成本，以及精细授权</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://microsoft.github.io/graphrag/index/default_dataflow/">Microsoft
+GraphRAG</a></td>
+<td>实体关系、社区摘要和全局主题综合</td>
+<td>索引成本、更新删除机制；全局综合不能替代精确统计</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://github.com/docling-project/docling">Docling</a></td>
+<td>结构化解析、中间表示和分块</td>
+<td>真实材料的解析质量，以及后续语义治理</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://github.com/langgenius/dify-docs/blob/main/en/cloud/use-dify/knowledge/knowledge-pipeline/knowledge-pipeline-orchestration.mdx">Dify
+知识 Pipeline</a></td>
+<td>可视化加工、测试与发布操作</td>
+<td>与已有平台的职责重叠，以及许可证附加条件</td>
+</tr>
+</tbody>
+</table>
+<p>RAGFlow
+更适合作为知识加工与检索运营产品考察。研究时公开发布页同时存在 0.27.3 与
+1.0.0-rc3，后者为候选版本，不能将主分支全部能力视为稳定承诺。<a
+target="_blank" rel="noopener" href="https://github.com/infiniflow/ragflow/releases/tag/v1.0.0-rc3">版本说明</a></p>
+<p>KAG 对知识结构化的参考价值较高，尤其是 Schema
+如何约束构建、知识如何关联原文、精确查询如何与文本检索协作。研究时公开
+Releases 的 Latest 为 2025-06-27 发布的
+0.8.0；这一信息需要与维护情况一起考察，不能单凭发布时间判断项目状态。OpenSPG
+的部署还涉及 Java、MySQL、Neo4j、MinIO 等依赖，应计入运维范围。<a
+target="_blank" rel="noopener" href="https://github.com/OpenSPG/KAG/releases/tag/v0.8.0">KAG
+发布说明</a>、<a
+target="_blank" rel="noopener" href="https://github.com/OpenSPG/openspg/blob/master/dev/release/docker-compose-west.yml">部署清单</a></p>
+<p>LightRAG 和 Microsoft GraphRAG
+则提醒选型者关注图知识的生命周期。LightRAG
+的文档与实现显示，删除文档可能涉及共享实体关系重建及向量更新；Microsoft
+GraphRAG
+的维护讨论也明确了增量更新对删除和修改的限制。具体能力仍需按固定版本验证。<a
+target="_blank" rel="noopener" href="https://github.com/HKUDS/LightRAG/blob/main/docs/ProgramingWithCore.md">LightRAG
+核心文档</a>、<a
+target="_blank" rel="noopener" href="https://github.com/microsoft/graphrag/issues/741">GraphRAG
+维护讨论</a></p>
+<p>这里需要区分两种图：一种表达经业务确认的对象、关系和约束；另一种由模型从文档中抽取，用来帮助检索和综合。后者可以提供线索，但其中一条边的存在，并不能自动证明某项业务事实成立。</p>
+<p>Dify 的知识流水线可以提供运营交互方面的参考。已有 Agent
+管理平台的企业，需要权衡整体引入后的功能重叠；其许可证包含多 workspace
+和前端标识等附加条件，也应按具体使用方式核对。<a
+target="_blank" rel="noopener" href="https://github.com/langgenius/dify/blob/main/LICENSE">许可证</a></p>
+<p>这些方案可以形成研究短名单，无须同时部署。通用解析、检索和评价能力可以复用，企业仍需掌握自己的业务定义、来源映射、权限规则和验收案例。</p>
+<h2 id="让知识资产持续积累">让知识资产持续积累</h2>
+<p>电商企业可以选择增强文档知识库，也可以全面建设以本体和图谱为中心的平台。前者较容易起步，但难以独立承载实时状态、指标和跨对象规则；后者表达能力更强，建模与治理投入也更大。</p>
+<p>更值得优先考虑的方向，是业务对象驱动的混合知识服务。它让文档证据、结构化语义和实时查询各自发挥作用，关系检索则在明确需要时引入。已有主数据、规则引擎、指标定义和业务接口，可以继续作为权威来源。</p>
+<p>Google Cloud 在 2026 年 10 月 29 日的 Knowledge Catalog
+发布中，也强调连接既有平台的语义定义、数据质量和血缘。这为复用已有语义资产提供了一个产品方向参考；页面中的效果数字属于厂商内部基准，不能直接作为其他企业的收益预期。<a
+target="_blank" rel="noopener" href="https://cloud.google.com/blog/products/data-analytics/expanded-semantic-model-support-in-knowledge-catalog/">官方发布</a></p>
+<p>这种建设方式需要明确分工。架构师负责跨域概念与关系的一致性，业务责任人确认内容、适用条件和案例，技术团队提供加工、检索、评价与运营工具，原业务系统继续承担事实查询、规则判定和事务执行。各方共同维护一组真实业务问题，用它检验知识是否足以支持任务。</p>
+<p>在资源安排上，可将结构解析、抽取和索引等批处理，与在线查询和生成分开。能够提前完成的加工放在知识发布阶段，在线路径只承担必要的过滤、查询、重排和推理。框架的接口兼容，也需要与模型、算子、运行环境的实际适配分别验证。</p>
+<p>长期应保留的是原始证据、确认过的语义定义、业务评价样例与服务契约。向量、摘要和自动抽取图可以重建，但它们的生成版本及来源依赖必须可追溯。这样，模型和框架升级时，企业可以沿用已经积累的业务理解，再验证新的技术实现。</p>
+<p>回到文章开头的优惠券问题：一个可靠的 Agent
+应当说清商品与权益是否匹配，依据哪一版规则，还有什么条件尚未核实，并在获授权后调用正确的业务能力。知识底座的建设成效，最终应体现在这样的任务中——依据更完整，判断可校验，变更能够追踪，经验能够复用。</p>
+<hr />
+<p><em>资料范围：截至 2026 年 11 月 1
+日核查的企业论文、官方工程文章、产品文档及开源实现。本文为公开资料研究与架构分析，未独立复现所引实验，也未对各开源方案进行统一环境的部署测试。案例数字保留其原始评价范围；本文不代表任何企业已实施或承诺采用文中方案。</em></p>
+
+    </div>
+
+    
+    
+    
+<section class="post-interactions" aria-label="文章互动"
+         data-reaction-endpoint="https://reactions.yulin.love/v1/reactions">
+  <div class="post-reactions" aria-labelledby="post-reactions-title">
+    <span id="post-reactions-title" class="post-reactions__label">这篇文章对你有帮助吗？</span>
+    <button class="post-reaction-button" type="button" data-reaction="1" aria-pressed="false">
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+      <span>赞</span>
+      <span data-reaction-count="1">0</span>
+    </button>
+    <button class="post-reaction-button" type="button" data-reaction="-1" aria-pressed="false">
+      <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+      <span>踩</span>
+      <span data-reaction-count="-1">0</span>
+    </button>
+    <span class="post-reactions__status" role="status" aria-live="polite"></span>
+  </div>
+  <div class="post-comments" aria-labelledby="post-comments-title">
+    <h3 id="post-comments-title" class="post-comments__title">评论</h3>
+    <div class="giscus"></div>
+    <script src="https://giscus.app/client.js"
+            data-repo="YLiu1231/yliu1231.github.io"
+            data-repo-id="MDEwOlJlcG9zaXRvcnk0MDQ3ODYxNjE="
+            data-category="Announcements"
+            data-category-id="DIC_kwDOGCCL8c4DFvpV"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="0"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="noborder_light"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async></script>
+  </div>
+</section>
+<script src="/js/post-interactions.js" defer></script>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Yulin LIU
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://profile.yulin.love/2026/11/02/%E8%AE%A9Agent%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1-%E7%94%B5%E5%95%86%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%BA%95%E5%BA%A7/" title="让 Agent 真正理解业务：从文档检索到电商知识与语义底座">https://profile.yulin.love/2026/11/02/让Agent理解业务-电商知识与语义底座/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/Agent/" rel="tag"># Agent</a>
+              <a href="/tags/Knowledge-Engineering/" rel="tag"># Knowledge Engineering</a>
+              <a href="/tags/RAG/" rel="tag"># RAG</a>
+              <a href="/tags/Knowledge-Graph/" rel="tag"># Knowledge Graph</a>
+              <a href="/tags/E-commerce/" rel="tag"># E-commerce</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/09/28/SL-SDM-SE%E5%B2%97%E4%BD%8D%E8%81%8C%E8%B4%A3%E4%B8%8E%E5%8D%8F%E4%BD%9C%E5%8E%9F%E5%88%99/" rel="prev" title="SL、SDM 与 SE：岗位职责、决策边界与协作原则">
+      <i class="fa fa-chevron-left"></i> SL、SDM 与 SE：岗位职责、决策边界与协作原则
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E5%90%AB%E4%B9%89%E5%9C%A8%E5%93%AA%E9%87%8C%E4%B8%A2%E5%A4%B1"><span class="nav-number">1.</span> <span class="nav-text">业务含义，在哪里丢失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%90%BD%E5%9C%B0%E6%A1%88%E4%BE%8B%E6%8F%AD%E7%A4%BA%E4%BA%86%E4%BB%80%E4%B9%88"><span class="nav-number">2.</span> <span class="nav-text">落地案例揭示了什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84%E5%8C%96%E5%BA%94%E4%BB%8E%E5%93%AA%E4%BA%9B%E8%B5%84%E4%BA%A7%E5%BC%80%E5%A7%8B"><span class="nav-number">3.</span> <span class="nav-text">知识结构化，应从哪些资产开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E5%BA%95%E5%BA%A7%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87"><span class="nav-number">4.</span> <span class="nav-text">技术底座如何组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%85%A5%E4%B8%8E%E8%A7%A3%E6%9E%90%E4%BF%9D%E7%95%99%E7%BB%93%E6%9E%84%E5%86%8D%E7%94%9F%E6%88%90%E7%89%87%E6%AE%B5"><span class="nav-number">4.1.</span> <span class="nav-text">接入与解析：保留结构，再生成片段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E5%8A%A0%E5%B7%A5%E5%B0%86%E6%9D%90%E6%96%99%E4%B8%8E%E4%B8%9A%E5%8A%A1%E5%AE%9A%E4%B9%89%E8%BF%9E%E6%8E%A5%E8%B5%B7%E6%9D%A5"><span class="nav-number">4.2.</span> <span class="nav-text">语义加工：将材料与业务定义连接起来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E5%AD%98%E5%82%A8%E5%8C%BA%E5%88%86%E7%9F%A5%E8%AF%86%E8%B5%84%E4%BA%A7%E4%B8%8E%E6%B4%BE%E7%94%9F%E7%B4%A2%E5%BC%95"><span class="nav-number">4.3.</span> <span class="nav-text">分层存储：区分知识资产与派生索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E4%B8%8E%E6%A3%80%E7%B4%A2%E6%8C%89%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9%E8%B7%AF%E5%BE%84"><span class="nav-number">4.4.</span> <span class="nav-text">查询与检索：按问题类型选择路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%BE%93%E5%87%BA%E8%AE%A9-agent-%E8%8E%B7%E5%BE%97%E5%8F%AF%E8%BF%BD%E6%BA%AF%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="nav-number">4.5.</span> <span class="nav-text">服务输出：让 Agent
+获得可追溯的结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%BF%90%E8%90%A5%E6%84%8F%E5%91%B3%E7%9D%80%E7%9F%A5%E8%AF%86%E5%8F%98%E5%8C%96%E5%90%8E%E4%BB%8D%E7%84%B6%E5%8F%AF%E4%BF%A1"><span class="nav-number">5.</span> <span class="nav-text">可运营，意味着知识变化后仍然可信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%9C%8B%E5%BE%85%E5%BC%80%E6%BA%90%E6%96%B9%E6%A1%88"><span class="nav-number">6.</span> <span class="nav-text">如何看待开源方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A9%E7%9F%A5%E8%AF%86%E8%B5%84%E4%BA%A7%E6%8C%81%E7%BB%AD%E7%A7%AF%E7%B4%AF"><span class="nav-number">7.</span> <span class="nav-text">让知识资产持续积累</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yulin LIU"
+      src="/images/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Yulin LIU</p>
+  <div class="site-description" itemprop="description">Stay Happy and Healthy !</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yliu1231" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yliu1231" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yliufi@connect.ust.hk" title="E-Mail → mailto:yliufi@connect.ust.hk" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+<div id="days"></div>
+<script>
+function show_date_time() {
+  window.setTimeout(show_date_time, 1000);
+  const birthDay = new Date('09/09/2021 23:48:23');
+  const elapsed = Date.now() - birthDay.getTime();
+  const days = Math.floor(elapsed / 86400000);
+  const hours = String(Math.floor(elapsed / 3600000) % 24).padStart(2, '0');
+  const minutes = String(Math.floor(elapsed / 60000) % 60).padStart(2, '0');
+  const seconds = String(Math.floor(elapsed / 1000) % 60).padStart(2, '0');
+  document.getElementById('days').textContent =
+    `已运行 ${days} 天 ${hours} 小时 ${minutes} 分 ${seconds} 秒`;
+}
+show_date_time();
+</script>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yulin LIU</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+<script src="/js/clicklove.js"></script>
+
+</body>
+</html>
