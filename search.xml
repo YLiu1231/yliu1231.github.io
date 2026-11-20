@@ -671,49 +671,49 @@ Agent。</li>
 <col style="width: 75%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>术语</th>
 <th>简要定义</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>LLM 调用</td>
 <td>将结构化消息发送给模型，并获得下一条模型输出</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Tool Use</td>
 <td>模型产生结构化工具请求，由应用或服务实际执行</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Agent</td>
 <td>能够在循环中自主选择行动、使用工具并根据结果调整的系统</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Workflow</td>
 <td>主要由程序预先确定执行路径的 LLM 工作流</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Agent Harness</td>
 <td>围绕模型构建的上下文、工具、状态、权限、执行、观测和验证系统</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Prompt Engineering</td>
 <td>优化传给模型的指令表达</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Context Engineering</td>
 <td>优化模型在当前步骤能够看到的信息</td>
 </tr>
-<tr class="even">
+<tr>
 <td>SDD</td>
 <td>以可执行规格和明确意图驱动设计、任务、实现与验证</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Loop Engineering</td>
 <td>为 Agent 设计有评价、有预算、有停止条件的反馈循环</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Eval</td>
 <td>使用任务、测试、评分器和环境结果衡量 Agent 的真实表现</td>
 </tr>
@@ -733,55 +733,55 @@ href="https://github.com/YLiu1231/SpecKit-LoopEngineering">SpecKit-LoopEngineeri
 <col style="width: 41%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>文件或目录</th>
 <th>学习重点</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><a
 href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/README.md"><code>README.md</code></a></td>
 <td>安装、初始化、安全模式和基本使用方法</td>
 </tr>
-<tr class="even">
+<tr>
 <td><a
 href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/CLAUDE.md"><code>CLAUDE.md</code></a></td>
 <td>稳定工程规则及 Four-Loop 使用顺序</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><a
 href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/PROJECT-CONSTITUTION.md"><code>PROJECT-CONSTITUTION.md</code></a></td>
 <td>意图、证据、权限和治理原则</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>skills/speckit-*/SKILL.md</code></td>
 <td>Spec Kit 的规格、计划、任务、分析和实现流程</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>skills/loop-*/SKILL.md</code></td>
 <td>四个有界工程循环及初始化流程</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>project-templates/</code></td>
 <td>Spec、Plan、Tasks 和 Checklist 模板</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><a
 href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/policy.json.md"><code>runtime/policy.json.md</code></a></td>
 <td>循环预算、分数、停滞和停止规则</td>
 </tr>
-<tr class="even">
+<tr>
 <td><a
 href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/loopctl.py.md"><code>runtime/loopctl.py.md</code></a></td>
 <td>确定性检查、循环状态记录和升级逻辑</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><a
 href="https://github.com/YLiu1231/SpecKit-LoopEngineering/blob/main/runtime/security_guard.py.md"><code>runtime/security_guard.py.md</code></a></td>
 <td>文件边界、高风险命令和审批策略</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>install.sh</code> / <code>install.ps1</code></td>
 <td>跨平台安装、备份、更新和诊断</td>
 </tr>
@@ -2042,24 +2042,24 @@ Engineer）分别承担组织与业务、项目交付、技术方案三个层面
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>岗位</th>
 <th>责任范围</th>
 <th>核心职责</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>SL（Service Leader）</td>
 <td>所辖业务与团队</td>
 <td>确定目标与优先级，配置资源，对业务结果、团队成长和长期技术竞争力负责</td>
 </tr>
-<tr class="even">
+<tr>
 <td>SDM（Service Delivery Manager）</td>
 <td>指定项目、版本或交付范围</td>
 <td>组织执行，管理计划、依赖、风险与交付预期，完成验收和交接</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>SE（System Engineer）</td>
 <td>所辖服务或技术领域</td>
 <td>分析需求，设计与验证方案，解决关键技术问题，维护技术质量与资产</td>
@@ -2152,7 +2152,7 @@ AI 辅助产生的设计、代码和测试结果进行专业验证。</p>
 <col style="width: 25%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>事项</th>
 <th>SL</th>
 <th>SDM</th>
@@ -2160,31 +2160,31 @@ AI 辅助产生的设计、代码和测试结果进行专业验证。</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>新需求与资源投入</td>
 <td>决定价值优先级和投入</td>
 <td>评估范围、依赖及交付影响</td>
 <td>判断可行性、技术成本和不确定性</td>
 </tr>
-<tr class="even">
+<tr>
 <td>一般技术方案</td>
 <td>在关键节点检查，按需评审</td>
 <td>检查交付约束与依赖</td>
 <td>在授权范围内决策并验证</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>重大方向与架构</td>
 <td>在授权范围内评审决策</td>
 <td>说明资源占用和交付影响</td>
 <td>提供方案、证据及取舍依据</td>
 </tr>
-<tr class="even">
+<tr>
 <td>未达标事项</td>
 <td>决定资源与优先级，按授权处理例外</td>
 <td>评估整改、范围调整或延期的影响</td>
 <td>明确是否达标、风险及处理方案</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>持续优化</td>
 <td>决定是否继续及投入边界</td>
 <td>组织验证，管理阶段计划和预期</td>
@@ -2265,29 +2265,29 @@ alt="图 1：四个有界 Loop 连接本次输入、阶段准出、问题回流�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Loop</th>
 <th>要解决的核心问题</th>
 <th>主要产物</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Requirements</td>
 <td>做什么、保留什么，怎样才算满足需求？</td>
 <td><code>spec.md</code>、上下文锁定、需求确认</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Design</td>
 <td>如何在现有架构内实现，怎样验证和恢复？</td>
 <td>概要设计、US 设计、兼容方案、案例目录、任务与追溯关系</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Implementation</td>
 <td>实现是否符合设计，完整案例实际执行了什么？</td>
 <td>业务代码、案例级原始结果、问题与风险记录</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Convergence</td>
 <td>最终成果是否一致，知识和交接是否反映实际状态？</td>
 <td>收敛结论、刷新后的项目知识、特性历史、版本化交接</td>
@@ -2339,29 +2339,29 @@ Agent 写下一句“通过”，都不足以证明完整执行。</p>
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>层次</th>
 <th>回答的问题</th>
 <th>规则</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>执行完整性</td>
 <td>规定案例是否全部实际执行？</td>
 <td>缺失、跳过、错误、超时保持未完整执行</td>
 </tr>
-<tr class="even">
+<tr>
 <td>自测结论</td>
 <td>实际断言通过还是失败？</td>
 <td>保留原始结果，摘要必须与原始结果一致</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>风险处置</td>
 <td>已知失败必须修复，还是允许保留？</td>
 <td>由开发者决定，记录依据和严重程度</td>
 </tr>
-<tr class="even">
+<tr>
 <td>阶段准出</td>
 <td>当前证据和决定是否满足要求？</td>
 <td>有依据的条件准出仍保留失败事实</td>
@@ -2422,19 +2422,19 @@ id="首次接入先建立可信的项目起点">首次接入：先建立可信�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>层次</th>
 <th>关注内容</th>
 <th>维护方式</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>项目自身</td>
 <td>当前架构、业务行为、代码、案例、特性历史</td>
 <td>本项目持续刷新，作为增量上下文</td>
 </tr>
-<tr class="even">
+<tr>
 <td>外部边界</td>
 <td>API、事件、共享数据、SDK、配置、业务含义、错误与时序</td>
 <td>生产方主动整理变化，消费方独立判断并回执</td>
@@ -2455,25 +2455,25 @@ alt="图 3：生产方以版本化交接传递变化，消费方独立判断、�
 <p>以 A 为生产方、B 为消费方，相关交互需要设计并验证四种组合：</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>组合</th>
 <th>需要说明和验证的行为</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>旧 A + 旧 B</td>
 <td>既有业务基线仍成立</td>
 </tr>
-<tr class="even">
+<tr>
 <td>新 A + 旧 B</td>
 <td>A 升级后，旧消费者仍可使用约定能力</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>旧 A + 新 B</td>
 <td>B 升级后，旧业务保持；新能力有明确降级方式</td>
 </tr>
-<tr class="even">
+<tr>
 <td>新 A + 新 B</td>
 <td>新能力满足双方约定</td>
 </tr>
@@ -2491,29 +2491,29 @@ id="skill运行时和项目资料如何分工">Skill、运行时和项目资料�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>部分</th>
 <th>职责</th>
 <th>位置</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Loop Skill</td>
 <td>指导 Agent 调查、提问、设计、实现、评审和回流</td>
 <td><code>skills/loop-*/SKILL.md</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Spec Kit Skill</td>
 <td>执行规格、计划、任务等具体工作</td>
 <td><code>skills/speckit-*/SKILL.md</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Python 运行时</td>
 <td>执行案例、保存事实、校验引用与证据、检查准出</td>
 <td><code>runtime/loop_runtime/</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>项目资料</td>
 <td>保存当前知识、规格、设计、案例、决定与交接</td>
 <td>业务项目的 <code>.specify/</code> 与 <code>specs/</code></td>
@@ -2652,44 +2652,44 @@ href="https://www.amazon.science/publications/cosmo-a-large-scale-e-commerce-com
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>资产</th>
 <th>应当明确的内容</th>
 <th>示例</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>术语与分类</td>
 <td>标准名称、别名、上下位关系和定义</td>
 <td>消费者所说的“券用不了”，对应哪类权益使用问题</td>
 </tr>
-<tr class="even">
+<tr>
 <td>业务对象与关系</td>
 <td>对象标识、属性、关系和权威来源</td>
 <td>商品、活动、优惠券及配置草稿之间的联系</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>规则与条件</td>
 <td>适用范围、前提、例外、优先级和有效期</td>
 <td>某项权益对渠道、人群及商品的要求</td>
 </tr>
-<tr class="even">
+<tr>
 <td>指标口径</td>
 <td>公式、粒度、时间窗、过滤和归因方式</td>
 <td>ROI 是否扣除退款、营销成本包含哪些项目</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>证据与经验</td>
 <td>来源、结论、适用条件和验证状态</td>
 <td>白皮书条款、用户原声、已确认的处理案例</td>
 </tr>
-<tr class="even">
+<tr>
 <td>动态事实</td>
 <td>当前值、状态、查询时间和变更记录</td>
 <td>库存、配置生效状态、审批结果</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>动作与完成标准</td>
 <td>输入输出、前置条件、权限和核验方式</td>
 <td>创建草稿、校验权益、确认配置是否生效</td>
@@ -2755,34 +2755,34 @@ id="分层存储区分知识资产与派生索引">分层存储：区分知识�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>存储职责</th>
 <th>主要承载内容</th>
 <th>设计要点</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>原始材料与解析产物</td>
 <td>原件、结构化文档、页码、段落及表格定位</td>
 <td>保留来源，支持重新加工和原文核对</td>
 </tr>
-<tr class="even">
+<tr>
 <td>知识资产与元数据</td>
 <td>对象定义、规则条件、版本、权限、责任人及审核记录</td>
 <td>管理哪些知识已确认、已发布，以及适用范围</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>全文与向量索引</td>
 <td>用于搜索和相似度匹配的表示</td>
 <td>可由源材料及语义资产重建，记录生成版本</td>
 </tr>
-<tr class="even">
+<tr>
 <td>关系存储</td>
 <td>对象关联、跨文档关系、证据依赖</td>
 <td>按查询需求选择关系表或图存储，保留关系来源</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>权威业务系统</td>
 <td>当前价格、库存、资格、配置状态及执行结果</td>
 <td>通过接口查询或受控快照使用，标明时效</td>
@@ -2800,39 +2800,39 @@ id="查询与检索按问题类型选择路径">查询与检索：按问题类�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>问题类型</th>
 <th>主要查询路径</th>
 <th>返回结果应携带的依据</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>查询白皮书或操作指南</td>
 <td>文档混合检索、重排与上下文扩展</td>
 <td>原文、版本、适用条件</td>
 </tr>
-<tr class="even">
+<tr>
 <td>查询商品或活动属性</td>
 <td>对象标识与结构化查询</td>
 <td>对象 ID、字段含义、权威来源</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>确认配置是否生效</td>
 <td>实时业务接口</td>
 <td>查询时间、实际状态</td>
 </tr>
-<tr class="even">
+<tr>
 <td>查找相关体验问题</td>
 <td>结构化过滤、关系查找与原声检索</td>
 <td>分类依据、反馈出处及关联对象</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>分析主要问题及占比</td>
 <td>确定范围的聚合分析，再取代表性证据</td>
 <td>总体范围、分母、去重及时间口径</td>
 </tr>
-<tr class="even">
+<tr>
 <td>判断权益适用或组合条件</td>
 <td>对象与规则查询，结合必要的文本证据</td>
 <td>适用条件、例外及规则核验结果</td>
@@ -2889,42 +2889,42 @@ href="https://www.palantir.com/docs/foundry/ontologies/review-ontology-proposals
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>方案</th>
 <th>值得重点考察的部分</th>
 <th>需要关注的边界</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><a href="https://github.com/infiniflow/ragflow">RAGFlow</a></td>
 <td>文档加工、分块干预、引用和检索运营</td>
 <td>发布版本与主分支的差异，以及权限、接口和现有基础设施兼容</td>
 </tr>
-<tr class="even">
+<tr>
 <td><a href="https://github.com/OpenSPG/KAG">OpenSPG/KAG</a></td>
 <td>Schema 约束、概念对齐、知识与原文互索引、逻辑检索</td>
 <td>平台依赖、维护情况、本地模型效果及知识治理能力</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><a href="https://github.com/HKUDS/LightRAG">LightRAG</a></td>
 <td>图增强检索、跨文档关联和来源维护</td>
 <td>抽取图的可信度、更新成本，以及精细授权</td>
 </tr>
-<tr class="even">
+<tr>
 <td><a
 href="https://microsoft.github.io/graphrag/index/default_dataflow/">Microsoft
 GraphRAG</a></td>
 <td>实体关系、社区摘要和全局主题综合</td>
 <td>索引成本、更新删除机制；全局综合不能替代精确统计</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><a
 href="https://github.com/docling-project/docling">Docling</a></td>
 <td>结构化解析、中间表示和分块</td>
 <td>真实材料的解析质量，以及后续语义治理</td>
 </tr>
-<tr class="even">
+<tr>
 <td><a
 href="https://github.com/langgenius/dify-docs/blob/main/en/cloud/use-dify/knowledge/knowledge-pipeline/knowledge-pipeline-orchestration.mdx">Dify
 知识 Pipeline</a></td>
@@ -2985,6 +2985,40 @@ href="https://cloud.google.com/blog/products/data-analytics/expanded-semantic-mo
         <tag>RAG</tag>
         <tag>Knowledge Graph</tag>
         <tag>E-commerce</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从单一超级智能到 Agent 协作｜Sam Altman 访谈解读</title>
+    <url>/2026/11/20/altman-cheeky-pint-agent-collaboration/</url>
+    <content><![CDATA[<p>在 Cheeky Pint 的访谈中，Sam Altman
+谈到他为何倾向于让多个智能体协作与制衡。这份报告从一个工程问题切入：给定同样的任务、资料和预算，多个
+Agent 协作能带来多大收益，又需要付出多少协调和补救成本？</p>
+<span id="more"></span>
+<p><a
+href="/2026/11/20/altman-cheeky-pint-agent-collaboration/report/">阅读完整图文报告</a></p>
+<p>报告完成于 2026 年 11 月 6
+日，依据节目官方文字稿，并用推理时计算研究、多 Agent
+工程实践与对齐伪装实验作机制对照。全文包含访谈时间索引、两张分析图和四项参考来源。</p>
+<ul>
+<li><strong>能力扩展。</strong>
+在同一批任务上，控制模型、资料、权限与计算预算，再比较单 Agent、单 Agent
+加独立验证，以及受控多 Agent。</li>
+<li><strong>安全制衡。</strong>
+看审核者能否获得独立证据、驳回错误操作，以及最终由谁决定规则和权限。</li>
+<li><strong>商业入口。</strong> 即使用户开始把任务委托给个人
+Agent，授权、履约和售后责任仍需按具体任务明确归属。</li>
+</ul>
+<p>访谈中的主张、外部研究和报告推论在全文中分别标明。先从能观察执行、能验收结果的真实任务开始，再根据失败原因决定是否引入多
+Agent。</p>
+]]></content>
+      <categories>
+        <category>Tech</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Interview</tag>
+        <tag>AI Safety</tag>
       </tags>
   </entry>
 </search>

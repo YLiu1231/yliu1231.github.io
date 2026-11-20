@@ -6,7 +6,7 @@
   <link href="https://profile.yulin.love/atom.xml" rel="self"/>
   
   <link href="https://profile.yulin.love/"/>
-  <updated>2026-11-02T15:17:05.000Z</updated>
+  <updated>2026-11-20T03:43:21.000Z</updated>
   <id>https://profile.yulin.love/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从单一超级智能到 Agent 协作｜Sam Altman 访谈解读</title>
+    <link href="https://profile.yulin.love/2026/11/20/altman-cheeky-pint-agent-collaboration/"/>
+    <id>https://profile.yulin.love/2026/11/20/altman-cheeky-pint-agent-collaboration/</id>
+    <published>2026-11-20T03:43:21.000Z</published>
+    <updated>2026-11-20T03:43:21.000Z</updated>
+    
+    
+    <summary type="html">同样的预算下，多 Agent 协作何时值得？从 Sam Altman 与 John Collison 的 Cheeky Pint 对谈出发，分析任务收益、独立验证与商业入口。</summary>
+    
+    
+    
+    <category term="Tech" scheme="https://profile.yulin.love/categories/Tech/"/>
+    
+    
+    <category term="AI" scheme="https://profile.yulin.love/tags/AI/"/>
+    
+    <category term="Agent" scheme="https://profile.yulin.love/tags/Agent/"/>
+    
+    <category term="Interview" scheme="https://profile.yulin.love/tags/Interview/"/>
+    
+    <category term="AI Safety" scheme="https://profile.yulin.love/tags/AI-Safety/"/>
+    
+  </entry>
   
   <entry>
     <title>SpecKit Loop Engineering：用四个有界 Loop 驱动存量项目增量研发</title>
@@ -485,29 +510,6 @@ id=&quot;中国传统文化中性问题对立的两极&quot;&gt;中国传统文�
     
     <category term="Life" scheme="https://profile.yulin.love/categories/Life/"/>
     
-    
-    <category term="Reading" scheme="https://profile.yulin.love/tags/Reading/"/>
-    
-    <category term="Emotion" scheme="https://profile.yulin.love/tags/Emotion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《或许》--YOASOBI</title>
-    <link href="https://profile.yulin.love/2021/09/29/%E3%80%8A%E6%88%96%E8%AE%B8%E3%80%8B-YOASOBI/"/>
-    <id>https://profile.yulin.love/2021/09/29/%E3%80%8A%E6%88%96%E8%AE%B8%E3%80%8B-YOASOBI/</id>
-    <published>2021-09-29T15:21:58.000Z</published>
-    <updated>2021-09-29T15:21:58.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;最终我们还是成为了永不相见的陌路人。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Life" scheme="https://profile.yulin.love/categories/Life/"/>
-    
-    
-    <category term="Sharing" scheme="https://profile.yulin.love/tags/Sharing/"/>
     
     <category term="Reading" scheme="https://profile.yulin.love/tags/Reading/"/>
     

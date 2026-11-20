@@ -290,29 +290,29 @@ alt="图 1：四个有界 Loop 连接本次输入、阶段准出、问题回流�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Loop</th>
 <th>要解决的核心问题</th>
 <th>主要产物</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Requirements</td>
 <td>做什么、保留什么，怎样才算满足需求？</td>
 <td><code>spec.md</code>、上下文锁定、需求确认</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Design</td>
 <td>如何在现有架构内实现，怎样验证和恢复？</td>
 <td>概要设计、US 设计、兼容方案、案例目录、任务与追溯关系</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Implementation</td>
 <td>实现是否符合设计，完整案例实际执行了什么？</td>
 <td>业务代码、案例级原始结果、问题与风险记录</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Convergence</td>
 <td>最终成果是否一致，知识和交接是否反映实际状态？</td>
 <td>收敛结论、刷新后的项目知识、特性历史、版本化交接</td>
@@ -364,29 +364,29 @@ Agent 写下一句“通过”，都不足以证明完整执行。</p>
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>层次</th>
 <th>回答的问题</th>
 <th>规则</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>执行完整性</td>
 <td>规定案例是否全部实际执行？</td>
 <td>缺失、跳过、错误、超时保持未完整执行</td>
 </tr>
-<tr class="even">
+<tr>
 <td>自测结论</td>
 <td>实际断言通过还是失败？</td>
 <td>保留原始结果，摘要必须与原始结果一致</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>风险处置</td>
 <td>已知失败必须修复，还是允许保留？</td>
 <td>由开发者决定，记录依据和严重程度</td>
 </tr>
-<tr class="even">
+<tr>
 <td>阶段准出</td>
 <td>当前证据和决定是否满足要求？</td>
 <td>有依据的条件准出仍保留失败事实</td>
@@ -447,19 +447,19 @@ id="首次接入先建立可信的项目起点">首次接入：先建立可信�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>层次</th>
 <th>关注内容</th>
 <th>维护方式</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>项目自身</td>
 <td>当前架构、业务行为、代码、案例、特性历史</td>
 <td>本项目持续刷新，作为增量上下文</td>
 </tr>
-<tr class="even">
+<tr>
 <td>外部边界</td>
 <td>API、事件、共享数据、SDK、配置、业务含义、错误与时序</td>
 <td>生产方主动整理变化，消费方独立判断并回执</td>
@@ -480,25 +480,25 @@ alt="图 3：生产方以版本化交接传递变化，消费方独立判断、�
 <p>以 A 为生产方、B 为消费方，相关交互需要设计并验证四种组合：</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>组合</th>
 <th>需要说明和验证的行为</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>旧 A + 旧 B</td>
 <td>既有业务基线仍成立</td>
 </tr>
-<tr class="even">
+<tr>
 <td>新 A + 旧 B</td>
 <td>A 升级后，旧消费者仍可使用约定能力</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>旧 A + 新 B</td>
 <td>B 升级后，旧业务保持；新能力有明确降级方式</td>
 </tr>
-<tr class="even">
+<tr>
 <td>新 A + 新 B</td>
 <td>新能力满足双方约定</td>
 </tr>
@@ -516,29 +516,29 @@ id="skill运行时和项目资料如何分工">Skill、运行时和项目资料�
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>部分</th>
 <th>职责</th>
 <th>位置</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Loop Skill</td>
 <td>指导 Agent 调查、提问、设计、实现、评审和回流</td>
 <td><code>skills/loop-*/SKILL.md</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Spec Kit Skill</td>
 <td>执行规格、计划、任务等具体工作</td>
 <td><code>skills/speckit-*/SKILL.md</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Python 运行时</td>
 <td>执行案例、保存事实、校验引用与证据、检查准出</td>
 <td><code>runtime/loop_runtime/</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>项目资料</td>
 <td>保存当前知识、规格、设计、案例、决定与交接</td>
 <td>业务项目的 <code>.specify/</code> 与 <code>specs/</code></td>
@@ -689,7 +689,10 @@ target="_blank" rel="noopener" href="https://github.com/YLiu1231/SpecKit-LoopEng
     <a href="/2026/11/02/%E8%AE%A9Agent%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1-%E7%94%B5%E5%95%86%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%AF%AD%E4%B9%89%E5%BA%95%E5%BA%A7/" rel="prev" title="让 Agent 真正理解业务：从文档检索到电商知识与语义底座">
       <i class="fa fa-chevron-left"></i> 让 Agent 真正理解业务：从文档检索到电商知识与语义底座
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2026/11/20/altman-cheeky-pint-agent-collaboration/" rel="next" title="从单一超级智能到 Agent 协作｜Sam Altman 访谈解读">
+      从单一超级智能到 Agent 协作｜Sam Altman 访谈解读 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -768,7 +771,7 @@ Convergence：把本次成果变成下一次开发的可靠起点</span></a></li
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
