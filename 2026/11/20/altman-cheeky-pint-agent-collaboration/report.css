@@ -1,0 +1,211 @@
+.altman-report {
+  --report-accent: #14505e;
+  --report-muted: #626e73;
+  --report-rule: #dce6e8;
+  --report-tint: #eff5f5;
+  container-type: inline-size;
+}
+
+.altman-report .report-section {
+  margin-block: 2.5em;
+}
+
+.altman-report .report-section:first-child {
+  margin-top: 1.5em;
+}
+
+.altman-report p {
+  text-align: start;
+}
+
+.altman-report .crumb {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  color: var(--report-muted);
+  font-size: .72em;
+  border-bottom: 1px solid var(--report-rule);
+  padding-bottom: .5rem;
+}
+
+.altman-report .cover-title {
+  border-bottom: 2px solid var(--report-accent);
+  padding-block: 1rem;
+}
+
+.altman-report .eyebrow,
+.altman-report .topic {
+  color: var(--report-accent);
+  font-size: .75em;
+  font-weight: 650;
+}
+
+.altman-report .subtitle {
+  margin: .25em 0;
+  font-size: 1.2em;
+  font-weight: 650;
+}
+
+.altman-report .byline,
+.altman-report .cover-meta,
+.altman-report .tag,
+.altman-report .caption,
+.altman-report .figure-scroll-note {
+  color: var(--report-muted);
+  font-size: .8em;
+}
+
+.altman-report .cover-meta {
+  margin-top: 1em;
+}
+
+.altman-report .abstract,
+.altman-report .method {
+  margin-top: 1.25em;
+}
+
+.altman-report .abstract h2,
+.altman-report .method h2,
+.altman-report .references h2 {
+  font-size: 1.2em;
+}
+
+.altman-report .abstract .tag {
+  font-weight: 400;
+}
+
+.altman-report .abstract > p:first-of-type {
+  font-size: 1.08em;
+}
+
+.altman-report .reading-map {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .65em;
+  margin-top: 1.5em;
+  border-top: 1px solid var(--report-accent);
+  padding-top: .65em;
+  font-size: .85em;
+}
+
+.altman-report .reading-map b {
+  display: block;
+  color: var(--report-accent);
+}
+
+.altman-report .chapter {
+  display: flex;
+  align-items: baseline;
+  gap: .8em;
+  margin-block: 1em;
+}
+
+.altman-report .chapter .num {
+  color: var(--report-accent);
+  font-size: 1.45em;
+}
+
+.altman-report .chapter h2 {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.altman-report .columns h3 {
+  break-after: avoid;
+  margin-top: 0;
+  font-size: 1.08em;
+}
+
+.altman-report .columns .wide,
+.altman-report .columns .table-container {
+  column-span: all;
+}
+
+.altman-report table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: .8em;
+  line-height: 1.55;
+}
+
+.altman-report table th,
+.altman-report table td {
+  overflow-wrap: anywhere;
+  padding: .5em;
+  text-align: start;
+  vertical-align: top;
+}
+
+.altman-report table th {
+  background: var(--report-tint);
+  border-bottom-color: var(--report-accent);
+}
+
+.altman-report .map-table th:nth-child(2) {
+  width: 49%;
+}
+
+.altman-report figure.fig {
+  margin: 1.35em 0;
+  padding-block: .8em;
+  border-block: 1px solid var(--report-rule);
+}
+
+.altman-report .figtitle {
+  font-weight: 650;
+}
+
+.altman-report .figure-diagram {
+  overflow-x: auto;
+}
+
+.altman-report .figure-diagram:focus-visible {
+  outline: 2px solid var(--report-accent);
+  outline-offset: 2px;
+}
+
+.altman-report .figure-diagram svg {
+  display: block;
+  width: 100%;
+  min-width: 610px;
+  height: auto;
+}
+
+.altman-report .fig .caption {
+  margin-top: .5em;
+  text-align: start;
+}
+
+.altman-report .references {
+  border-top: 1px solid var(--report-rule);
+}
+
+.altman-report a {
+  color: var(--report-accent);
+  text-decoration: underline;
+  text-underline-offset: .14em;
+}
+
+.altman-report .cite {
+  white-space: nowrap;
+  font-size: .8em;
+}
+
+@container (min-width: 640px) {
+  .altman-report .columns {
+    column-count: 2;
+    column-gap: 1.4em;
+    column-rule: 1px solid var(--report-rule);
+  }
+
+  .altman-report .figure-scroll-note {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* This theme hides the sidebar at narrow widths; its overlay must follow it. */
+  body:has(.altman-report) #sidebar-dimmer {
+    display: none;
+  }
+}
